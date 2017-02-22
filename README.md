@@ -6,5 +6,5 @@ Las reglas del juego pueden consultarse en recursos/reglas.pdf
 
 ### Autores:
 
-- ![@jmml97](https://github.com/jmml97/)
-- ![@antcc](https://github.com/antcc/)
+- [@jmml97](https://github.com/jmml97/)
+- [@antcc](https://github.com/antcc/)
