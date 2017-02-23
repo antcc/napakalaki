@@ -21,6 +21,10 @@ public class Prize {
     
     }
     
+    //// Métodos
+    
+    // Set & Get
+    
     public int getTreasures() {
     
         return this.treasures;
@@ -32,5 +36,16 @@ public class Prize {
         return this.level;
     
     }
+    
+    
+    // Otros métodos
+    
+    public String toString() {
+    
+        return "Treasures: " + Integer.toString(treasures) +
+                "Level: " + Integer.toString(level);
+    
+    }
+    
     
 }

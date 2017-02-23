@@ -6,6 +6,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -95,5 +96,19 @@ public class BadConsequence {
     
         return this.specificVisibleTreasures;
     
+    }
+    
+    // Otros métodos
+    
+    public String toString() {
+    
+        return "Text: " + text +
+                "Levels: " + Integer.toString(levels) +
+                "Visible treasures lost: " + Integer.toString(nVisibleTreasures) +
+                "Hidden treasures lost: " + Integer.toString(nHiddenTreasures) + 
+                "Death: " + String.valueOf(death) +
+                "Specific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray()) + 
+                "Specific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
+        
     }
 }
