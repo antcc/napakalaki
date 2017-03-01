@@ -6,22 +6,50 @@ class BadConsequence
   attr_reader :levels                    # niveles perdidos
   attr_reader :nVisibleTreasures         # tesoros visibles perdidos
   attr_reader :nHiddenTreasures          # tesoros ocultos perdidos
-  attr_reader :death                     # representa si el jugador muere
   attr_reader :specificVisibleTreasures  # tesoros visibles específicos
   attr_reader :specificHiddenTreasures   # teosoros ocultos específicos
+  attr_reader :death                     # representa si el jugador muere
   
-  def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
+  ALL_TREASURES = :'Todos los tesoros'   # simboliza todos los tesoros
+  
+  private def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
-    # siguiente sesión
+    @text = aText
+    @levels = someLevels
+    @nVisibleTreasures = someVisibleTreasures
+    @nHiddenTreasures = someHiddenTreasures
+    @specificVisibleTreasures = someSpecificVisibleTreasures
+    @specificHiddenTreasures = someSpecificHiddenTreasures
+    @death = death
+  end
+  
+  def self.newLevelNumberOfTreasures(aText, someLevels, someVisibleTreasures, someHiddenTreasures)
+    self.new(aText, someLevels, someVisibleTreasures, someHiddenTreasures, nil, nil, false)
+  end
+  
+  def self.newLevelSpecificTreasures(aText, someLevels,
+      someSpecificVisibleTreasures, someSpecificHiddenTreasures)
+    self.new(aText, someLevels, nil, nil, someSpecificVisibleTreasures,
+        someSpecificHiddenTreasures, false)
+  end
+  
+  def self.newDeath(aText)
+    self.new(aText, 0, 0, nil, nil, nil, nil, true)
   end
   
   def to_s
-    text = "Mal rollo: #{@text}"
+    text = "Texto: #{@text}"
+    text << "\nMuerte: " << if @death 
+                            "SI" 
+                          else
+                            "NO"
+                          end
+    text << "\nNiveles perdidos: #{@levels}"
     text << "\nTesoros visibles perdidos: #{@nVisibleTreasures}"
     text << "\nTesoros ocultos perdidos: #{@nHiddenTreasures}"
     text << "\nTesoros específicos visibles perdidos: \
-            #{@specificVisibleTreasures}"
-    text << "\n Tesoros específicos ocultos perdidos: \
-            #{@specificHiddenTreasures}"
+            #{@specificVisibleTreasures.to_s}"
+    text << "\nTesoros específicos ocultos perdidos: \
+            #{@specificHiddenTreasures.to_s}"
   end
 end
