@@ -34,19 +34,32 @@ public class BadConsequence {
         this.levels = levels;
         this.nVisibleTreasures = nVisible;
         this.nHiddenTreasures = nHidden;
+        this.death = false;
+        this.specificHiddenTreasures = null;
+        this.specificVisibleTreasures = null;
     
     }
     
     public BadConsequence(String text, boolean death) {
     
         this.text = text;
+        this.levels = 0;
         this.death = death;
+        this.nVisibleTreasures = 0;
+        this.nHiddenTreasures = 0;
+        this.specificHiddenTreasures = null;
+        this.specificVisibleTreasures = null;
     
     }
     
     public BadConsequence (String text, int levels, ArrayList<TreasureKind> tVisible, 
             ArrayList<TreasureKind> tHidden) {
-    
+        
+        this.text = text;
+        this.levels = levels;
+        this.death = false;
+        this.nVisibleTreasures = 0;
+        this.nHiddenTreasures = 0;
         this.specificVisibleTreasures = tVisible;
         this.specificHiddenTreasures = tHidden;
     
