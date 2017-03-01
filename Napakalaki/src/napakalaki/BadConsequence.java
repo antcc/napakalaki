@@ -103,12 +103,12 @@ public class BadConsequence {
     public String toString() {
     
         return "Text: " + text +
-                "Levels: " + Integer.toString(levels) +
-                "Visible treasures lost: " + Integer.toString(nVisibleTreasures) +
-                "Hidden treasures lost: " + Integer.toString(nHiddenTreasures) + 
-                "Death: " + String.valueOf(death) +
-                "Specific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray()) + 
-                "Specific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
+                "\nLevels: " + Integer.toString(levels) +
+                "\nVisible treasures lost: " + Integer.toString(nVisibleTreasures) +
+                "\nHidden treasures lost: " + Integer.toString(nHiddenTreasures) + 
+                "\nDeath: " + String.valueOf(death) +
+                "\nSpecific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray()) + 
+                "\nSpecific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
         
     }
 }

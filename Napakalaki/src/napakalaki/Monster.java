@@ -60,8 +60,8 @@ public class Monster {
     
     public String toString() {
     
-        return "Name: " + name + "Level: " + Integer.toString(combatLevel) +
-                "Prizes: " + prize.toString() + "Bad consequence: " +
+        return "Name: " + name + "\nLevel: " + Integer.toString(combatLevel) +
+                "\nPrizes: " + prize.toString() + "\nBad consequence: " +
                 badConsequence.toString();
     
     }

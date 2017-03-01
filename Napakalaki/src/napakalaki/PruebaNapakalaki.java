@@ -16,6 +16,16 @@ public class PruebaNapakalaki {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Prize testPrize = new Prize(3, 2);
+        TreasureKind testTreasureKind = TreasureKind.ARMOR;
+        BadConsequence testBadConsequence = new BadConsequence("Jejeje.", 9, 3, 3);
+        Monster testMonster = new Monster("Pikachu", 10, testPrize, testBadConsequence);
+        
+        System.out.println("testPrize\n" + testPrize.toString() + "\n");
+        System.out.println("testBadConsequence\n" + testBadConsequence.toString()  + "\n");
+        System.out.println("testMonster\n" + testMonster.toString());
+        
     }
     
 }
