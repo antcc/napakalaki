@@ -10,7 +10,7 @@ class BadConsequence
   attr_reader :specificHiddenTreasures   # teosoros ocultos específicos
   attr_reader :death                     # representa si el jugador muere
   
-  ALL_TREASURES = :'Todos los tesoros'   # simboliza todos los tesoros
+  ALL_TREASURES = 20   # simboliza todos los tesoros
   
   private def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
@@ -34,7 +34,7 @@ class BadConsequence
   end
   
   def self.newDeath(aText)
-    self.new(aText, 0, 0, nil, nil, nil, nil, true)
+    self.new(aText, 0, nil, nil, nil, nil, true)
   end
   
   def to_s
@@ -45,8 +45,16 @@ class BadConsequence
                             "NO"
                           end
     text << "\nNiveles perdidos: #{@levels}"
-    text << "\nTesoros visibles perdidos: #{@nVisibleTreasures}"
-    text << "\nTesoros ocultos perdidos: #{@nHiddenTreasures}"
+    text << "\nTesoros visibles perdidos: " << if @nVisibleTreasures == ALL_TREASURES
+                                                 "Todos los tesoros"
+                                               else
+                                                 "#{@nVisibleTreasures}"
+                                               end
+    text << "\nTesoros ocultos perdidos: " << if @nHiddenTreasures == ALL_TREASURES
+                                                 "Todos los tesoros"
+                                               else
+                                                 "#{@nHiddenTreasures}"
+                                               end
     text << "\nTesoros específicos visibles perdidos: \
             #{@specificVisibleTreasures.to_s}"
     text << "\nTesoros específicos ocultos perdidos: \
