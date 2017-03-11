@@ -12,7 +12,7 @@ class BadConsequence
   
   ALL_TREASURES = 20   # simboliza todos los tesoros
   
-  private def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
+  def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
     @text = aText
     @levels = someLevels
@@ -23,18 +23,20 @@ class BadConsequence
     @death = death
   end
   
+  private_class_method :new
+  
   def self.newLevelNumberOfTreasures(aText, someLevels, someVisibleTreasures, someHiddenTreasures)
-    self.new(aText, someLevels, someVisibleTreasures, someHiddenTreasures, nil, nil, false)
+    new(aText, someLevels, someVisibleTreasures, someHiddenTreasures, nil, nil, false)
   end
   
   def self.newLevelSpecificTreasures(aText, someLevels,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures)
-    self.new(aText, someLevels, nil, nil, someSpecificVisibleTreasures,
+    new(aText, someLevels, nil, nil, someSpecificVisibleTreasures,
         someSpecificHiddenTreasures, false)
   end
   
   def self.newDeath(aText)
-    self.new(aText, 0, nil, nil, nil, nil, true)
+    new(aText, 0, nil, nil, nil, nil, true)
   end
   
   def to_s
