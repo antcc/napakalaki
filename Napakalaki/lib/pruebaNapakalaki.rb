@@ -4,6 +4,7 @@ require_relative 'treasure_kind'
 require_relative 'prize'
 require_relative 'monster'
 require_relative 'bad_consequence'
+require_relative 'test'
 
 # class PruebaNapakalaki: programa de prueba
 class PruebaNapakalaki 
@@ -203,5 +204,13 @@ class PruebaNapakalaki
   self.print_monsters(self.bad_consequence_specific_treasure(TreasureKind::SHOES))
   puts
   self.print_monsters(self.bad_consequence_specific_treasure(TreasureKind::HELMET))
+  
+  # --- Tercera prueba ---
+  puts "\n\nPRUEBA DE ENTREGA DEL PROYECTO EN PRADO\n\n"
+  puts "Método de clase:\n"
+  Test.testClase
+  puts "\nMétodo de instancia:\n"
+  test = Test.new
+  test.testInstancia
 
 end
