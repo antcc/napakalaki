@@ -7,6 +7,7 @@ package napakalaki;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  *
@@ -20,24 +21,105 @@ public class PruebaNapakalaki {
     
     static ArrayList<Monster> monstruos = new ArrayList();
     
+    static ArrayList<Monster> combatLevelOverTen() {
+        
+        ArrayList<Monster> res = new ArrayList();
+        
+        for (Iterator<Monster> i = monstruos.iterator(); i.hasNext();) {
+        
+            Monster tmp = i.next();
+            
+            if (tmp.getCombatLevel() > 10) {
+                res.add(tmp);
+            
+            }
+            
+        }
+        
+        return res;
+    
+    }
+    
+    static ArrayList<Monster> badConsequenceOnlyLevelLoss() {
+        
+        ArrayList<Monster> res = new ArrayList();
+        
+        for (Iterator<Monster> i = monstruos.iterator(); i.hasNext();) {
+        
+            Monster tmp = i.next();
+            BadConsequence tmpBC = tmp.getBadConsequence();
+            
+            Boolean condition = tmpBC.getLevels() > 0 &&
+                                tmpBC.getDeath() == false &&
+                                tmpBC.getHiddenTreasures() == 0 &&
+                                tmpBC.getVisibleTreasures() == 0 &&
+                                tmpBC.getSpecificHiddenTreasures() == null &&
+                                tmpBC.getSpecificVisibleTreasures() == null;
+            
+            
+            if (condition) {
+                res.add(tmp);
+            }
+            
+        }
+        
+        return res;
+    
+    }
+    
+    static ArrayList<Monster> levelPrizeGreaterThanOne() {
+        
+        ArrayList<Monster> res = new ArrayList();
+        
+        for (Iterator<Monster> i = monstruos.iterator(); i.hasNext();) {
+        
+            Monster tmp = i.next();
+            
+            if (tmp.getPrize().getLevel() > 1) {
+                res.add(tmp);
+            }
+            
+        }
+        
+        return res;
+    
+    }
+    
+    static ArrayList<Monster> badConsequenceLosesTreasureKind(TreasureKind treasureKind) {
+        
+        ArrayList<Monster> res = new ArrayList();
+        
+        for (Iterator<Monster> i = monstruos.iterator(); i.hasNext();) {
+        
+            Monster tmp = i.next();
+            BadConsequence tmpBC = tmp.getBadConsequence();
+            
+            Boolean condition = false;
+            
+            if (tmpBC.getSpecificHiddenTreasures() != null) {
+            
+                condition = condition || tmpBC.getSpecificHiddenTreasures().contains(treasureKind);
+            
+            } else if (tmpBC.getSpecificVisibleTreasures() != null) {
+            
+                condition = condition || tmpBC.getSpecificVisibleTreasures().contains(treasureKind);
+            
+            }
+            
+            if (condition) {
+                res.add(tmp);
+            }
+            
+        }
+        
+        return res;
+    
+    }
+    
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Prize testPrize = new Prize(3, 2);
-        TreasureKind testTreasureKind = TreasureKind.ARMOR;
-        BadConsequence testBadConsequence = new BadConsequence("Jejeje.", 9, 3, 3);
-        ArrayList vArray = new ArrayList();
-        ArrayList hArray = new ArrayList();
-        vArray.add(TreasureKind.BOTHHANDS);
-        hArray.add(TreasureKind.BOTHHANDS);
-        hArray.add(TreasureKind.ARMOR);
-        BadConsequence testBadConsequence2 = new BadConsequence("Jujuju.", 9, vArray, hArray);
-        Monster testMonster = new Monster("Pikachu", 10, testBadConsequence, testPrize);
-        
-        System.out.println("testPrize\n" + testPrize.toString() + "\n");
-        System.out.println("testBadConsequence\n" + testBadConsequence.toString()  + "\n");
-        System.out.println("testMonster\n" + testMonster.toString());
-        System.out.println("testBadConsequence2\n" + testBadConsequence2.toString()  + "\n");
+     
         
         
         // Monstruos que salen en el guion de prácticas
@@ -139,7 +221,13 @@ public class PruebaNapakalaki {
         prize = new Prize(2,1);
         monstruos.add(new Monster("Bicéfalo", 21, badConsequence, prize));
         
-        
+        combatLevelOverTen();
+        badConsequenceOnlyLevelLoss();
+        badConsequenceLosesTreasureKind(TreasureKind.ARMOR);
+        badConsequenceLosesTreasureKind(TreasureKind.BOTHHANDS);
+        badConsequenceLosesTreasureKind(TreasureKind.HELMET);
+        badConsequenceLosesTreasureKind(TreasureKind.ONEHAND);
+        badConsequenceLosesTreasureKind(TreasureKind.SHOES);
         
         
     }
