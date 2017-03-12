@@ -3,14 +3,14 @@
 # class Prize: representa la recompensa obtenida al derrotar a un monstruo
 class Prize
   attr_reader :treasures
-  attr_reader :level
+  attr_reader :levels
   
-  def initialize(treasures, level)
-    @treasures = treasures
-    @level = level
+  def initialize(t, l)
+    @treasures = t
+    @levels = l
   end
   
   def to_s
-    "Tesoros ganados: #{@treasures} \nNiveles ganados: #{@level}"
+    "Tesoros ganados: #{@treasures} \nNiveles ganados: #{@levels}"
   end
 end

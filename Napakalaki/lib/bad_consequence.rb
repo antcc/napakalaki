@@ -2,15 +2,13 @@
 
 # class BadConsequence: representa el mal rollo de un monstruo
 class BadConsequence
-  attr_reader :text                      # texto del mal rollo
   attr_reader :levels                    # niveles perdidos
   attr_reader :nVisibleTreasures         # tesoros visibles perdidos
   attr_reader :nHiddenTreasures          # tesoros ocultos perdidos
   attr_reader :specificVisibleTreasures  # tesoros visibles específicos
   attr_reader :specificHiddenTreasures   # teosoros ocultos específicos
-  attr_reader :death                     # representa si el jugador muere
   
-  ALL_TREASURES = 20   # simboliza todos los tesoros
+  MAXTREASURES = 10   # simboliza todos los tesoros
   
   def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
@@ -25,19 +23,31 @@ class BadConsequence
   
   private_class_method :new
   
-  def self.newLevelNumberOfTreasures(aText, someLevels, someVisibleTreasures, someHiddenTreasures)
-    new(aText, someLevels, someVisibleTreasures, someHiddenTreasures, nil, nil, false)
+  def self.newLevelNumberOfTreasures(t, l, nVisible, nHidden)
+    new(t, l, nVisible, nHidden, nil, nil, false)
   end
   
-  def self.newLevelSpecificTreasures(aText, someLevels,
-      someSpecificVisibleTreasures, someSpecificHiddenTreasures)
-    new(aText, someLevels, nil, nil, someSpecificVisibleTreasures,
-        someSpecificHiddenTreasures, false)
+  def self.newLevelSpecificTreasures(t,l,v,h)
+    new(t, l, nil, nil, v, h, false)
   end
   
-  def self.newDeath(aText)
-    new(aText, 0, nil, nil, nil, nil, true)
+  def self.newDeath(t)
+    new(t, 0, nil, nil, nil, nil, true)
   end
+  
+  def isEmpty
+    
+  end
+  
+  def substractVisibleTreasure(t)
+    
+  end
+  
+  def substractHiddenTreasure(t)
+    
+  end
+  
+  def adjustToFitTreasureLists(v,h)
   
   def to_s
     text = "Texto: #{@text}"

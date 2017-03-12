@@ -1,3 +1,1 @@
-- En la clase PruebaNapakalaki, los monstruos se cargan en el constructor, o
-tal cual en la clase?
-- La misma pregunta referida a las pruebas.
+- En BadConsequence, death y text no tienen consultores?
