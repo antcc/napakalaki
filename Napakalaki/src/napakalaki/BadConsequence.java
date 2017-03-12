@@ -115,13 +115,30 @@ public class BadConsequence {
     
     public String toString() {
     
-        return "Text: " + text +
-                "\nLevels: " + Integer.toString(levels) +
-                "\nVisible treasures lost: " + Integer.toString(nVisibleTreasures) +
-                "\nHidden treasures lost: " + Integer.toString(nHiddenTreasures) + 
-                "\nDeath: " + String.valueOf(death) +
-                "\nSpecific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray()) + 
-                "\nSpecific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
+        String text = "Text: " + this.text;
         
+        if (this.death) {
+        
+            text = text + "\nDeath: " + String.valueOf(death);
+        
+        } else {
+        
+            text = text + "\nLevels: " + Integer.toString(levels) +
+                "\nVisible treasures lost: " + Integer.toString(nVisibleTreasures) +
+                "\nHidden treasures lost: " + Integer.toString(nHiddenTreasures);
+        
+        }
+        
+        if (specificHiddenTreasures != null) {
+        
+            text = text + "\nSpecific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray());
+        
+        } else if (specificVisibleTreasures != null) {
+        
+            text = text + "\nSpecific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
+        
+        }
+        
+        return text;
     }
 }

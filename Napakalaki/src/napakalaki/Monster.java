@@ -19,7 +19,7 @@ public class Monster {
     
     //// Constructores
     
-    public Monster(String name, int combatLevel, Prize prize, BadConsequence badConsequence) {
+    public Monster(String name, int combatLevel, BadConsequence badConsequence, Prize prize) {
     
         this.name = name;
         this.combatLevel = combatLevel;
