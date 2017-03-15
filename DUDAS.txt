@@ -1,1 +1,2 @@
-- En BadConsequence, death y text no tienen consultores?
+- En BadConsequence, el constructor de muerte necesita parámetro en Ruby?
+- Implementación de constructores de todas las clases?? Solo inicializar??
