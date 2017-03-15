@@ -1,11 +1,12 @@
 #encoding: utf-8
 
+require_relative 'prize'
+require_relative 'bad_consequence'
+require_relative 'treasure_kind'
+require_relative 'monster'
+
 # class Test: prueba de entrega de proyecto en PRADO
 class Test
-  def initialize
-    
-  end
-  
   # método de clase
   def self.testClase
     # Byakhees de bonanza
@@ -25,4 +26,5 @@ class Test
     monster = Monster.new('Byakhees de bonanza', 8, prize, badConsequence)
     puts monster
   end
+  
 end

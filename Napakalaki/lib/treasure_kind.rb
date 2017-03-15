@@ -1,4 +1,4 @@
-# encoding: utf-8
+#encoding: utf-8
 
 # module TreasureKind: constantes para los tipos de tesoros
 module TreasureKind
@@ -6,5 +6,6 @@ module TreasureKind
   ONEHAND = :onehand
   BOTHHANDS = :bothhands
   HELMET = :helmet
-  SHOES = :shoes
+  SHOE = :shoe
+  
 end
