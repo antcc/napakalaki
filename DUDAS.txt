@@ -1,1 +1,6 @@
 - Implementación de constructores de todas las clases?? Solo inicializar??
+- Si se hace 'require' en un fichero, y a su vez en otro fichero se hace 'require' del primero, se importa también en el segundo lo que importaba el primero?
+
+- Los require van dentro del módulo NapakalakiGame?
+
+- Al implementar decrementar niveles, permitir que sea < 1?

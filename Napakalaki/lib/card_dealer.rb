@@ -4,10 +4,6 @@
 class CardDealer
   include Singleton
   
-  def initialize
-
-  end
-  
   private
   def initTreasureCardDeck
     

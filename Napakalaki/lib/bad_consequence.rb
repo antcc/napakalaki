@@ -8,7 +8,7 @@ class BadConsequence
   attr_reader :specificVisibleTreasures  # tesoros visibles específicos
   attr_reader :specificHiddenTreasures   # teosoros ocultos específicos
   
-  MAXTREASURES = 10   # simboliza todos los tesoros
+  @@MAXTREASURES = 10   # simboliza todos los tesoros
   
   def initialize(aText, someLevels, someVisibleTreasures, someHiddenTreasures,
       someSpecificVisibleTreasures, someSpecificHiddenTreasures, death)
@@ -30,6 +30,10 @@ class BadConsequence
   
   def substractVisibleTreasure(t)
     
+  end
+  
+  def self.getMaxTreasures
+    @@MAXTREASURES
   end
   
   def substractHiddenTreasure(t)
@@ -60,12 +64,12 @@ class BadConsequence
                               "NO"
                             end
     text << "\nNiveles perdidos: #{@levels}"
-    text << "\nTesoros visibles perdidos: " << if @nVisibleTreasures == MAXTREASURES
+    text << "\nTesoros visibles perdidos: " << if @nVisibleTreasures == @@MAXTREASURES
                                                  "Todos los tesoros"
                                                else
                                                  "#{@nVisibleTreasures}"
                                                end
-    text << "\nTesoros ocultos perdidos: " << if @nHiddenTreasures == MAXTREASURES
+    text << "\nTesoros ocultos perdidos: " << if @nHiddenTreasures == @@MAXTREASURES
                                                 "Todos los tesoros"
                                               else
                                                 "#{@nHiddenTreasures}"

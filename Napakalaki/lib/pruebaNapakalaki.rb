@@ -39,7 +39,7 @@ class PruebaNapakalaki
     # El gorrón en el umbral
     prize = Prize.new(3,1)
     badConsequence = BadConsequence.newLevelNumberOfTreasures('Pierdes todos tus tesoros visibles.',
-        0, BadConsequence::MAXTREASURES, 0)
+        0, BadConsequence.getMaxTreasures, 0)
     @@monsters << Monster.new('El gorrón en el umbral', 13, badConsequence, prize)
 
     # H.P Munchcraft
