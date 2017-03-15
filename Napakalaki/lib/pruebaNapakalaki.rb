@@ -69,7 +69,7 @@ class PruebaNapakalaki
     # Los hondos
     prize = Prize.new(2, 1)
     badConsequence = BadConsequence.newDeath('Estos monstruos resultan bastante superficiales ' \
-        'y te aburren mortalmente. Estás muerto.')
+        'y te aburren mortalmente. Estás muerto.', true)
     @@monsters << Monster.new('Los hondos', 8, badConsequence, prize)
 
     # Semillas Cthulhu
@@ -93,12 +93,12 @@ class PruebaNapakalaki
     # Yskhtihyssg-Goth
     prize = Prize.new(3, 1)
     badConsequence = BadConsequence.newDeath('No le hace gracia que pronuncien mal su nombre. ' \
-        'Estás muerto.')
+        'Estás muerto.', true)
     @@monsters << Monster.new('Yskhtihyssg-Goth', 14, badConsequence, prize)
     
     # Familia feliz
     prize = Prize.new(3, 1)
-    badConsequence = BadConsequence.newDeath('La familia te atrapa. Estás muerto.')
+    badConsequence = BadConsequence.newDeath('La familia te atrapa. Estás muerto.', true)
     @@monsters << Monster.new('Familia feliz', 1, badConsequence, prize)
     
     # Roboggoth

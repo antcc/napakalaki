@@ -44,7 +44,7 @@ class BadConsequence
     new(t, l, nil, nil, v, h, false)
   end
   
-  def self.newDeath(t)
+  def self.newDeath(t, death)
     new(t, 0, nil, nil, nil, nil, true)
   end
   
