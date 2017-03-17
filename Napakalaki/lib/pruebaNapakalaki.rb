@@ -5,7 +5,6 @@ require_relative 'prize'
 require_relative 'monster'
 require_relative 'bad_consequence'
 require_relative 'test'
-require_relative 'dice'
 
 module NapakalakiGame
 
@@ -162,9 +161,10 @@ module NapakalakiGame
         monster.badConsequence.specificHiddenTreasures.include?(treasure))
       end
     end
-
-    # ---- Primera prueba ----
+    
 =begin
+    # ---- Primera prueba ----
+
     # Listar los tipos de tesoros
     puts "Tipos de tesoros: "
     TreasureKind.constants.each do |tesoro|
@@ -191,8 +191,9 @@ module NapakalakiGame
     puts "\nMonstruo 2."
     puts monster2.to_s
 =end
+    
     # ---- Segunda prueba ----
-=begin
+
     puts "PRUEBA DE LOS MÉTODOS DE LA PRÁCTICA 1\n\n"
     PruebaNapakalaki.new
     puts "--- Monstruos con nivel mayor que 10 ---\n\n"
@@ -211,10 +212,10 @@ module NapakalakiGame
     print_monsters(bad_consequence_specific_treasure(TreasureKind::SHOE))
     puts "--- Monstruos cuyo mal rollo te hace perder tesoros de casco ---\n\n"
     print_monsters(bad_consequence_specific_treasure(TreasureKind::HELMET))
-=end
-  
+
+=begin  
     # --- Tercera prueba (PRADO) ---
-=begin
+
     puts "\nPRUEBA DE ENTREGA DEL PROYECTO EN PRADO\n\n"
     puts "--- Método de clase ---\n\n"
     Test.testClase
@@ -222,14 +223,7 @@ module NapakalakiGame
     test = Test.new
     test.testInstancia
 =end
-    
-    
-    # --- Cuarta prueba (P2) ---
-    
-    dice = Dice.instance
-    puts dice.nextNumber
-    
-    
+
   end # PruebaNapakalaki
   
 end # NapakalakiGame

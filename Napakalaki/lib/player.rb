@@ -39,8 +39,9 @@ module NapakalakiGame
     
     # obtener nivel de combate
     def getCombatLevel
-      combatLevel = level
+      combatLevel = 0
       @visibleTreasures.each { |vt| combatLevel += vt.bonus }
+      combatLevel += level
     end
 
     # obtener el máximo nivel del jugador
@@ -74,7 +75,7 @@ module NapakalakiGame
     def howManyVisibleTreasures(tKind)
       count = 0
       @visibleTreasures.each do |vt|
-        if vt == tKind
+        if vt.type == tKind
           count += 1
         end
       end
@@ -149,9 +150,11 @@ module NapakalakiGame
     end
     
     def to_s
-      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: #{@visibleTreasures}" +
-        "Muerto: " + @dead ? "Sí" : "No" + "\nTesoros ocultos: #{@hiddenTreasures}" +
-        "\nPuede robar: " + @canISteal ? "Sí" : "No" + "Mal rollo pendiente:\n" +
+      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: " + 
+        @visibleTreasures.map { |i| "'" + i.name + "'" }.join(", ") + \
+        "\nTesoros ocultos: " + @hiddenTreasures.map { |i| "'" + i.name + "'" }.join(", ") + \
+        "\nMuerto: " + (@dead ? "Sí" : "No") + 
+        "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:\n" +
         "#{@pendingBadConsequence} \nEnemigo:\n#{@enemy}"
     end
 

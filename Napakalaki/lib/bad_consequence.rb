@@ -28,10 +28,10 @@ module NapakalakiGame
 
     # comprueba si el mal rollo no implica pérdida de tesoros
     def isEmpty
-      not nVisibleTreasures.nil? and nVisibleTreasures == 0 and not nHiddenTreasures.nil? \
-        and nHiddenTreasures == 0 and not specificVisibleTreasures.nil? and \
-        specificVisibleTreasures.empty? and not specificHiddenTreasures.nil? and \
-        specificHiddenTreasures.empty?
+      (nVisibleTreasures.nil? or nVisibleTreasures == 0) and (nHiddenTreasures.nil? \
+        or nHiddenTreasures == 0) and (specificVisibleTreasures.nil? or \
+        specificVisibleTreasures.empty?) and (specificHiddenTreasures.nil? or \
+        specificHiddenTreasures.empty?)
     end
 
     def substractVisibleTreasure(t)
