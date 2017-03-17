@@ -5,6 +5,7 @@ require_relative 'treasure_kind'
 require_relative 'bad_consequence'
 require_relative 'monster'
 require_relative 'prize'
+require 'singleton'
 
 module NapakalakiGame
   

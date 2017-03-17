@@ -1,4 +1,3 @@
-=begin
 # encoding: utf-8
 
 require_relative 'treasure_kind'
@@ -6,6 +5,7 @@ require_relative 'prize'
 require_relative 'monster'
 require_relative 'bad_consequence'
 require_relative 'test'
+require_relative 'dice'
 
 module NapakalakiGame
 
@@ -132,9 +132,9 @@ module NapakalakiGame
 
     def self.print_monsters(some_monsters)
       some_monsters.each do |m| 
-                           puts m 
-                           puts
-                         end
+        puts m 
+        puts
+      end
     end
 
     def self.level_higher_than_ten
@@ -164,35 +164,35 @@ module NapakalakiGame
     end
 
     # ---- Primera prueba ----
-
+=begin
     # Listar los tipos de tesoros
-    #puts "Tipos de tesoros: "
-    #TreasureKind.constants.each do |tesoro|
-    #  puts "#{TreasureKind.const_get(tesoro)}"
-    #end
-    #puts
+    puts "Tipos de tesoros: "
+    TreasureKind.constants.each do |tesoro|
+      puts "#{TreasureKind.const_get(tesoro)}"
+    end
+    puts
 
     # Construir dos monstruos
-    #prize1 = Prize::new(2,1)
-    #prize2 = Prize::new(1,1)
-    #monster1 = Monster::new("Pollipólipo volante", 3, nil, prize1)
-    #monster2 = Monster::new("El espía sordo", 5, nil, prize2)
+    prize1 = Prize::new(2,1)
+    prize2 = Prize::new(1,1)
+    monster1 = Monster::new("Pollipólipo volante", 3, nil, prize1)
+    monster2 = Monster::new("El espía sordo", 5, nil, prize2)
 
     # Acceder a algunos miembros
-    #print "Niveles ganados en la recompensa 1: "
-    #puts prize1.level
-    #puts
-    #puts "Recompensa del monstruo 2: "
-    #puts monster2.prize
+    print "Niveles ganados en la recompensa 1: "
+    puts prize1.level
+    puts
+    puts "Recompensa del monstruo 2: "
+    puts monster2.prize
 
     # Imprimir los monstruos
-    #puts "\nMonstruo 1."
-    #puts monster1.to_s
-    #puts "\nMonstruo 2."
-    #puts monster2.to_s
-
+    puts "\nMonstruo 1."
+    puts monster1.to_s
+    puts "\nMonstruo 2."
+    puts monster2.to_s
+=end
     # ---- Segunda prueba ----
-
+=begin
     puts "PRUEBA DE LOS MÉTODOS DE LA PRÁCTICA 1\n\n"
     PruebaNapakalaki.new
     puts "--- Monstruos con nivel mayor que 10 ---\n\n"
@@ -211,16 +211,25 @@ module NapakalakiGame
     print_monsters(bad_consequence_specific_treasure(TreasureKind::SHOE))
     puts "--- Monstruos cuyo mal rollo te hace perder tesoros de casco ---\n\n"
     print_monsters(bad_consequence_specific_treasure(TreasureKind::HELMET))
-
-    # --- Tercera prueba ---
+=end
+  
+    # --- Tercera prueba (PRADO) ---
+=begin
     puts "\nPRUEBA DE ENTREGA DEL PROYECTO EN PRADO\n\n"
     puts "--- Método de clase ---\n\n"
     Test.testClase
     puts "\n---Método de instancia ---\n\n"
     test = Test.new
     test.testInstancia
-
+=end
+    
+    
+    # --- Cuarta prueba (P2) ---
+    
+    dice = Dice.instance
+    puts dice.nextNumber
+    
+    
   end # PruebaNapakalaki
   
 end # NapakalakiGame
-=end

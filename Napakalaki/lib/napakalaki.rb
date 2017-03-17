@@ -2,6 +2,7 @@
 
 # TODO: revisar los 'require' cuando se hayan implementado todos los métodos
 #require_relative 'combat_result'
+require 'singleton'
 
 module NapakalakiGame
 
