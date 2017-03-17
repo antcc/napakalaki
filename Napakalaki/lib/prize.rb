@@ -1,17 +1,21 @@
-#encoding: utf-8
+# encoding: utf-8
 
-# class Prize: representa la recompensa obtenida al derrotar a un monstruo
-class Prize
-  attr_reader :treasures
-  attr_reader :levels
-  
-  def initialize(t, l)
-    @treasures = t
-    @levels = l
-  end
-  
-  def to_s
-    "Tesoros ganados: #{@treasures} \nNiveles ganados: #{@levels}"
-  end
-  
-end
+module NapakalakiGame
+
+  # class Prize: representa el buen rollo de un monstruo
+  class Prize
+    attr_reader :treasures  # tesoros ganados
+    attr_reader :levels     # niveles ganados
+
+    def initialize(t, l)
+      @treasures = t
+      @levels = l
+    end
+
+    def to_s
+      "Tesoros ganados: #{@treasures} \nNiveles ganados: #{@levels}"
+    end
+
+  end # Prize
+
+end # NapakalakiGame

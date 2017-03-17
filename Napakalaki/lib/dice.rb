@@ -1,11 +1,17 @@
-#encoding: utf-8
+# encoding: utf-8
 
-# class Dice: representa el dado
-class Dice
-  include Singleton
+module NapakalakiGame
   
-  def nextNumber
-    
-  end
-  
-end
+  # class Dice: representa el dado
+  class Dice
+    include Singleton # La clase es <<singleton>>
+
+    # devuelve un entero pseudo-aleatorio del intervalo [1,6]
+    def nextNumber
+      rand(1..6)                 # ruby >= 1.9
+      # (rand() * 6 + 1).to_i    # ruby < 1.9
+    end
+
+  end # Dice
+
+end # NapakalakiGame

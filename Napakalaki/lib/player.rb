@@ -1,58 +1,61 @@
-#encoding: utf-8
+# encoding: utf-8
 
-require_relative 'card_dealer'
-require_relative 'dice'
-require_relative 'combat_result'
+# TODO: revisar los 'require' cuando se hayan implementado todos los métodos
+#require_relative 'card_dealer'
+#require_relative 'dice'
+#require_relative 'combat_result'
 
 module NapakalakiGame
   
   #class Player: representa un jugador
   class Player
-    attr_reader :name
-    attr_reader :level
-    attr_reader :hiddenTreasures
-    attr_reader :visibleTreasures
-    attr_reader :canISteal
-    attr_writer :pendingBadConsequence
-    attr_writer :enemy
+    attr_reader :name                     # nombre del jugador
+    attr_reader :level                    # nivel del jugador
+    attr_reader :hiddenTreasures          # tesoros ocultos
+    attr_reader :visibleTreasures         # tesoros visibles
+    attr_reader :canISteal                # representa si ha robado a su archienemigo
+    attr_writer :pendingBadConsequence    # mal rollo pendiente de aplicar
+    attr_writer :enemy                    # jugador archienemigo asignado
 
-    @@MAXLEVEL = 10
+    @@MAXLEVEL = 10                       # máximo nivel que puede alcanzar un jugador
 
     def initialize(name)
       @name = name
-      @level = 1
+      @level = 1  # el nivel mínimo es 1
       @hiddenTreasures = Array.new
       @visibleTreasures = Array.new
       @canISteal = true
       @pendingBadConsequence = nil
       @enemy = nil
-      @dead = true
+      @dead = true  # cuando el jugador se crea, está muerto
     end
 
     private
+    
+    # revivir al jugador
     def bringToLife
       @dead = false
     end
-
+    
+    # obtener nivel de combate
     def getCombatLevel
       combatLevel = level
       @visibleTreasures.each { |vt| combatLevel += vt.bonus }
     end
 
+    # obtener el máximo nivel del jugador
     def self.getMaxLevel
       @@MAXLEVEL
     end
 
+    # incrementa el nivel del jugador en l niveles, sin pasarse del máximo
     def incrementLevels(l)
-      @level += l
+      @level = [@level + l, @@MAXLEVEL].min
     end
-
+    
+    # decrementa el nivel del jugador en l niveles, sin pasarse del mínimo
     def decrementLevels(l)
-      if @level - l < 1
-        @level = 1
-      else
-        @level -= l
-      end
+      @level = [@level - l, 1].max
     end
 
     def applyPrize(m)
@@ -67,15 +70,18 @@ module NapakalakiGame
 
     end
 
+    # devuelve cuántos tesoros visibles de tipo tKind tiene el jugador
     def howManyVisibleTreasures(tKind)
       count = 0
       @visibleTreasures.each do |vt|
-        if vt == tkind
+        if vt == tKind
           count += 1
         end
       end
+      count
     end
 
+    # el jugador muere si no tiene tesoros
     def dieIfNoTreasures
       if @visibleTreasures.empty? and @hiddenTreasures.empty?
         @dead = true
@@ -83,6 +89,8 @@ module NapakalakiGame
     end
 
     public
+    
+    # comprueba si el jugador está muerto
     def isDead
       @dead
     end
@@ -103,9 +111,10 @@ module NapakalakiGame
 
     end
 
+    # comprueba si el jugador está en estado válido
     def validState
       (@pendingBadConsequence.nil? or @pendingBadConsequence.isEmpty) and \
-          @hiddenTreasures.length <= 4
+        @hiddenTreasures.length <= 4
     end
 
     def initTreasures
@@ -117,23 +126,33 @@ module NapakalakiGame
     end
 
     private
+    
     def giveMeATreasure
 
     end
 
-    # Por ahora no hemos implementado los sectarios, por lo que solo consideramos tesoros ocultos.
-    # TODO: revisar cuando implementemos sectarios
+    # comprueba si el jugador puede ser robado por su enemigo
     def canYouGiveMeATreasure
+      # TODO: revisar cuando implementemos jugadores sectarios
       not @hiddenTreasures.empty?
     end
 
+    # actualiza la información del jugador para reflejar que ha robado a su enemigo
     def haveStolen
       @canISteal = false
     end
 
     public
+    
     def discardAllTreasures
 
+    end
+    
+    def to_s
+      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: #{@visibleTreasures}" +
+        "Muerto: " + @dead ? "Sí" : "No" + "\nTesoros ocultos: #{@hiddenTreasures}" +
+        "\nPuede robar: " + @canISteal ? "Sí" : "No" + "Mal rollo pendiente:\n" +
+        "#{@pendingBadConsequence} \nEnemigo:\n#{@enemy}"
     end
 
   end # Player

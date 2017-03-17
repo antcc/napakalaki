@@ -1,65 +1,77 @@
-#encoding: utf-8
+# encoding: utf-8
 
-require_relative 'combat_result'
+# TODO: revisar los 'require' cuando se hayan implementado todos los métodos
+#require_relative 'combat_result'
 
-# class Napakalaki: representa una instancia del juego
-class Napakalaki
-  include Singleton
-  
-  attr_reader :currentMonster
-  attr_reader :currentPlayer
-  
-  def initialize
+module NapakalakiGame
+
+  # class Napakalaki: representa una instancia del juego
+  class Napakalaki
+    include Singleton  # La clase es <<singleton>>
+
+    attr_reader :currentMonster  # monstruo actual
+    attr_reader :currentPlayer   # jugador actual
+
+    def initialize
+
+    end
+
+    private
     
-  end
-  
-  private
-  def initPlayers(names)
-   
-  end
-  
-  def nextPlayer
+    def initPlayers(names)
+
+    end
+
+    def nextPlayer
+
+    end
+
+    def nextTurnAllowed
+
+    end
+
+    def setEnemies
+
+    end
+
+    public
     
-  end
-  
-  def nextTurnAllowed
+    def developCombat
+
+    end
+
+    # @pre: treasures no vacío
+    def discardVisibleTreasures(treasures)
+
+    end
+
+    # @pre: treasures no vacío
+    def discardHiddenTreasures(treasures)
+
+    end
+
+    # @pre: treasures no vacío
+    def makeTreasuresVisible(treasures)
+
+    end
+
+    def initGame(players)
+
+    end
+
+    def nextTurn
+
+    end
+
+    def endOfGame(result)
+
+    end
     
-  end
-  
-  def setEnemies
-    
-  end
-  
-  public
-  def developCombat
-    
-  end
-  
-  # @pre: treasures no vacío
-  def discardVisibleTreasures(treasures)
-    
-  end
-  
-  # @pre: treasures no vacío
-  def discardHiddenTreasures(treasures)
-    
-  end
-  
-  # @pre: treasures no vacío
-  def makeTreasuresVisible(treasures)
-    
-  end
-  
-  def initGame(players)
-    
-  end
-  
-  def nextTurn
-    
-  end
-  
-  def endOfGame(result)
-    
-  end
-  
-end
+    # TODO: implementar
+    def to_s
+      
+    end
+
+  end # Napakalaki
+
+end # NapakalakiGame

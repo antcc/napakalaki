@@ -1,0 +1,3 @@
+- Implementar to_s en todas las clases en las que tenga sentido.
+- Cambiar attr_* por get/set en todos (UML)
+- Probar todos los métodos
