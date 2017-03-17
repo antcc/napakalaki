@@ -4,7 +4,7 @@ module NapakalakiGame
   
   # class Dice: representa el dado
   class Dice
-    include Singleton # La clase es <<singleton>>
+    include Singleton  # la clase es <<singleton>>
 
     # devuelve un entero pseudo-aleatorio del intervalo [1,6]
     def nextNumber

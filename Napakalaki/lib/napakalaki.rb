@@ -7,13 +7,15 @@ module NapakalakiGame
 
   # class Napakalaki: representa una instancia del juego
   class Napakalaki
-    include Singleton  # La clase es <<singleton>>
+    include Singleton  # la clase es <<singleton>>
 
     attr_reader :currentMonster  # monstruo actual
     attr_reader :currentPlayer   # jugador actual
 
     def initialize
-
+      @currentMonster = nil
+      @currentPlayer = nil
+      @players = Array.new
     end
 
     private
@@ -69,7 +71,8 @@ module NapakalakiGame
     
     # TODO: implementar
     def to_s
-      
+      "Jugadores: #{@players} \nJugador acutal: #{@currentPlayer}" +
+        "\nMonstruo actual: #{@currentMonster}"
     end
 
   end # Napakalaki
