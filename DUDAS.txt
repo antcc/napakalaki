@@ -1,2 +1,1 @@
-- Constructor en napakalaki/card dealer? usar los init()?
-- to_s en arrays de monstruos --> mostrar solo el nombre, o toda la info?
+- Cuando hay que require 'singleton' ??
