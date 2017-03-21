@@ -1,1 +1,0 @@
-- Cuando hay que poner require 'singleton' ?

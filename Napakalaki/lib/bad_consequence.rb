@@ -85,9 +85,9 @@ module NapakalakiGame
                                                   "#{@nHiddenTreasures}"
                                                 end
       text << "\nTesoros específicos visibles perdidos: \
-              #{@specificVisibleTreasures.to_s}"
+              #{@specificVisibleTreasures}"
       text << "\nTesoros específicos ocultos perdidos: \
-              #{@specificHiddenTreasures.to_s}"
+              #{@specificHiddenTreasures}"
     end
 
   end # BadConsequence

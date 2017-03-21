@@ -155,7 +155,7 @@ module NapakalakiGame
         "\nTesoros ocultos: " + @hiddenTreasures.map { |i| "'" + i.name + "'" }.join(", ") + \
         "\nMuerto: " + (@dead ? "Sí" : "No") + 
         "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:\n" +
-        "#{@pendingBadConsequence} \nEnemigo:\n#{@enemy}"
+        "#{@pendingBadConsequence} \nEnemigo:\n#{@enemy.name}"
     end
 
   end # Player
