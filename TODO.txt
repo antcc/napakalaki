@@ -1,1 +1,3 @@
 - Cambiar attr_* por get/set en todos los que sea necesario para seguir el UML
+- Mejorar implementación isEmpty de BadConsequence ??
+- Cambiar nombres de archivos a notación CamelCase (para seguir el UML, cómo no)

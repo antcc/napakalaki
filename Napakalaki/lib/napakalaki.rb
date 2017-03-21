@@ -2,6 +2,7 @@
 
 # TODO: revisar los 'require' cuando se hayan implementado todos los métodos
 #require_relative 'combat_result'
+require_relative 'card_dealer'
 require 'singleton'
 
 module NapakalakiGame
@@ -17,6 +18,7 @@ module NapakalakiGame
       @currentMonster = nil
       @currentPlayer = nil
       @players = Array.new
+      @dealer = CardDealer.instance
     end
 
     private
@@ -70,7 +72,6 @@ module NapakalakiGame
 
     end
     
-    # TODO: implementar
     def to_s
       "Jugadores: #{@players} \nJugador acutal: #{@currentPlayer}" +
         "\nMonstruo actual: #{@currentMonster}"
