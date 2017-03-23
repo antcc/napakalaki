@@ -24,19 +24,30 @@ module NapakalakiGame
     private
     
     def initPlayers(names)
-
+      names.each { |n| @players << Player.new(n) }
     end
 
     def nextPlayer
-
+      num_players = @players.legth
+      if @currentPlayer.nil? 
+        nextP = rand(num_players)
+      else
+        nextP = (@players.index(@currentPlayer) + 1) % num_players
+      end
+      @currentPlayer = @players[nextP]
     end
 
     def nextTurnAllowed
-
+      @currentPlayer.nil? or (@currentPlayer.validState == true)
     end
 
     def setEnemies
-
+      @players.each do |p|
+        begin
+          enemy = rand(@players.length) 
+        end while @players[enemy] == p
+        p.enemy = @players[enemy]
+      end
     end
 
     public
@@ -69,7 +80,7 @@ module NapakalakiGame
     end
 
     def endOfGame(result)
-
+      result == CombatResult::WINGAME
     end
     
     def to_s
