@@ -1,0 +1,9 @@
+1. Instalar ruby gem --> ruby-debug-ide v0.4.32:
+
+	gem install ruby-debug-ide -v 0.4.32
+       
+2. Ejecutar lo siguiente desde la terminal, en el directorio raíz del proyecto:
+
+	rdebug-ide -p 7000 -d -- lib/<ARCHIVO PARA DEBUGGEAR>.rb  
+
+3. En Netbeans: Debugger > Attach debugger > Ruby debug ide
