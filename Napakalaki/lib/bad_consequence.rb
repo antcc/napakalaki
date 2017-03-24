@@ -59,7 +59,7 @@ module NapakalakiGame
 
     # constructor para mal rollo de muerte
     def self.newDeath(t, death)
-      new(t, 0, nil, nil, nil, nil, true)
+      new(t, 0, nil, nil, nil, nil, death)
     end
 
     def adjustToFitTreasureLists(v,h)
