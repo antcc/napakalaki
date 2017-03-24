@@ -1,68 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Monster.java
  */
-package napakalaki;
+
+package NapakalakiGame;
 
 /**
- *
- * @author jmml
+ * Representa un monstruo.
  */
 public class Monster {
     
     private String name;
     private int combatLevel;
-    
     private Prize prize;
     private BadConsequence badConsequence;
     
-    //// Constructores
-    
-    public Monster(String name, int combatLevel, BadConsequence badConsequence, Prize prize) {
-    
+    public Monster(String n, int l, BadConsequence b, Prize p) {
         this.name = name;
         this.combatLevel = combatLevel;
         this.prize = prize;
         this.badConsequence = badConsequence;
-    
     } 
     
-    //// Métodos
-    
-    // Set & Get
-    
     public String getName() {
-    
         return name;
-    
     }
     
     public int getCombatLevel() {
-    
         return combatLevel;
-    
-    }
-    
-    public Prize getPrize() {
-    
-        return prize;
-    
     }
     
     public BadConsequence getBadConsequence() {
-    
         return badConsequence;
-    
     }
     
-    // Otros métodos
+    public int getLevelsGained() {
+        return prize.getLevels();
+    }
     
+    public int getTreasuresGained() {
+        return prize.getTreasures();
+    }
+    
+    @Override
     public String toString() {
-    
         return "Name: " + name + "\nLevel: " + Integer.toString(combatLevel) +
-                "\nPrizes: " + prize.toString() + "\nBad consequence: " +
-                badConsequence.toString();
-    
+               "\nPrize: " + prize.toString() + "\nBad consequence: " +
+               badConsequence.toString();
     }
+    
 }

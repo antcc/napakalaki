@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package napakalaki;
+
+package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -147,7 +143,7 @@ public class PruebaNapakalaki {
         monstruos.add(new Monster("Tenochtitlan", 2, badConsequence, prize));
         
         badConsequence = new BadConsequence("El primordial bostezo contagioso. "
-        + "Pierdes el calzado visible", 0, new ArrayList(Arrays.asList(TreasureKind.SHOES)), null);
+        + "Pierdes el calzado visible", 0, new ArrayList(Arrays.asList(TreasureKind.SHOE)), null);
         prize = new Prize(1,1);
         monstruos.add(new Monster("El sopor de Dunwich", 2, badConsequence, prize));
         
@@ -227,7 +223,7 @@ public class PruebaNapakalaki {
         badConsequenceLosesTreasureKind(TreasureKind.BOTHHANDS);
         badConsequenceLosesTreasureKind(TreasureKind.HELMET);
         badConsequenceLosesTreasureKind(TreasureKind.ONEHAND);
-        badConsequenceLosesTreasureKind(TreasureKind.SHOES);
+        badConsequenceLosesTreasureKind(TreasureKind.SHOE);
         
         
     }
