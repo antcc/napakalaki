@@ -204,9 +204,9 @@ public class PruebaNapakalaki {
         System.out.println("--- Monstruos cuyo mal rollo te hace perder tesoros de calzado ---\n");
         printMonsters(badConsequenceLosesTreasureKind(TreasureKind.SHOE));
         
-        Dice dice = Dice.getInstance();
-        for (int i = 0; i < 10; i++)
-            System.out.println(dice.nextNumber());
+        Player antcc = new Player("antcc");
+        System.out.println(antcc);
+ 
     }
    
 }

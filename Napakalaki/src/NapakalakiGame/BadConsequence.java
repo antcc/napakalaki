@@ -22,6 +22,39 @@ public class BadConsequence {
     
     final static int MAXTREASURES = 10;
     
+    public boolean isEmpty() {
+        return nVisibleTreasures == 0 && nHiddenTreasures == 0 &&
+               specificHiddenTreasures.isEmpty() && specificVisibleTreasures.isEmpty();
+    }
+    
+    public int getLevels() {
+        return this.levels;
+    }
+    
+    public int getNVisibleTreasures() {
+        return this.nVisibleTreasures;
+    }
+    
+    public int getNHiddenTreasures() {
+        return this.nHiddenTreasures;
+    }
+    
+    public ArrayList getSpecificHiddenTreasures() {
+        return this.specificHiddenTreasures;
+    }
+    
+    public ArrayList getSpecificVisibleTreasures() {
+        return this.specificVisibleTreasures;
+    }
+    
+    public void substractVisibleTreasure(Treasure t) {
+        
+    }
+    
+    public void substractHiddenTreasure(Treasure t) {
+        
+    }
+    
     public BadConsequence(String t, int l, int nVisible, int nHidden) {
         text = t;
         levels = l;
@@ -53,25 +86,11 @@ public class BadConsequence {
         specificHiddenTreasures = h;
     }
     
-    public int getLevels() {
-        return this.levels;
-    }
-    
-    public int getNVisibleTreasures() {
-        return this.nVisibleTreasures;
-    }
-    
-    public int getNHiddenTreasures() {
-        return this.nHiddenTreasures;
-    }
-    
-    public ArrayList getSpecificHiddenTreasures() {
-        return this.specificHiddenTreasures;
-    }
-    
-    public ArrayList getSpecificVisibleTreasures() {
-        return this.specificVisibleTreasures;
-    }
+    // TODO: implementar
+    //public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
+    //                                               ArrayList<Treasure> h) {
+        
+    //}
     
     @Override
     public String toString() {

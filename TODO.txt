@@ -1,1 +1,2 @@
-- Ruby revisar pruebaNapakalaki (isEmpty) + Byakhees
+- Probar métodos P2.
+- Documentar proyecto (Javadoc).
