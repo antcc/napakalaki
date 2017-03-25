@@ -4,7 +4,6 @@ require_relative 'treasure_kind'
 require_relative 'prize'
 require_relative 'monster'
 require_relative 'bad_consequence'
-require_relative 'test'
 
 module NapakalakiGame
 
@@ -141,11 +140,12 @@ module NapakalakiGame
     end
 
     def self.bad_consequence_only_levels
-      @@monsters.select do |monster| 
-        (monster.badConsequence.nVisibleTreasures == 0 and
+      @@monsters.select do |monster|
+        monster.badConsequence.levels > 0 and
+        ((monster.badConsequence.nVisibleTreasures == 0 and
         monster.badConsequence.nHiddenTreasures == 0) or
         (monster.badConsequence.specificHiddenTreasures == [] and
-        monster.badConsequence.specificVisibleTreasures == [])
+        monster.badConsequence.specificVisibleTreasures == []))
       end  
     end
 
@@ -212,17 +212,6 @@ module NapakalakiGame
     print_monsters(bad_consequence_specific_treasure(TreasureKind::SHOE))
     puts "--- Monstruos cuyo mal rollo te hace perder tesoros de casco ---\n\n"
     print_monsters(bad_consequence_specific_treasure(TreasureKind::HELMET))
-
-=begin  
-    # --- Tercera prueba (PRADO) ---
-
-    puts "\nPRUEBA DE ENTREGA DEL PROYECTO EN PRADO\n\n"
-    puts "--- Método de clase ---\n\n"
-    Test.testClase
-    puts "\n---Método de instancia ---\n\n"
-    test = Test.new
-    test.testInstancia
-=end
 
   end # PruebaNapakalaki
   

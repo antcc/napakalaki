@@ -59,11 +59,11 @@ module NapakalakiGame
 
     # inicializar el mazo de monstruos no usados
     def initMonsterCardDeck
-      # Byakhees de bonanza
+      # 3 Byakhees de bonanza
       prize = Prize.new(2,1)
       badConsequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible ' \
           'y otra oculta.', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
-      @unusedMonsters << Monster.new('Byakhees de bonanza', 8, badConsequence, prize)
+      @unusedMonsters << Monster.new('3 Byakhees de bonanza', 8, badConsequence, prize)
 
       # Tenochtitlan
       prize = Prize.new(1,1)

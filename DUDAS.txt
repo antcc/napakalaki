@@ -1,0 +1,1 @@
+- Usar 'death' en constructor de BadConsequence?

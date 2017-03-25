@@ -28,10 +28,10 @@ module NapakalakiGame
 
     # comprueba si el mal rollo no implica pérdida de tesoros
     def isEmpty
-      (nVisibleTreasures.nil? or nVisibleTreasures == 0) and (nHiddenTreasures.nil? \
-        or nHiddenTreasures == 0) and (specificVisibleTreasures.nil? or \
-        specificVisibleTreasures.empty?) and (specificHiddenTreasures.nil? or \
-        specificHiddenTreasures.empty?)
+      # aprovechamos que nil == obj es false salvo que obj = nil, y la forma en la
+      # que inicializamos instancias de BadConsequence.
+      (nVisibleTreasures == 0 and nHiddenTreasures == 0) or
+        (specificVisibleTreasures == [] and specificHiddenTreasures == [])
     end
 
     def substractVisibleTreasure(t)
