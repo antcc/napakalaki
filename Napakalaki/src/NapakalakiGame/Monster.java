@@ -15,10 +15,10 @@ public class Monster {
     private BadConsequence badConsequence;
     
     public Monster(String n, int l, BadConsequence b, Prize p) {
-        this.name = name;
-        this.combatLevel = combatLevel;
-        this.prize = prize;
-        this.badConsequence = badConsequence;
+        name = n;
+        combatLevel = l;
+        badConsequence = b;
+        prize = p;
     } 
     
     public String getName() {
@@ -44,7 +44,7 @@ public class Monster {
     @Override
     public String toString() {
         return "Name: " + name + "\nLevel: " + Integer.toString(combatLevel) +
-               "\nPrize: " + prize.toString() + "\nBad consequence: " +
+               "\nPrize:\n" + prize.toString() + "\nBad consequence:\n" +
                badConsequence.toString();
     }
     

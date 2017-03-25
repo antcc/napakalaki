@@ -1,0 +1,1 @@
+- Usar el valor de 'Boolean death' en el constructor de BadConsequence?

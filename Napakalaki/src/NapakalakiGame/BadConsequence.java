@@ -20,6 +20,8 @@ public class BadConsequence {
     private ArrayList<TreasureKind> specificHiddenTreasures;
     private ArrayList<TreasureKind> specificVisibleTreasures;
     
+    final static int MAXTREASURES = 10;
+    
     public BadConsequence(String t, int l, int nVisible, int nHidden) {
         text = t;
         levels = l;
@@ -82,20 +84,14 @@ public class BadConsequence {
         } else {
         
             text = text + "\nLevels: " + Integer.toString(levels) +
-                "\nVisible treasures lost: " + Integer.toString(nVisibleTreasures) +
-                "\nHidden treasures lost: " + Integer.toString(nHiddenTreasures);
-        
+                "\nVisible treasures lost: " + (nVisibleTreasures == MAXTREASURES ?
+                "Todos los tesoros" : Integer.toString(nVisibleTreasures)) +
+                "\nHidden treasures lost: " + (nHiddenTreasures == MAXTREASURES ?
+                "Todos los tesoros" : Integer.toString(nHiddenTreasures));
         }
         
-        if (specificHiddenTreasures != null) {
-        
-            text = text + "\nSpecific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray());
-        
-        } else if (specificVisibleTreasures != null) {
-        
-            text = text + "\nSpecific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
-        
-        }
+        text = text + "\nSpecific Hidden Treasures: " + Arrays.toString(specificHiddenTreasures.toArray());
+        text = text + "\nSpecific Visible Treasures: " + Arrays.toString(specificVisibleTreasures.toArray());
         
         return text;
     }
