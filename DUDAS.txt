@@ -1,2 +1,3 @@
 - Usar el valor de 'Boolean death' en el constructor de BadConsequence?
 - atributo de clase random = newRandom() en Dice?
+- Usar Dice en Napakalaki (initPlayers(?))
