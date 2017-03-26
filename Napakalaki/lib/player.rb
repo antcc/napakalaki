@@ -151,8 +151,8 @@ module NapakalakiGame
     
     def to_s
       "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: " + 
-        (@visibleTreasures.map(&:name).join(", ") unless @visibleTreasures.nil?) +
-        "\nTesoros ocultos: " + (@hiddenTreasures.map(&:name).join(", ") unless @hiddenTreasures.nil?) \
+        @visibleTreasures.map(&:name).join(", ") +
+        "\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") \
         + "\nMuerto: " + (@dead ? "Sí" : "No") +
         "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:" +
         "\n#{@pendingBadConsequence}" + "\nEnemigo:\n" + (@enemy.nil? ? "" : "#{@enemy.name}")

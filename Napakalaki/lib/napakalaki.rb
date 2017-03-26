@@ -3,6 +3,7 @@
 # TODO: revisar los 'require' cuando se hayan implementado todos los métodos
 #require_relative 'combat_result'
 require_relative 'card_dealer'
+require_relative 'player'
 require 'singleton'
 
 module NapakalakiGame
@@ -28,7 +29,7 @@ module NapakalakiGame
     end
 
     def nextPlayer
-      num_players = @players.legth
+      num_players = @players.length
       if @currentPlayer.nil? 
         nextP = rand(num_players)
       else
@@ -84,8 +85,12 @@ module NapakalakiGame
     end
     
     def to_s
-      "Jugadores: #{@players} \nJugador acutal: #{@currentPlayer}" +
-        "\nMonstruo actual: #{@currentMonster}"
+      text = "Jugadores: " + @players.map(&:name).join(", ") + "\nJugador actual: "
+      
+      text << "#{@currentPlayer.name}" unless @currentPlayer.nil?
+      text << "\nMonstruo actual: "
+      text << "#{@currentMonster.name}" unless @currentMonster.nil?
+      text
     end
 
   end # Napakalaki
