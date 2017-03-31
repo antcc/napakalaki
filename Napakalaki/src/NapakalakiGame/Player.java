@@ -6,6 +6,7 @@ package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Representa un jugador.
@@ -70,10 +71,40 @@ public class Player {
         
     }
     
-    // TODO: implementar
-    //private boolean can MakeTreasureVisible(Treasure t) {
+    private boolean canMakeTreasureVisible(Treasure t) {
+        TreasureKind type = t.getType();
+        boolean canMakeVisible;
+        int count = 0;
         
-    //}
+        for (Treasure vt : visibleTreasures) {
+            if (type == vt.getType())
+                count++;
+        }
+        
+        
+        if (type == TreasureKind.ONEHAND) {
+            /*
+                noneMatch(pred): devuelve si ningún elemento del array visibleTreasures cumple el 
+                predicado pred.
+            */
+            
+            canMakeVisible = count < 2 && visibleTreasures
+                                                    .stream()
+                                                    .noneMatch(s -> s.getType() == TreasureKind.BOTHHANDS);
+        }
+        
+        else {
+            canMakeVisible = count < 1;
+            
+            if (type == TreasureKind.BOTHHANDS) {
+                canMakeVisible &= visibleTreasures
+                                            .stream()
+                                            .noneMatch(s -> s.getType() == TreasureKind.ONEHAND);
+            }
+        }
+        
+        return canMakeVisible;
+    }
     
     private int howManyVisibleTreasures(TreasureKind tKind) {
         int howMany = 0;
@@ -140,10 +171,9 @@ public class Player {
         this.enemy = enemy;
     }
     
-    // TODO: implementar
-    //private Treasure giveMeATreasure() {
-        
-    //}
+    private Treasure giveMeATreasure() {
+        return hiddenTreasures.get(new Random().nextInt(hiddenTreasures.size()));
+    }
 
     public boolean canISteal() {
         return canISteal;

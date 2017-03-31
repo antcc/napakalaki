@@ -5,7 +5,7 @@
 package NapakalakiGame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -42,28 +42,49 @@ public class Napakalaki {
     }
     
     /**
-     * 
-     * @param names 
+     * Inicializa los jugadores.
+     * @param names Lista de nombres
      */
     private void initPlayers(ArrayList<String> names) {
+        for (String n : names)
+            players.add(new Player(n));
+    }
 
+    private Player nextPlayer() {
+        int nextP;
+        int numPlayers = players.size();
+        Random rand = new Random();
+        
+        if (currentPlayer == null) {
+            nextP = rand.nextInt(numPlayers);
+        }
+        
+        else {
+            nextP = (players.indexOf(currentPlayer) + 1) % numPlayers;
+        }
+        
+        currentPlayer = players.get(nextP);
+        return currentPlayer;
     }
     
-    // TODO: implementar
-    //private Player nextPlayer() {
-        
-    //}
-    
-    // TODO: implementar
-    //private boolean nextTurnAllowed() {
-        
-    //}
+    private boolean nextTurnAllowed() {
+        return currentPlayer == null || currentPlayer.validState();
+    }
     
     /**
      * 
      */
     private void setEnemies() {
+        Random rand = new Random();
         
+        for (Player p : players) {
+            Player enemy;
+            do {
+                enemy = players.get(rand.nextInt(players.size()));
+            } while (enemy == p);
+            
+            p.setEnemy(enemy);
+        }
     }
     
     // TODO: implementar

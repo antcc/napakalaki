@@ -1,2 +1,8 @@
-- Probar métodos P2.
+- Revisar lógica del método canMakeTreasureVisible de Player.
+
+- Probar métodos P3.
 - Documentar proyecto (Javadoc).
+
+----- Ruby:
+
+- Revisar napakalaki::nextTurnAllowed.
