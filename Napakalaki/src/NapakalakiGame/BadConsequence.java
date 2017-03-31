@@ -48,11 +48,18 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t) {
+        boolean removed = specificVisibleTreasures.remove(t.getType());
         
+        if (!removed) {
+            // TODO: nVisibleTreasures?
+        }
     }
     
     public void substractHiddenTreasure(Treasure t) {
+        boolean removed = specificHiddenTreasures.remove(t.getType());
         
+        if (!removed && nHiddenTreasures > 3)
+            nHiddenTreasures = 3;
     }
     
     public BadConsequence(String t, int l, int nVisible, int nHidden) {

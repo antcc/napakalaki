@@ -177,14 +177,37 @@ public class CardDealer {
         return instance;
     }
     
-    // TODO: implementar
-    //public Treasure nextTreasure() {
-     
-    //}
-    
-    //public Monster nextMonster() {
+    public Treasure nextTreasure() {
+        if (unusedTreasures.isEmpty()) {
+            // swap used & unused
+            ArrayList<Treasure> temp;
+            temp = unusedTreasures;
+            unusedTreasures = usedTreasures;
+            usedTreasures = temp;
+            
+            // shuffle deck
+            shuffleTreasures();
+        }
         
-    //}
+        // Sacamos el tesoro del final (es más eficiente)
+        return unusedTreasures.remove(unusedTreasures.size()-1);
+    }
+    
+    public Monster nextMonster() {
+        if (unusedMonsters.isEmpty()) {
+            // swap used & unused
+            ArrayList<Monster> temp;
+            temp = unusedMonsters;
+            unusedMonsters = usedMonsters;
+            usedMonsters = temp;
+            
+            // shuffle deck
+            shuffleMonsters();
+        }
+        
+        // Sacamos el monstruo del final de la lista (es más eficiente)
+        return unusedMonsters.remove(unusedMonsters.size()-1);
+    }
     
     public void giveTreasureBack(Treasure t) {
         usedTreasures.add(t);

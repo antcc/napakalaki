@@ -94,6 +94,7 @@ public class Player {
         }
         
         else {
+            
             canMakeVisible = count < 1;
             
             if (type == TreasureKind.BOTHHANDS) {
