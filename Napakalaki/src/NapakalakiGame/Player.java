@@ -268,20 +268,21 @@ public class Player {
     }
     
     public void discardAllTreasures() {
-        for (Iterator<Treasure> i = visibleTreasures.iterator(); i.hasNext();) {
-            Treasure treasure = i.next();
+        ArrayList<Treasure> copyVisible = new ArrayList(visibleTreasures);
+        ArrayList<Treasure> copyHidden = new ArrayList(hiddenTreasures);
+        
+        for (Treasure treasure : copyVisible) {
             discardVisibleTreasure(treasure);
         }
         
-        for (Iterator<Treasure> i = hiddenTreasures.iterator(); i.hasNext();) {
-            Treasure treasure = i.next();
+        for (Treasure treasure : copyHidden) {
             discardHiddenTreasure(treasure);
         }
     }
     
     @Override
     public String toString() {
-        String text = "Name: " + name + "\nLevel: " + Integer.toString(level)
+        /*String text = "Name: " + name + "\nLevel: " + Integer.toString(level)
                + "\nDead: " + dead + "\nCan I steal: " + canISteal + "\nEnemy: ";
         
         if (enemy != null)
@@ -296,6 +297,8 @@ public class Player {
         text += "\nVisible treasures: " + Arrays.toString(visibleTreasures.toArray());
         
         return text;
+        */
+        return name;
     }
 
 }

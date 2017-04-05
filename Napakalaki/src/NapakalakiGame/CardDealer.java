@@ -219,7 +219,9 @@ public class CardDealer {
     
     public void initCards() {
         initTreasureCardDeck();
+        shuffleTreasures();
         initMonsterCardDeck();
+        shuffleMonsters();
     }
     
 }
