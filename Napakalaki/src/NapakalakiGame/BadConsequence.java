@@ -6,6 +6,7 @@ package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Representa el mal rollo de un monstruo.
@@ -48,18 +49,23 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t) {
-        boolean removed = specificVisibleTreasures.remove(t.getType());
+        if (!specificVisibleTreasures.isEmpty()) {
+            specificVisibleTreasures.remove(t.getType());
+        }
         
-        if (!removed) {
-            // TODO: nVisibleTreasures?
+        else if (nVisibleTreasures > 0) {
+            nVisibleTreasures--;
         }
     }
     
     public void substractHiddenTreasure(Treasure t) {
-        boolean removed = specificHiddenTreasures.remove(t.getType());
+        if (!specificHiddenTreasures.isEmpty()) {
+            specificHiddenTreasures.remove(t.getType());
+        }
         
-        if (!removed && nHiddenTreasures > 3)
-            nHiddenTreasures = 3;
+        else if (nHiddenTreasures > 0) {
+            nHiddenTreasures--;
+        }
     }
     
     public BadConsequence(String t, int l, int nVisible, int nHidden) {
@@ -74,10 +80,10 @@ public class BadConsequence {
     
     public BadConsequence(String t, boolean death) {
         text = t;
-        levels = 0;
+        levels = Player.MAXLEVEL;
         this.death = death;
-        nVisibleTreasures = 0;
-        nHiddenTreasures = 0;
+        nVisibleTreasures = MAXTREASURES;
+        nHiddenTreasures = MAXTREASURES;
         specificHiddenTreasures = new ArrayList();
         specificVisibleTreasures = new ArrayList();
     }
@@ -93,11 +99,39 @@ public class BadConsequence {
         specificHiddenTreasures = h;
     }
     
-    // TODO: implementar
-    //public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
-    //                                               ArrayList<Treasure> h) {
+    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
+                                                   ArrayList<Treasure> h) {
+        BadConsequence bd;
         
-    //}
+        // Mal rollo de tesoros específicos
+        if (nVisibleTreasures == 0 && nHiddenTreasures == 0) {
+            bd = new BadConsequence(text, levels, specificVisibleTreasures, specificHiddenTreasures);
+            
+            ArrayList<TreasureKind> newVisibleType = new ArrayList();
+            ArrayList<TreasureKind> newHiddenType = new ArrayList();
+            
+            for (Treasure t : v) {
+                newVisibleType.add(t.getType());
+            }
+            
+            for (Treasure t : h) {
+                newHiddenType.add(t.getType());
+            }
+            
+            bd.specificVisibleTreasures.retainAll(newVisibleType);
+            bd.specificHiddenTreasures.retainAll(newHiddenType);
+        }
+        
+        // Mal rollo de teosoros genéricos
+        else {
+            int maxVisible = Math.min(v.size(), nVisibleTreasures);
+            int maxHidden = Math.min(h.size(), nHiddenTreasures);
+            
+            bd = new BadConsequence(text, levels, maxVisible, maxHidden);
+        }
+        
+        return bd;
+    }
     
     @Override
     public String toString() {

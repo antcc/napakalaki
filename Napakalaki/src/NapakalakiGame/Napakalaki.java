@@ -5,6 +5,7 @@
 package NapakalakiGame;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -71,9 +72,6 @@ public class Napakalaki {
         return currentPlayer == null || currentPlayer.validState();
     }
     
-    /**
-     * 
-     */
     private void setEnemies() {
         Random rand = new Random();
         
@@ -87,17 +85,23 @@ public class Napakalaki {
         }
     }
     
-    // TODO: implementar
-    //public CombatResult developCombat() {
+    public CombatResult developCombat() {
+        CombatResult combatResult = currentPlayer.combat(currentMonster);
+        dealer.giveMonsterBack(currentMonster);
         
-    //}
+        return combatResult;
+    }
     
     /**
      * @param treasures 
      * @pre treasures.size() >= 1
      */
     public void discardVisibleTreasures(ArrayList<Treasure> treasures) {
-        
+        for (Iterator<Treasure> i = treasures.iterator(); i.hasNext();) {
+            Treasure treasure = i.next();
+            currentPlayer.discardVisibleTreasure(treasure);
+            dealer.giveTreasureBack(treasure);
+        }
     }
     
     /**
@@ -105,7 +109,11 @@ public class Napakalaki {
      * @pre treasures.size() >= 1
      */
     public void discardHiddenTreasures(ArrayList<Treasure> treasures) {
-        
+        for (Iterator<Treasure> i = treasures.iterator(); i.hasNext();) {
+            Treasure treasure = i.next();
+            currentPlayer.discardHiddenTreasure(treasure);
+            dealer.giveTreasureBack(treasure);
+        }
     }
     
     /**
@@ -113,11 +121,16 @@ public class Napakalaki {
      * @pre treasures.size() >= 1
      */
     public void makeTreasuresVisible(ArrayList<Treasure> treasures) {
-        
+        for (Treasure t : treasures) {
+            currentPlayer.makeTreasureVisible(t);
+        }
     }
     
     public void initGame(ArrayList<String> players) {
-        
+        initPlayers(players);
+        setEnemies();
+        dealer.initCards(); 
+        nextTurn();
     }
 
     public Monster getCurrentMonster() {
@@ -128,10 +141,20 @@ public class Napakalaki {
         return currentPlayer;
     }
     
-    // TODO: implementar
-    //public boolean nextTurn() {
+    public boolean nextTurn() {
+        boolean stateOK = nextTurnAllowed();
         
-    //}
+        if (stateOK) {
+            currentMonster = dealer.nextMonster();
+            currentPlayer = nextPlayer();
+        }
+        
+        if (currentPlayer.isDead()) {
+            currentPlayer.initTreasures();
+        }
+        
+        return stateOK;
+    }
     
     public boolean endOfGame(CombatResult result) {
         return result == CombatResult.WINGAME;
