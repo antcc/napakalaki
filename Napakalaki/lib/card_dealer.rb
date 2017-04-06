@@ -186,13 +186,27 @@ module NapakalakiGame
     end
 
     public
-    
-    def nextTreasure
 
+    # sacar el siguiente tesoro de la baraja
+    # si está vacía, pasar la pila de descartes y barajar
+    def nextTreasure
+      unless @unusedTreasures.empty?
+        @unusedTreasures.pop
+      else
+        @unusedTreasures + @usedTreasures
+        @usedTreasures.clear
+        @unusedTreasures.shuffle!
+      end
     end
 
     def nextMonster
-
+      unless @unusedMonsters.empty?
+        @unusedMonsters.pop
+      else
+        @unusedMonsters + @usedMonsters
+        @usedMonsters.clear
+        @unusedMonsters.shuffle!
+      end
     end
 
     # introducir un tesoro en el mazo de tesoros usados
