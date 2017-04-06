@@ -35,7 +35,11 @@ module NapakalakiGame
     end
 
     def substractVisibleTreasure(t)
-
+      if specificVisibleTreasures != nil
+        specificVisibleTreasures.delete(t)
+      else
+        nVisibleTreasures -= 1 unless nVisibleTreasures < 1
+      end
     end
 
     # devuelve la constante que simboliza todos los tesoros
@@ -44,7 +48,11 @@ module NapakalakiGame
     end
 
     def substractHiddenTreasure(t)
-
+      if specificHiddenTreasures != nil
+        specificHiddenTreasures.delete(t)
+      else
+        nHiddenTreasures -= 1 unless nHiddenTreasures < 1
+      end
     end
 
     # constructor para tesoros generales
