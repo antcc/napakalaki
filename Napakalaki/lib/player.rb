@@ -68,7 +68,14 @@ module NapakalakiGame
     end
 
     def canMakeTreasureVisible(t)
-
+      case t.type
+      when TreasureKind::ARMOR, TreasureKind::HELMET, TreasureKind::SHOE
+        howManyVisibleTreasures(t.type) < 1
+      when TreasureKind::ONEHAND
+        howManyVisibleTreasures(t.type) < 2 and howManyVisibleTreasures(TreasureKind::BOTHHANDS) < 1
+      when TreasureKind::BOTHHANDS
+        howManyVisibleTreasures(t.type) < 1 and howManyVisibleTreasures(TreasureKind::ONEHAND) < 1
+      end
     end
 
     # devuelve cuántos tesoros visibles de tipo tKind tiene el jugador
@@ -129,7 +136,7 @@ module NapakalakiGame
     private
     
     def giveMeATreasure
-
+      @hiddenTreasures[rand(@hiddenTreasures.length)]
     end
 
     # comprueba si el jugador puede ser robado por su enemigo
