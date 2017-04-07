@@ -49,6 +49,10 @@ module NapakalakiGame
       @@MAXLEVEL
     end
 
+    def setPendingBadConsequence(p)
+      @pendingBadConsequence = p
+    end
+
     # incrementa el nivel del jugador en l niveles, sin pasarse del máximo
     def incrementLevels(l)
       @level = [@level + l, @@MAXLEVEL].min
@@ -60,11 +64,27 @@ module NapakalakiGame
     end
 
     def applyPrize(m)
+      nLevels = m.getLevelsGained
+      incrementLevels(nLevels)
 
+      nTreasures = m.getTreasuresGained
+
+      if nTreasures > 0
+        dealer = CardDealer.instance
+        nTreasures.times do
+          treasure = dealer.nextTreasure
+          hiddenTreasures << treasure
+        end
+      end
     end
 
     def applyBadConsequence(m)
+      badConsequence = m.getBadConsequence
+      nLevels = badConsequence.getLevels
 
+      decrementLevels(nLevels)
+      pendingBad = badConsequence.adjustToFitTreasureLists(visibleTreasures, hiddenTreasures)
+      setPendingBadConsequence(pendingBad)
     end
 
     def canMakeTreasureVisible(t)
@@ -164,11 +184,38 @@ module NapakalakiGame
     end
 
     def initTreasures
+      dealer = CardDealer.instance
+      dice = Dice.instance
 
+      bringToLife
+
+      treasure = dealer.nextTreasure
+      hiddenTreasures << treasure
+
+      number = dice.nextNumber
+
+      if number > 1
+        treasure = dealer.nextTreasure
+        hiddenTreasures << treasure
+      end
+
+      if number == 6
+        treasure = dealer.nextTreasure
+        hiddenTreasures << treasure
+      end
     end
 
     def stealTreasure
-
+      treasure = nil
+      canI = canISteal
+      if canI
+        canYou = enemy.canYouGiveMeATreasure
+        if canYou
+          treasure = enemy.giveMeATreasure
+          hiddenTreasures << treasure
+          haveStolen
+        end
+      end
     end
 
     private
@@ -191,7 +238,16 @@ module NapakalakiGame
     public
     
     def discardAllTreasures
+      vTreasures = visibleTreasures.dup
+      hTreasures = hiddenTreasures.dup
 
+      vTreasures.each do |t|
+        discardVisibleTreasure(t)
+      end
+
+      hTreasures.each do |t|
+        discardHiddenTreasure(t)
+      end
     end
     
     def to_s

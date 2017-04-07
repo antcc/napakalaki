@@ -222,6 +222,8 @@ module NapakalakiGame
     def initCards
       initTreasureCardDeck
       initMonsterCardDeck
+      @unusedTreasures.shuffle!
+      @unusedMonsters.shuffle!
     end
 
   end # CardDealer

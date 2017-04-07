@@ -47,6 +47,10 @@ module NapakalakiGame
       @@MAXTREASURES
     end
 
+    def getLevels
+      @levels
+    end
+    
     def substractHiddenTreasure(t)
       if specificHiddenTreasures != nil
         specificHiddenTreasures.delete(t)
