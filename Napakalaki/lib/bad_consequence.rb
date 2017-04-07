@@ -75,7 +75,24 @@ module NapakalakiGame
     end
 
     def adjustToFitTreasureLists(v,h)
+      if nVisibleTreasures == 0 and nHiddenTreasures == 0
+        newSpecificVisibleTreasures = specificVisibleTreasures & v
+        if specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
+          v.count(TreasureKind::ONEHAND) == 2
+          newSpecificVisibleTreasures << TreasureKind::ONEHAND
+        end
+        newSpecificHiddenTreasures = specificHiddenTreasures & h
+        if specificHiddenTreasures.count(TreasureKind::ONEHAND) == 2 and \
+          h.count(TreasureKind::ONEHAND) == 2
+          newSpecificHiddenTreasures << TreasureKind::ONEHAND
+        end
 
+        bc = newLevelSpecificTreasures(@text, levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
+      else
+        newNVisibleTreasures = [nVisibleTreasures, v.count].min
+        newNHiddenTreasures = [nHiddenTreasures, h.count].min
+        bc = newLevelNumberOfTreasures(@text, levels, newNVisibleTreasures, newNHiddenTreasures)
+      end
     end
 
     def to_s
