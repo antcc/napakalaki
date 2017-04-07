@@ -220,7 +220,8 @@ module NapakalakiGame
     end
 
     def initCards
-
+      initTreasureCardDeck
+      initMonsterCardDeck
     end
 
   end # CardDealer

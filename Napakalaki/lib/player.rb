@@ -103,20 +103,58 @@ module NapakalakiGame
       @dead
     end
 
+    # combate contra el enemigo m
     def combat(m)
+      myLevel = getCombatLevel
+      monsterLevel = m.getCombatLevel
+      
+      if !canISteal
+        dice = Dice.instance
+        number = dice.nextNumber
+        if number < 3
+          enemyLevel = enemy.getCombatLevel
+          monsterLevel += enemyLevel
+        end
+      end
 
+      if myLevel > monsterLevel
+        applyPrize(m)
+        if level > MAXLEVEL
+          combatResult = CombatResult::WINGAME
+        else
+          combatResult = CombatResult::WIN
+        end
+      else
+        applyBadConsequence(m)
+        combatResult = CombatResult::LOSE
+      end
     end
 
     def makeTreasureVisible(t)
-
+      canI = canMakeTreasureVisible(t)
+      if canI
+        @visibleTreasures << t
+        @hiddenTreasures.delete(t)
+      end
     end
 
     def discardVisibleTreasure(t)
+      visibleTreasures.delete(t)
+      # ¿Aplicar ley de De Morgan?
+      if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
+        @pendingBadConsequence.substractVisibleTreasure(t)
+      end
 
+      dieIfNoTreasures
     end
 
     def discardHiddenTreasure(t)
+      hiddenTreasures.delete(t)
+      if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
+        @pendingBadConsequence.substractHiddenTreasure(t)
+      end
 
+      dieIfNoTreasures
     end
 
     # comprueba si el jugador está en estado válido

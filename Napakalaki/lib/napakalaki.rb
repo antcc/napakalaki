@@ -54,30 +54,54 @@ module NapakalakiGame
     public
     
     def developCombat
-
+      combatResult = @currentPlayer.combat(@currentMonster)
+      @dealer.giveMonsterBack(@currentMonster)
+      return combatResult
     end
 
     # @pre: treasures no vacío
     def discardVisibleTreasures(treasures)
-
+      treasures.each do |t|
+        @currentPlayer.discardVisibleTreasure(t)
+        @dealer.giveTreasureBack(t)
+      end
     end
 
     # @pre: treasures no vacío
     def discardHiddenTreasures(treasures)
-
+      treasures.each do |t|
+        @currentPlayer.discardHiddenTreasure(t)
+        @dealer.giveTreasureBack(t)
+      end
     end
 
     # @pre: treasures no vacío
     def makeTreasuresVisible(treasures)
-
+      treasures.each do |t|
+        @currentPlayer.makeTreasureVisible(t)
+      end
     end
 
     def initGame(players)
-
+      initPlayers(players)
+      setEnemies
+      nextTurn
+      @dealer.initCards
     end
 
     def nextTurn
+      stateOK = nextTurnAllowed
+      
+      if stateOK
+        @currentMonster = @dealer.nextMonster
+        @currentPlayer = nextPlayer
 
+        if @currentPlayer.isDead
+          @currentPlayer.initTreasures
+        end
+      end
+      
+      return stateOK
     end
 
     def endOfGame(result)
