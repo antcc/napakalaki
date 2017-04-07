@@ -39,7 +39,7 @@ module NapakalakiGame
     end
 
     def nextTurnAllowed
-      @currentPlayer.nil? or (@currentPlayer.validState == true)
+      @currentPlayer.nil? or @currentPlayer.validState
     end
 
     def setEnemies

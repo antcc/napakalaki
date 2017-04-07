@@ -70,7 +70,7 @@ module NapakalakiGame
       # Los hondos
       prize = Prize.new(2, 1)
       badConsequence = BadConsequence.newDeath('Estos monstruos resultan bastante superficiales ' \
-          'y te aburren mortalmente. Estás muerto.', true)
+          'y te aburren mortalmente. Estás muerto.')
       @@monsters << Monster.new('Los hondos', 8, badConsequence, prize)
 
       # Semillas Cthulhu
@@ -94,12 +94,12 @@ module NapakalakiGame
       # Yskhtihyssg-Goth
       prize = Prize.new(3, 1)
       badConsequence = BadConsequence.newDeath('No le hace gracia que pronuncien mal su nombre. ' \
-          'Estás muerto.', true)
+          'Estás muerto.')
       @@monsters << Monster.new('Yskhtihyssg-Goth', 14, badConsequence, prize)
 
       # Familia feliz
       prize = Prize.new(3, 1)
-      badConsequence = BadConsequence.newDeath('La familia te atrapa. Estás muerto.', true)
+      badConsequence = BadConsequence.newDeath('La familia te atrapa. Estás muerto.')
       @@monsters << Monster.new('Familia feliz', 1, badConsequence, prize)
 
       # Roboggoth
