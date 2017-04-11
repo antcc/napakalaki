@@ -2,8 +2,9 @@
 
 # TODO: revisar los 'require' cuando se hayan implementado todos los métodos
 #require_relative 'card_dealer'
-#require_relative 'dice'
-#require_relative 'combat_result'
+require_relative 'dice'
+require_relative 'bad_consequence'
+require_relative 'combat_result'
 
 module NapakalakiGame
   
@@ -15,7 +16,7 @@ module NapakalakiGame
     attr_reader :visibleTreasures         # tesoros visibles
     attr_reader :canISteal                # representa si ha robado a su archienemigo
     attr_writer :pendingBadConsequence    # mal rollo pendiente de aplicar
-    attr_writer :enemy                    # jugador archienemigo asignado
+    attr_accessor :enemy                    # jugador archienemigo asignado
 
     @@MAXLEVEL = 10                       # máximo nivel que puede alcanzar un jugador
 
@@ -28,6 +29,14 @@ module NapakalakiGame
       @pendingBadConsequence = nil
       @enemy = nil
       @dead = true  # cuando el jugador se crea, está muerto
+    end
+
+    def getVisibleTreasures
+      @visibleTreasures
+    end
+
+    def getHiddenTreasures
+      @hiddenTreasures
     end
 
     private
@@ -139,7 +148,7 @@ module NapakalakiGame
 
       if myLevel > monsterLevel
         applyPrize(m)
-        if level > MAXLEVEL
+        if level > @@MAXLEVEL
           combatResult = CombatResult::WINGAME
         else
           combatResult = CombatResult::WIN
@@ -159,7 +168,7 @@ module NapakalakiGame
     end
 
     def discardVisibleTreasure(t)
-      visibleTreasures.delete(t)
+      @visibleTreasures.delete(t)
       # ¿Aplicar ley de De Morgan?
       if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
         @pendingBadConsequence.substractVisibleTreasure(t)
@@ -169,7 +178,7 @@ module NapakalakiGame
     end
 
     def discardHiddenTreasure(t)
-      hiddenTreasures.delete(t)
+      @hiddenTreasures.delete(t)
       if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
         @pendingBadConsequence.substractHiddenTreasure(t)
       end
@@ -209,8 +218,8 @@ module NapakalakiGame
       treasure = nil
       canI = canISteal
       if canI
-        canYou = enemy.canYouGiveMeATreasure
-        if canYou
+        #canYou = enemy.canYouGiveMeATreasure
+        if enemy.canYouGiveMeATreasure
           treasure = enemy.giveMeATreasure
           hiddenTreasures << treasure
           haveStolen
@@ -250,13 +259,17 @@ module NapakalakiGame
       end
     end
     
+#    def to_s
+#      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: " + 
+#        @visibleTreasures.map(&:name).join(", ") +
+#        "\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") \
+#        + "\nMuerto: " + (@dead ? "Sí" : "No") +
+#        "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:" +
+#        "\n#{@pendingBadConsequence}" + "\nEnemigo:\n" + (@enemy.nil? ? "" : "#{@enemy.name}")
+    #    end
+
     def to_s
-      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: " + 
-        @visibleTreasures.map(&:name).join(", ") +
-        "\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") \
-        + "\nMuerto: " + (@dead ? "Sí" : "No") +
-        "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:" +
-        "\n#{@pendingBadConsequence}" + "\nEnemigo:\n" + (@enemy.nil? ? "" : "#{@enemy.name}")
+      "#{@name}"
     end
 
   end # Player

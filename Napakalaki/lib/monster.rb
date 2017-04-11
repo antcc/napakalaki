@@ -15,6 +15,22 @@ module NapakalakiGame
       @prize = p
     end
 
+    def getName
+      @name
+    end
+
+    def getCombatLevel
+      @combatLevel
+    end
+
+    def getBadConsequence
+      @badConsequence
+    end
+
+    def getPrize
+      @prize
+    end
+
     # devuelve los niveles ganados del buen rollo
     def getLevelsGained
       @prize.levels

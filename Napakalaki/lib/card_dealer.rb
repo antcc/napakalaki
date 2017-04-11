@@ -18,6 +18,10 @@ module NapakalakiGame
       @usedMonsters = Array.new
       @unusedTreasures = Array.new
       @usedTreasures = Array.new
+      initMonsterCardDeck
+      initTreasureCardDeck
+      @unusedMonsters.shuffle!
+      @unusedTreasures.shuffle!
     end
 
     private
@@ -201,11 +205,12 @@ module NapakalakiGame
 
     def nextMonster
       unless @unusedMonsters.empty?
-        @unusedMonsters.pop
+        m = @unusedMonsters.pop
       else
         @unusedMonsters + @usedMonsters
         @usedMonsters.clear
         @unusedMonsters.shuffle!
+        m = @unusedMonsters.pop
       end
     end
 

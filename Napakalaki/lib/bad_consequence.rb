@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require_relative 'player'
+
 module NapakalakiGame
 
   # class BadConsequence: representa el mal rollo de un monstruo
@@ -70,12 +72,13 @@ module NapakalakiGame
     end
 
     # constructor para mal rollo de muerte
+    # cambiar Player MAXLEVEL
     def self.newDeath(t)
-      new(t, 0, nil, nil, nil, nil, true);
+      new(t, 10, @@MAXTREASURES, @@MAXTREASURES, nil, nil, true);
     end
 
     def adjustToFitTreasureLists(v,h)
-      if nVisibleTreasures == 0 and nHiddenTreasures == 0
+      if nVisibleTreasures == nil and nHiddenTreasures == nil
         newSpecificVisibleTreasures = specificVisibleTreasures & v
         if specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
           v.count(TreasureKind::ONEHAND) == 2
@@ -87,11 +90,13 @@ module NapakalakiGame
           newSpecificHiddenTreasures << TreasureKind::ONEHAND
         end
 
-        bc = newLevelSpecificTreasures(@text, levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
+        bc = BadConsequence::newLevelSpecificTreasures(@text, levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
       else
+        #nv = v.nil? ? 0 : v.count
+        #nh = h.nil? ? 0 : h.count
         newNVisibleTreasures = [nVisibleTreasures, v.count].min
         newNHiddenTreasures = [nHiddenTreasures, h.count].min
-        bc = newLevelNumberOfTreasures(@text, levels, newNVisibleTreasures, newNHiddenTreasures)
+        bc = BadConsequence::newLevelNumberOfTreasures(@text, levels, newNVisibleTreasures, newNHiddenTreasures)
       end
     end
 

@@ -22,6 +22,14 @@ module NapakalakiGame
       @dealer = CardDealer.instance
     end
 
+    def getCurrentPlayer
+      @currentPlayer
+    end
+
+    def getCurrentMonster
+      @currentMonster
+    end
+
     private
     
     def initPlayers(names)
