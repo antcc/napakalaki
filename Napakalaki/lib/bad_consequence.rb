@@ -38,9 +38,11 @@ module NapakalakiGame
 
     def substractVisibleTreasure(t)
       if specificVisibleTreasures != nil
-        specificVisibleTreasures.delete(t)
+        specificVisibleTreasures.delete(t.type)
       else
-        nVisibleTreasures -= 1 unless nVisibleTreasures < 1
+        if (@nVisibleTreasures > 0)
+          @nVisibleTreasures -= 1
+        end
       end
     end
 
@@ -55,9 +57,11 @@ module NapakalakiGame
     
     def substractHiddenTreasure(t)
       if specificHiddenTreasures != nil
-        specificHiddenTreasures.delete(t)
+        specificHiddenTreasures.delete(t.type)
       else
-        nHiddenTreasures -= 1 unless nHiddenTreasures < 1
+        if @nHiddenTreasures > 0
+          @nHiddenTreasures -= 1
+        end
       end
     end
 
@@ -79,14 +83,28 @@ module NapakalakiGame
 
     def adjustToFitTreasureLists(v,h)
       if nVisibleTreasures == nil and nHiddenTreasures == nil
-        newSpecificVisibleTreasures = specificVisibleTreasures & v
+
+        # El array que nos pasan es de tesoros pero lo necesitamos de TIPOS de tesoros
+        vTypes = []
+        v.each do |t|
+          vTypes << t.type
+        end
+        
+        newSpecificVisibleTreasures = specificVisibleTreasures & vTypes
         if specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
-          v.count(TreasureKind::ONEHAND) == 2
+          vTypes.count(TreasureKind::ONEHAND) == 2
           newSpecificVisibleTreasures << TreasureKind::ONEHAND
         end
-        newSpecificHiddenTreasures = specificHiddenTreasures & h
+
+        # Igual que antes, necesitamos los TIPOS de los tesoros
+        hTypes = []
+        h.each do |t|
+          hTypes << t.type
+        end
+        
+        newSpecificHiddenTreasures = specificHiddenTreasures & hTypes
         if specificHiddenTreasures.count(TreasureKind::ONEHAND) == 2 and \
-          h.count(TreasureKind::ONEHAND) == 2
+          hTypes.count(TreasureKind::ONEHAND) == 2
           newSpecificHiddenTreasures << TreasureKind::ONEHAND
         end
 

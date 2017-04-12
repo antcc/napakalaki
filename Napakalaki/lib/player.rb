@@ -39,6 +39,10 @@ module NapakalakiGame
       @hiddenTreasures
     end
 
+    def getName
+      @name
+    end
+
     private
     
     # revivir al jugador
@@ -148,7 +152,7 @@ module NapakalakiGame
 
       if myLevel > monsterLevel
         applyPrize(m)
-        if level > @@MAXLEVEL
+        if level >= @@MAXLEVEL
           combatResult = CombatResult::WINGAME
         else
           combatResult = CombatResult::WIN
@@ -169,8 +173,7 @@ module NapakalakiGame
 
     def discardVisibleTreasure(t)
       @visibleTreasures.delete(t)
-      # ¿Aplicar ley de De Morgan?
-      if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
+      if !@pendingBadConsequence.nil? and !@pendingBadConsequence.isEmpty
         @pendingBadConsequence.substractVisibleTreasure(t)
       end
 
@@ -179,7 +182,7 @@ module NapakalakiGame
 
     def discardHiddenTreasure(t)
       @hiddenTreasures.delete(t)
-      if (!@pendingBadConsequence.nil? and !@pendingBadConsequence.empty?)
+      if !@pendingBadConsequence.nil? and !@pendingBadConsequence.isEmpty
         @pendingBadConsequence.substractHiddenTreasure(t)
       end
 
@@ -228,16 +231,6 @@ module NapakalakiGame
     end
 
     private
-    
-    def giveMeATreasure
-      @hiddenTreasures[rand(@hiddenTreasures.length)]
-    end
-
-    # comprueba si el jugador puede ser robado por su enemigo
-    def canYouGiveMeATreasure
-      # TODO: revisar cuando implementemos jugadores sectarios
-      not @hiddenTreasures.empty?
-    end
 
     # actualiza la información del jugador para reflejar que ha robado a su enemigo
     def haveStolen
@@ -245,6 +238,16 @@ module NapakalakiGame
     end
 
     public
+
+    # comprueba si el jugador puede ser robado por su enemigo
+    def canYouGiveMeATreasure
+      # TODO: revisar cuando implementemos jugadores sectarios
+      not @hiddenTreasures.empty?
+    end
+
+    def giveMeATreasure
+      @hiddenTreasures[rand(@hiddenTreasures.length)]
+    end
     
     def discardAllTreasures
       vTreasures = visibleTreasures.dup
