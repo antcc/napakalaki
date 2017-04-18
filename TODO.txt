@@ -1,10 +1,4 @@
 - Revisar lógica del método canMakeTreasureVisible de Player.
 - Revisar lógica método adjustToFit de BadConsequence.
-
+- GiveMeATreasure: eliminar de tu mano
 - Probar métodos P3.
-- Documentar proyecto (Javadoc).
-
------ Ruby:
-
-- Revisar napakalaki::nextTurnAllowed.
-- Constructor de BadConsequence (muerte)
