@@ -35,17 +35,7 @@ module NapakalakiGame
       (nVisibleTreasures == 0 and nHiddenTreasures == 0) or
         (specificVisibleTreasures == [] and specificHiddenTreasures == [])
     end
-
-    def substractVisibleTreasure(t)
-      if specificVisibleTreasures != nil
-        specificVisibleTreasures.delete(t.type)
-      else
-        if (@nVisibleTreasures > 0)
-          @nVisibleTreasures -= 1
-        end
-      end
-    end
-
+    
     # devuelve la constante que simboliza todos los tesoros
     def self.getMaxTreasures
       @@MAXTREASURES
@@ -54,10 +44,24 @@ module NapakalakiGame
     def getLevels
       @levels
     end
+
+    def substractVisibleTreasure(t)
+      type = t.type
+      if (not @specificVisibleTreasures.nil?) and (not @specificVisibleTreasures.empty?) \
+            and @specificVisibleTreasures.include?(type)
+        @specificVisibleTreasures.delete_at(@specificVisibleTreasures.index(type))
+      else
+        if (@nVisibleTreasures > 0)
+          @nVisibleTreasures -= 1
+        end
+      end
+    end
     
     def substractHiddenTreasure(t)
-      if specificHiddenTreasures != nil
-        specificHiddenTreasures.delete(t.type)
+      type = t.type
+      if (not @specificHiddenTreasures.nil?) and (not @specificHiddenTreasures.empty?) \
+            and @specificHiddenTreasures.include?(type)
+        @specificHiddenTreasures.delete_at(@specificHiddenTreasures.index(type))
       else
         if @nHiddenTreasures > 0
           @nHiddenTreasures -= 1
@@ -76,13 +80,12 @@ module NapakalakiGame
     end
 
     # constructor para mal rollo de muerte
-    # cambiar Player MAXLEVEL
     def self.newDeath(t)
-      new(t, 10, @@MAXTREASURES, @@MAXTREASURES, nil, nil, true);
+      new(t, Player.getMaxLevel, @@MAXTREASURES, @@MAXTREASURES, nil, nil, true);
     end
 
     def adjustToFitTreasureLists(v,h)
-      if nVisibleTreasures == nil and nHiddenTreasures == nil
+      if @nVisibleTreasures.nil? and @nHiddenTreasures.nil?
 
         # El array que nos pasan es de tesoros pero lo necesitamos de TIPOS de tesoros
         vTypes = []
@@ -90,8 +93,8 @@ module NapakalakiGame
           vTypes << t.type
         end
         
-        newSpecificVisibleTreasures = specificVisibleTreasures & vTypes
-        if specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
+        newSpecificVisibleTreasures = @specificVisibleTreasures & vTypes
+        if @specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
           vTypes.count(TreasureKind::ONEHAND) == 2
           newSpecificVisibleTreasures << TreasureKind::ONEHAND
         end
@@ -102,19 +105,14 @@ module NapakalakiGame
           hTypes << t.type
         end
         
-        newSpecificHiddenTreasures = specificHiddenTreasures & hTypes
-        if specificHiddenTreasures.count(TreasureKind::ONEHAND) == 2 and \
-          hTypes.count(TreasureKind::ONEHAND) == 2
-          newSpecificHiddenTreasures << TreasureKind::ONEHAND
-        end
+        # Intersección, manteniendo duplicados (flat_map concatena)
+        newSpecificHiddenTreasures = (@specificHiddenTreasures & hTypes).flat_map { |n| [n]*[@specificHiddenTreasures.count(n), hTypes.count(n)].min }
 
-        bc = BadConsequence::newLevelSpecificTreasures(@text, levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
+        bc = BadConsequence::newLevelSpecificTreasures(@text, @levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
       else
-        #nv = v.nil? ? 0 : v.count
-        #nh = h.nil? ? 0 : h.count
-        newNVisibleTreasures = [nVisibleTreasures, v.count].min
-        newNHiddenTreasures = [nHiddenTreasures, h.count].min
-        bc = BadConsequence::newLevelNumberOfTreasures(@text, levels, newNVisibleTreasures, newNHiddenTreasures)
+        newNVisibleTreasures = [@nVisibleTreasures, v.count].min
+        newNHiddenTreasures = [@nHiddenTreasures, h.count].min
+        bc = BadConsequence::newLevelNumberOfTreasures(@text, @levels, newNVisibleTreasures, newNHiddenTreasures)
       end
     end
 

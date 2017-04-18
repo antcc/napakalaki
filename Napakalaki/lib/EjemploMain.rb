@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require_relative 'napakalaki'
-require_relative 'game_tester'
+require_relative 'Napakalaki'
+require_relative 'GameTester'
 
 module NapakalakiGame
 

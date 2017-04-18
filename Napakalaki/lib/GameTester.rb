@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 require 'singleton'
-require_relative 'napakalaki'
-require_relative 'command'
+require_relative 'Napakalaki'
+require_relative 'Command'
 
 module Test
 

@@ -18,10 +18,6 @@ module NapakalakiGame
       @usedMonsters = Array.new
       @unusedTreasures = Array.new
       @usedTreasures = Array.new
-      initMonsterCardDeck
-      initTreasureCardDeck
-      @unusedMonsters.shuffle!
-      @unusedTreasures.shuffle!
     end
 
     private
@@ -194,24 +190,31 @@ module NapakalakiGame
     # sacar el siguiente tesoro de la baraja
     # si está vacía, pasar la pila de descartes y barajar
     def nextTreasure
-      unless @unusedTreasures.empty?
-        @unusedTreasures.pop
-      else
-        @unusedTreasures + @usedTreasures
-        @usedTreasures.clear
-        @unusedTreasures.shuffle!
+      # swap if empty
+      if @unusedTreasures.empty?
+        temp = @unusedTreasures
+        @unusedTreasures = @usedTreasures
+        @usedTreasures = temp
+        
+        # shuffle
+        shuffleTreasures
       end
+      
+      @unusedTreasures.pop
     end
 
     def nextMonster
-      unless @unusedMonsters.empty?
-        m = @unusedMonsters.pop
-      else
-        @unusedMonsters + @usedMonsters
-        @usedMonsters.clear
-        @unusedMonsters.shuffle!
-        m = @unusedMonsters.pop
+      # swap if empty
+      if @unusedMonsters.empty?
+        temp = @unusedMonsters
+        @unusedMonsters = @usedMonsters
+        @usedMonsters = temp
+        
+        # shuffle
+        shuffleMonsters
       end
+      
+      @unusedMonsters.pop
     end
 
     # introducir un tesoro en el mazo de tesoros usados
@@ -227,8 +230,8 @@ module NapakalakiGame
     def initCards
       initTreasureCardDeck
       initMonsterCardDeck
-      @unusedTreasures.shuffle!
-      @unusedMonsters.shuffle!
+      shuffleTreasures
+      shuffleMonsters
     end
 
   end # CardDealer

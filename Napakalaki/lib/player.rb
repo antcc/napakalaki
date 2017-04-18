@@ -1,10 +1,9 @@
 # encoding: utf-8
 
-# TODO: revisar los 'require' cuando se hayan implementado todos los métodos
-#require_relative 'card_dealer'
+require_relative 'card_dealer'
 require_relative 'dice'
-require_relative 'bad_consequence'
 require_relative 'combat_result'
+require_relative 'treasure_kind'
 
 module NapakalakiGame
   
@@ -16,7 +15,7 @@ module NapakalakiGame
     attr_reader :visibleTreasures         # tesoros visibles
     attr_reader :canISteal                # representa si ha robado a su archienemigo
     attr_writer :pendingBadConsequence    # mal rollo pendiente de aplicar
-    attr_accessor :enemy                    # jugador archienemigo asignado
+    attr_writer :enemy                    # jugador archienemigo asignado
 
     @@MAXLEVEL = 10                       # máximo nivel que puede alcanzar un jugador
 
@@ -42,6 +41,11 @@ module NapakalakiGame
     def getName
       @name
     end
+    
+    # obtener el máximo nivel del jugador
+    def self.getMaxLevel
+      @@MAXLEVEL
+    end
 
     private
     
@@ -50,17 +54,17 @@ module NapakalakiGame
       @dead = false
     end
     
+    # Es protected para poder hacer @enemy.getCombatLevel en el método combat
+    protected
+    
     # obtener nivel de combate
     def getCombatLevel
       combatLevel = 0
       @visibleTreasures.each { |vt| combatLevel += vt.bonus }
       combatLevel += level
     end
-
-    # obtener el máximo nivel del jugador
-    def self.getMaxLevel
-      @@MAXLEVEL
-    end
+    
+    private
 
     def setPendingBadConsequence(p)
       @pendingBadConsequence = p
@@ -85,8 +89,7 @@ module NapakalakiGame
       if nTreasures > 0
         dealer = CardDealer.instance
         nTreasures.times do
-          treasure = dealer.nextTreasure
-          hiddenTreasures << treasure
+          @hiddenTreasures << dealer.nextTreasure
         end
       end
     end
@@ -96,30 +99,24 @@ module NapakalakiGame
       nLevels = badConsequence.getLevels
 
       decrementLevels(nLevels)
-      pendingBad = badConsequence.adjustToFitTreasureLists(visibleTreasures, hiddenTreasures)
+      pendingBad = badConsequence.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
       setPendingBadConsequence(pendingBad)
     end
 
     def canMakeTreasureVisible(t)
       case t.type
-      when TreasureKind::ARMOR, TreasureKind::HELMET, TreasureKind::SHOE
-        howManyVisibleTreasures(t.type) < 1
-      when TreasureKind::ONEHAND
-        howManyVisibleTreasures(t.type) < 2 and howManyVisibleTreasures(TreasureKind::BOTHHANDS) < 1
-      when TreasureKind::BOTHHANDS
-        howManyVisibleTreasures(t.type) < 1 and howManyVisibleTreasures(TreasureKind::ONEHAND) < 1
+        when TreasureKind::ONEHAND then
+          howManyVisibleTreasures(t.type) < 2 and howManyVisibleTreasures(TreasureKind::BOTHHANDS) < 1
+        when TreasureKind::BOTHHANDS then
+          howManyVisibleTreasures(t.type) < 1 and howManyVisibleTreasures(TreasureKind::ONEHAND) < 1
+        else
+          howManyVisibleTreasures(t.type) < 1
       end
     end
 
     # devuelve cuántos tesoros visibles de tipo tKind tiene el jugador
     def howManyVisibleTreasures(tKind)
-      count = 0
-      @visibleTreasures.each do |vt|
-        if vt.type == tKind
-          count += 1
-        end
-      end
-      count
+      @visibleTreasures.count { |vt| vt.type == tKind }
     end
 
     # el jugador muere si no tiene tesoros
@@ -141,18 +138,18 @@ module NapakalakiGame
       myLevel = getCombatLevel
       monsterLevel = m.getCombatLevel
       
-      if !canISteal
+      if !@canISteal
         dice = Dice.instance
         number = dice.nextNumber
         if number < 3
-          enemyLevel = enemy.getCombatLevel
+          enemyLevel = @enemy.getCombatLevel
           monsterLevel += enemyLevel
         end
       end
 
       if myLevel > monsterLevel
         applyPrize(m)
-        if level >= @@MAXLEVEL
+        if @level >= @@MAXLEVEL
           combatResult = CombatResult::WINGAME
         else
           combatResult = CombatResult::WIN
@@ -202,32 +199,31 @@ module NapakalakiGame
       bringToLife
 
       treasure = dealer.nextTreasure
-      hiddenTreasures << treasure
+      @hiddenTreasures << treasure
 
       number = dice.nextNumber
 
       if number > 1
         treasure = dealer.nextTreasure
-        hiddenTreasures << treasure
+        @hiddenTreasures << treasure
       end
 
       if number == 6
         treasure = dealer.nextTreasure
-        hiddenTreasures << treasure
+        @hiddenTreasures << treasure
       end
     end
 
     def stealTreasure
       treasure = nil
-      canI = canISteal
-      if canI
-        #canYou = enemy.canYouGiveMeATreasure
-        if enemy.canYouGiveMeATreasure
-          treasure = enemy.giveMeATreasure
-          hiddenTreasures << treasure
+      if @canISteal
+        if @enemy.canYouGiveMeATreasure
+          treasure = @enemy.giveMeATreasure
+          @hiddenTreasures << treasure
           haveStolen
         end
       end
+      treasure
     end
 
     private
@@ -237,7 +233,9 @@ module NapakalakiGame
       @canISteal = false
     end
 
-    public
+    # Los dos siguientes métodos no pueden ser privados, porque necesitamos llamarlos tal que
+    # así: @enemy.giveMeATreasure, por ejemplo. Los ponemos protected como solución temporal.
+    protected
 
     # comprueba si el jugador puede ser robado por su enemigo
     def canYouGiveMeATreasure
@@ -246,8 +244,10 @@ module NapakalakiGame
     end
 
     def giveMeATreasure
-      @hiddenTreasures[rand(@hiddenTreasures.length)]
+     @hiddenTreasures.delete_at(rand(@hiddenTreasures.length))
     end
+    
+    public
     
     def discardAllTreasures
       vTreasures = visibleTreasures.dup

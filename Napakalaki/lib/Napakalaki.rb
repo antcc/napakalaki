@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-# TODO: revisar los 'require' cuando se hayan implementado todos los métodos
-#require_relative 'combat_result'
+require_relative 'combat_result'
 require_relative 'card_dealer'
 require_relative 'player'
 require 'singleton'
@@ -93,8 +92,8 @@ module NapakalakiGame
     def initGame(players)
       initPlayers(players)
       setEnemies
-      nextTurn
       @dealer.initCards
+      nextTurn
     end
 
     def nextTurn
