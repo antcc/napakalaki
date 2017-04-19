@@ -269,10 +269,14 @@ module NapakalakiGame
 #        + "\nMuerto: " + (@dead ? "Sí" : "No") +
 #        "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:" +
 #        "\n#{@pendingBadConsequence}" + "\nEnemigo:\n" + (@enemy.nil? ? "" : "#{@enemy.name}")
-    #    end
+#    end
 
     def to_s
-      "#{@name} (nivel #{@level}, nivel de combate #{getCombatLevel})"
+      text = "#{@name} (nivel #{@level}, nivel de combate #{getCombatLevel})" +
+        "\n - Muerto: " + (@dead ? "Sí" : "No") +
+        "\n - Puede robar: " + (@canISteal ? "Sí" : "No") +
+        "\n - Enemigo: #{@enemy.name}" +
+        "\n - Mal rollo pendiente:" + (@pendingBadConsequence.nil? ? "" : "\n#{@pendingBadConsequence}")
     end
 
   end # Player
