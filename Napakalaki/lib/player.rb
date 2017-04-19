@@ -244,7 +244,9 @@ module NapakalakiGame
     end
 
     def giveMeATreasure
-     @hiddenTreasures.delete_at(rand(@hiddenTreasures.length))
+      @hiddenTreasures.delete_at(rand(@hiddenTreasures.length))
+     
+      # dieIfNoTreasures ??
     end
     
     public
