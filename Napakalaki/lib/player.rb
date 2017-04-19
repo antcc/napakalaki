@@ -272,7 +272,7 @@ module NapakalakiGame
     #    end
 
     def to_s
-      "#{@name}"
+      "#{@name} (nivel #{@level}, nivel de combate #{getCombatLevel})"
     end
 
   end # Player
