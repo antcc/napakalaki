@@ -9,8 +9,8 @@ package NapakalakiGame;
  */
 public enum TreasureKind {
     
-    ARMOR("Armadura"), ONEHAND("Una mano"), BOTHHANDS("Dos manos"),
-    HELMET("Casco"), SHOE("Calzado");
+    ARMOR("armor"), ONEHAND("onehand"), BOTHHANDS("bothhands"),
+    HELMET("helmet"), SHOE("shoe");
     
     private final String name;
     

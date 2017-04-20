@@ -1,4 +1,3 @@
-- Revisar lógica del método canMakeTreasureVisible de Player.
-- Revisar lógica método adjustToFit de BadConsequence.
-- GiveMeATreasure: eliminar de tu mano
+- Revisar lógica del método canMakeTreasureVisible de Player (simplificarlo?).
+- Revisar lógica método adjustToFitTreasureLists de BadConsequence.
 - Probar métodos P3.

@@ -107,6 +107,7 @@ public class BadConsequence {
         if (nVisibleTreasures == 0 && nHiddenTreasures == 0) {
             bd = new BadConsequence(text, levels, specificVisibleTreasures, specificHiddenTreasures);
             
+            // Nuevos arrays con los tipos de tesoros
             ArrayList<TreasureKind> newVisibleType = new ArrayList();
             ArrayList<TreasureKind> newHiddenType = new ArrayList();
             
@@ -118,6 +119,7 @@ public class BadConsequence {
                 newHiddenType.add(t.getType());
             }
             
+            // Intersección (mantiene duplicados)
             bd.specificVisibleTreasures.retainAll(newVisibleType);
             bd.specificHiddenTreasures.retainAll(newHiddenType);
         }

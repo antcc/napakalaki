@@ -251,7 +251,7 @@ public class Player {
     }
     
     private Treasure giveMeATreasure() {
-        return hiddenTreasures.get(new Random().nextInt(hiddenTreasures.size()));
+        return hiddenTreasures.remove(new Random().nextInt(hiddenTreasures.size()));
     }
 
     public boolean canISteal() {
@@ -282,23 +282,18 @@ public class Player {
     
     @Override
     public String toString() {
-        /*String text = "Name: " + name + "\nLevel: " + Integer.toString(level)
-               + "\nDead: " + dead + "\nCan I steal: " + canISteal + "\nEnemy: ";
-        
-        if (enemy != null)
-            text += enemy.getName();
-        
-        text += "\nPending bad consequence: ";
-        
+        String text = name + " (nivel: " + Integer.toString(level)
+               + ", nivel de combate: " + Integer.toString(getCombatLevel()) + ")"
+               + "\n - Muerto: " + dead + "\n - Puede robar: " + canISteal 
+               + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente:\n";
+
         if (pendingBadConsequence != null)
             text += pendingBadConsequence.toString();
         
-        text += "\nHidden treasures: " + Arrays.toString(hiddenTreasures.toArray());
-        text += "\nVisible treasures: " + Arrays.toString(visibleTreasures.toArray());
+        //text += "\n - Hidden treasures: " + Arrays.toString(hiddenTreasures.toArray());
+        //text += "\n - Visible treasures: " + Arrays.toString(visibleTreasures.toArray());
         
         return text;
-        */
-        return name;
     }
 
 }
