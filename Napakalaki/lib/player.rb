@@ -245,8 +245,6 @@ module NapakalakiGame
 
     def giveMeATreasure
       @hiddenTreasures.delete_at(rand(@hiddenTreasures.length))
-     
-      # dieIfNoTreasures ??
     end
     
     public
@@ -263,15 +261,6 @@ module NapakalakiGame
         discardHiddenTreasure(t)
       end
     end
-    
-#    def to_s
-#      "Nombre: #{@name} \nNivel: #{@level} \nTeosoros visibles: " + 
-#        @visibleTreasures.map(&:name).join(", ") +
-#        "\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") \
-#        + "\nMuerto: " + (@dead ? "Sí" : "No") +
-#        "\nPuede robar: " + (@canISteal ? "Sí" : "No") + "\nMal rollo pendiente:" +
-#        "\n#{@pendingBadConsequence}" + "\nEnemigo:\n" + (@enemy.nil? ? "" : "#{@enemy.name}")
-#    end
 
     def to_s
       text = "#{@name} (nivel #{@level}, nivel de combate #{getCombatLevel})" +
@@ -279,6 +268,9 @@ module NapakalakiGame
         "\n - Puede robar: " + (@canISteal ? "Sí" : "No") +
         "\n - Enemigo: #{@enemy.name}" +
         "\n - Mal rollo pendiente:" + (@pendingBadConsequence.nil? ? "" : "\n#{@pendingBadConsequence}")
+    
+      #"Teosoros visibles: " + @visibleTreasures.map(&:name).join(", ") +
+      #"\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") 
     end
 
   end # Player
