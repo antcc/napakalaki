@@ -163,7 +163,7 @@ module NapakalakiGame
 
     # combate contra el enemigo m
     def combat(m)
-      myLevel = getCombatLevet
+      myLevel = getCombatLevel
       monsterLevel = getOponentLevel
       
       if !@canISteal

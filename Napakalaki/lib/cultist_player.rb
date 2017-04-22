@@ -17,10 +17,12 @@ class CultistPlayer < Player
 
   protected
 
+  # El nivel de combate de los jugadores sectarios se obtiene con la fórmula siguiente
   def getCombatLevel
     (@combatLevel + 0.7*@combatLevel + myCultistCard.getGainedLevels*@@totalCultistPlayers).to_i
   end
 
+  # Algunos monstruos cambian el nivel de combate contra sectarios
   def getOponentLevel(m)
     m.getCombatLevelAgainstCultistPlayer
   end

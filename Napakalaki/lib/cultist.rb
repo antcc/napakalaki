@@ -4,7 +4,7 @@ class Cultist
 
   def initialize(n, l)
     @name = n
-    @gainedLevels = l
+    @gainedLevels = l # Niveles adicionales que obtiene el jugador
   end
 
   def getGainedLevels
