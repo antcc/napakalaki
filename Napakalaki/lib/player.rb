@@ -30,6 +30,17 @@ module NapakalakiGame
       @dead = true  # cuando el jugador se crea, está muerto
     end
 
+    def copy_const(p)
+      @name = p.name
+      @level = p.level
+      @hiddenTreasures = p.hiddenTreasures
+      @visibleTreasures = p.visibleTreasures
+      @canISteal = p.canISteal
+      @pendingBadConsequence = p.pendingBadConsequence
+      @enemy = p.enemy
+      @dead = p.dead
+    end
+
     def getVisibleTreasures
       @visibleTreasures
     end
@@ -62,6 +73,14 @@ module NapakalakiGame
       combatLevel = 0
       @visibleTreasures.each { |vt| combatLevel += vt.bonus }
       combatLevel += level
+    end
+
+    def getOponentLevel(m)
+      
+    end
+
+    def shouldConvert
+      
     end
     
     private

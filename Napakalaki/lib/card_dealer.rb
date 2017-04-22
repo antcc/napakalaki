@@ -18,6 +18,7 @@ module NapakalakiGame
       @usedMonsters = Array.new
       @unusedTreasures = Array.new
       @usedTreasures = Array.new
+      @unusedCultists = Array.new
     end
 
     private
@@ -175,6 +176,9 @@ module NapakalakiGame
       @unusedMonsters << Monster.new('Bicéfalo', 21, badConsequence, prize)
     end
 
+    def initCultistCardDeck
+    end
+    
     # barajar los tesoros no usados
     def shuffleTreasures
       @unusedTreasures.shuffle!
@@ -185,6 +189,9 @@ module NapakalakiGame
       @unusedMonsters.shuffle!
     end
 
+    def shuffleCultists
+    end
+    
     public
 
     # sacar el siguiente tesoro de la baraja
@@ -217,6 +224,9 @@ module NapakalakiGame
       @unusedMonsters.pop
     end
 
+    def nextCultist
+    end
+    
     # introducir un tesoro en el mazo de tesoros usados
     def giveTreasureBack(t)
       @usedTreasures << t
