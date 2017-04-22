@@ -174,9 +174,56 @@ module NapakalakiGame
           'cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3,
           [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHHANDS], [])
       @unusedMonsters << Monster.new('Bicéfalo', 21, badConsequence, prize)
+
+      prize = Prize.new(3, 1)
+      badConsequence = BadConsequence.newLevelSpecificTreasures('Pierdes 1 mano visible', 0, \
+                                                                [TreasureKind::ONEHAND], [])
+      @unusedMonsters << Monster.newMonsterCultist('El mal indecible impronunciable', 10, badConsequence, \
+                                                     prize, -2)
+
+      prize = Prize.new(2, 1)
+      badConsequence = BadConsequence.newLevelNumberTreasures('Pierdes todos tus tesoros visibles. Jajaja', \
+                                                              0, BadConsequence.getMaxTreasures, 0)
+      @unusedMonsters << Monster.newMonsterCultist('Testigos oculares', 6, badConsequence, \
+                                                   prize, 2)
+
+      prize = Prize.new(2, 5)
+      badConsequence = BadConsequence.newDeath('Hoy no es tu día de suerte. Mueres.')
+      @unusedMonsters << Monster.newMonsterCultist('El gran cthulhu', 20, badConsequence, \
+                                                     prize, 4)
+
+      prize = Prize.new(2, 1)
+      badConsequence = BadConsequence.newLevelNumberTreasures('Tu gobierno te recorta 2 niveles', \
+                                                              2, 0, 0)
+      @unusedMonsters << Monster.newMonsterCultist('Serpiente político', 8, badConsequence, \
+                                                   prize, 2)
+
+      prize = Prize.new(1, 1)
+      badConsequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu casco y tu armadura' \
+                                                                'visible. Pierdes tus manos ocultas', \
+                                                                0,  \
+                                                                [TreasureKind::HELMET, TreasureKind::ARMOR], \
+                                                                [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHANDS, TreasureKind::BOTHANDS, TreasureKind::BOTHANDS, TreasureKind::BOTHANDS])
+      @unusedMonsters << Monster.newMonsterCultist('Felpuggoth', 2, badConsequence, \
+                                                   prize, 5)
+
+      prize = Prize.new(4, 2)
+      badConsequence = BadConsequence.newLevelNumberTreasures('Pierdes 2 niveles', \
+                                                              2, 0, 0)
+      @unusedMonsters << Monster.newMonsterCultist('Shoggoth', 16, badConsequence, \
+                                                   prize, -4)
+
+      prize = Prize.new(1, 1)
+      badConsequence = BadConsequence.newLevelNumberTreasures('Pintalabios negro. Pierdes 2 niveles', \
+                                                              2, 0, 0)
+      @unusedMonsters << Monster.newMonsterCultist('Lolitagooth', 2, badConsequence, \
+                                                   prize, 3)
+      
     end
 
     def initCultistCardDeck
+      4.times {@unusedCultists << Cultist.new('Sectario', 1)}
+      2.times {@unusedCultists << Cultist.new('Sectario', 2)}
     end
     
     # barajar los tesoros no usados

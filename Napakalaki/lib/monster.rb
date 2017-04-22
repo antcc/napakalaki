@@ -13,8 +13,14 @@ module NapakalakiGame
       @combatLevel = l
       @badConsequence = b
       @prize = p
+      @levelChangeAgainstCultistPlayer = 0
     end
 
+    def newMonsterCultist(n, l, b, p, lc)
+      new(n, l, b, p)
+      @levelChangeAgainstCultistPlayer = lc
+    end
+    
     def getName
       @name
     end
@@ -39,6 +45,10 @@ module NapakalakiGame
     # devuelve los tesoros ganados del buen rollo
     def getTreasuresGained
       @prize.treasures
+    end
+
+    def getCombatLevelAgainstCultistPlayer
+      @combatLevel + @levelChangeAgainstCultistPlayer
     end
 
     def to_s
