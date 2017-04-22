@@ -29,6 +29,10 @@ module NapakalakiGame
       @combatLevel
     end
 
+    def getCombatLevelAgainstCultistPlayer
+      @combatLevel + @levelChangeAgainstCultistPlayer
+    end
+
     def getBadConsequence
       @badConsequence
     end
@@ -45,10 +49,6 @@ module NapakalakiGame
     # devuelve los tesoros ganados del buen rollo
     def getTreasuresGained
       @prize.treasures
-    end
-
-    def getCombatLevelAgainstCultistPlayer
-      @combatLevel + @levelChangeAgainstCultistPlayer
     end
 
     def to_s

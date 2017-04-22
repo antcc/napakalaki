@@ -237,6 +237,7 @@ module NapakalakiGame
     end
 
     def shuffleCultists
+      @unusedCultists.shuffle!
     end
     
     public
@@ -287,8 +288,10 @@ module NapakalakiGame
     def initCards
       initTreasureCardDeck
       initMonsterCardDeck
+      initCultistCardDeck
       shuffleTreasures
       shuffleMonsters
+      shuffleCultists
     end
 
   end # CardDealer

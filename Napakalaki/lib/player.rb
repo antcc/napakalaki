@@ -67,6 +67,10 @@ module NapakalakiGame
     
     # Es protected para poder hacer @enemy.getCombatLevel en el método combat
     protected
+
+    def getEnemy
+      @enemy
+    end
     
     # obtener nivel de combate
     def getCombatLevel
@@ -76,11 +80,16 @@ module NapakalakiGame
     end
 
     def getOponentLevel(m)
-      
+      getCombatLevel(m)
     end
 
     def shouldConvert
-      
+      dice = Dice.instance
+      if dice.nextNumber == 6
+        true
+      else
+        false
+      end
     end
     
     private
@@ -154,8 +163,8 @@ module NapakalakiGame
 
     # combate contra el enemigo m
     def combat(m)
-      myLevel = getCombatLevel
-      monsterLevel = m.getCombatLevel
+      myLevel = getCombatLevet
+      monsterLevel = getOponentLevel
       
       if !@canISteal
         dice = Dice.instance
@@ -171,7 +180,11 @@ module NapakalakiGame
         if @level >= @@MAXLEVEL
           combatResult = CombatResult::WINGAME
         else
-          combatResult = CombatResult::WIN
+          if shouldConvert
+            combatResult = CombatResult::LOSEANDCONVERT
+          else
+            combatResult = CombatResult::WIN
+          end
         end
       else
         applyBadConsequence(m)
@@ -258,7 +271,6 @@ module NapakalakiGame
 
     # comprueba si el jugador puede ser robado por su enemigo
     def canYouGiveMeATreasure
-      # TODO: revisar cuando implementemos jugadores sectarios
       not @hiddenTreasures.empty?
     end
 
