@@ -9,7 +9,8 @@ package NapakalakiGame;
  */
 public enum CombatResult {
     
-    WINGAME("wingame"), WIN("win"), LOSE("lose");
+    WINGAME("wingame"), WIN("win"),
+    LOSE("lose"), LOSEANDCONVERT("lose and convert");
     
     private final String name;
     

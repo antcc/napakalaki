@@ -13,13 +13,19 @@ public class Monster {
     private int combatLevel;
     private Prize prize;
     private BadConsequence badConsequence;
+    private int levelChangeAgainstCultistPlayer;
     
-    public Monster(String n, int l, BadConsequence b, Prize p) {
+    public Monster(String n, int l, BadConsequence b, Prize p, int lC) {
         name = n;
         combatLevel = l;
         badConsequence = b;
         prize = p;
+        levelChangeAgainstCultistPlayer = lC;
     } 
+    
+    public Monster(String n, int l, BadConsequence b, Prize p) {
+        this(n, l, b, p, 0);
+    }
     
     public String getName() {
         return name;
@@ -27,6 +33,10 @@ public class Monster {
     
     public int getCombatLevel() {
         return combatLevel;
+    }
+    
+    public int getCombatLevelAgainstCultistPlayer() {
+        return combatLevel + levelChangeAgainstCultistPlayer;
     }
     
     public BadConsequence getBadConsequence() {
@@ -44,6 +54,7 @@ public class Monster {
     @Override
     public String toString() {
         return "Name: " + name + "\nLevel: " + Integer.toString(combatLevel) +
+               "\nCambio de nivel frente a sectarios: " + levelChangeAgainstCultistPlayer +
                "\nPrize:\n" + prize.toString() + "\nBad consequence:\n" +
                badConsequence.toString();
     }

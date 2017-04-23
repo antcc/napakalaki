@@ -18,7 +18,7 @@ public class Player {
     private int level;
     private boolean dead;
     private boolean canISteal;
-    private Player enemy;
+    protected Player enemy;
     private BadConsequence pendingBadConsequence;
     private ArrayList<Treasure> visibleTreasures;
     private ArrayList<Treasure> hiddenTreasures;
@@ -35,6 +35,17 @@ public class Player {
         visibleTreasures = new ArrayList();
         hiddenTreasures = new ArrayList();
     }
+    
+    public Player(Player p) {
+        name = p.name;
+        level = p.level;
+        dead = p.dead;
+        canISteal = p.canISteal;
+        enemy = p.enemy;
+        pendingBadConsequence = p.pendingBadConsequence;
+        visibleTreasures = p.visibleTreasures;
+        hiddenTreasures = p.hiddenTreasures;
+    }
 
     public String getName() {
         return name;
@@ -44,7 +55,7 @@ public class Player {
         dead = false;
     }
     
-    private int getCombatLevel() {
+    protected int getCombatLevel() {
         int combatLevel = level;
         for (Treasure vt : visibleTreasures)
             combatLevel += vt.getBonus();
@@ -88,6 +99,14 @@ public class Player {
         BadConsequence pendingBad = badConsequence.adjustToFitTreasureLists(visibleTreasures,
                                                                             hiddenTreasures);
         setPendingBadConsequence(pendingBad);
+    }
+    
+    protected boolean shouldConvert() {
+        return Dice.getInstance().nextNumber() == 6;
+    }
+    
+    protected int getOponentLevel(Monster m) {
+        return m.getCombatLevel();
     }
     
     private boolean canMakeTreasureVisible(Treasure t) {
@@ -153,7 +172,7 @@ public class Player {
 
     public CombatResult combat(Monster m) {
         int myLevel = getCombatLevel();
-        int monsterLevel = m.getCombatLevel();
+        int monsterLevel = getOponentLevel(m);
         CombatResult combatResult;
         
         if (!canISteal) {
@@ -172,7 +191,10 @@ public class Player {
         
         else {
             applyBadConsequence(m);
-            combatResult = CombatResult.LOSE;
+            if (shouldConvert())
+                combatResult = CombatResult.LOSEANDCONVERT;
+            else
+                combatResult = CombatResult.LOSE;
         }
         
         return combatResult;
@@ -258,7 +280,6 @@ public class Player {
         return canISteal;
     }
     
-    // TODO: revisar cuando implementemos sectarios.
     private boolean canYouGiveMeATreasure() {
         return !hiddenTreasures.isEmpty();
     }

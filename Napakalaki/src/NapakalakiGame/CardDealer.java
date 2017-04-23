@@ -20,6 +20,7 @@ public class CardDealer {
     private ArrayList<Monster> usedMonsters;
     private ArrayList<Treasure> unusedTreasures;
     private ArrayList<Treasure> usedTreasures;
+    private ArrayList<Cultist> unusedCultists;
     
     private CardDealer() {
         unusedMonsters = new ArrayList();
@@ -63,6 +64,8 @@ public class CardDealer {
     }
     
     private void initMonsterCardDeck() {
+        
+        // Regular monsters
         BadConsequence badConsequence = new BadConsequence("Pierdes 5 niveles y 3 tesoros" + 
                 " visibles", 5, 3, 0);
         Prize prize = new Prize(3,2);
@@ -160,6 +163,53 @@ public class CardDealer {
                         TreasureKind.ONEHAND, TreasureKind.ONEHAND)), new ArrayList());
         prize = new Prize(2,1);
         unusedMonsters.add(new Monster("Bicéfalo", 21, badConsequence, prize));
+        
+        // Culstist Monsters
+        
+        badConsequence = new BadConsequence("Pierdes 1 mano visible", 0,
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND)), new ArrayList());
+        prize = new Prize(3,1);
+        unusedMonsters.add(new Monster("El mal indecible impronunciable", 10, badConsequence, prize, -2));
+        
+        badConsequence = new BadConsequence("Pierdes tus tesoros visibles. Jajaja.", 0,
+                BadConsequence.MAXTREASURES, 0);
+        prize = new Prize(2,1);
+        unusedMonsters.add(new Monster("Testigos Oculares", 6, badConsequence, prize, 2));
+        
+        badConsequence = new BadConsequence("Hoy no es tu día de suerte. Mueres.", true);
+        prize = new Prize(2,5);
+        unusedMonsters.add(new Monster("El gran cthulhu", 20, badConsequence, prize, 4));
+        
+        badConsequence = new BadConsequence("Tu gobierno te recorta 2 niveles.", 2, 0, 0);
+        prize = new Prize(2,1);
+        unusedMonsters.add(new Monster("Serpiente Político", 8, badConsequence, prize, -2));
+        
+        badConsequence = new BadConsequence("Pierdes tu casco y tu armadura visible. " +
+                "Pierdes tus manos ocultas.", 0,
+                new ArrayList(Arrays.asList(TreasureKind.HELMET, TreasureKind.ARMOR)),
+                new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND,
+                        TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS,
+                        TreasureKind.BOTHHANDS, TreasureKind.BOTHHANDS, TreasureKind.BOTHHANDS)));
+        prize = new Prize(1,1);
+        unusedMonsters.add(new Monster("Felpuggoth", 2, badConsequence, prize, 5));
+        
+        badConsequence = new BadConsequence("Pierdes 2 niveles", 2, 0, 0);
+        prize = new Prize(4,2);
+        unusedMonsters.add(new Monster("Shoggoth", 16, badConsequence, prize, -4));
+        
+        badConsequence = new BadConsequence("Pintalabios negro. Pierdes 2 niveles.", 2, 0, 0);
+        prize = new Prize(1,1);
+        unusedMonsters.add(new Monster("Lolitagooth", 2, badConsequence, prize, 3));
+    }
+    
+    private void initCultistCardDeck() {
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 2));
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 2));
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 1));
+        
     }
     
     private void shuffleTreasures() {
@@ -168,6 +218,10 @@ public class CardDealer {
     
     private void shuffleMonsters() {
         Collections.shuffle(unusedMonsters);
+    }
+    
+    private void shuffleCultists() {
+        Collections.shuffle(unusedCultists);
     }
         
     public static CardDealer getInstance() {
@@ -209,6 +263,10 @@ public class CardDealer {
         return unusedMonsters.remove(unusedMonsters.size()-1);
     }
     
+    public Cultist nextCultist() {
+        return unusedCultists.remove(unusedCultists.size()-1);
+    }
+    
     public void giveTreasureBack(Treasure t) {
         usedTreasures.add(t);
     }
@@ -222,6 +280,8 @@ public class CardDealer {
         shuffleTreasures();
         initMonsterCardDeck();
         shuffleMonsters();
+        initCultistCardDeck();
+        shuffleCultists();
     }
     
 }

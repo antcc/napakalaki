@@ -76,18 +76,34 @@ public class Napakalaki {
         Random rand = new Random();
         
         for (Player p : players) {
-            Player enemy;
+            int playerIndex = players.indexOf(p);
+            int enemyIndex;
             do {
-                enemy = players.get(rand.nextInt(players.size()));
-            } while (enemy == p);
+                enemyIndex = rand.nextInt(players.size());
+            } while (enemyIndex == playerIndex);
             
-            p.setEnemy(enemy);
+            p.setEnemy(players.get(enemyIndex));
         }
     }
     
     public CombatResult developCombat() {
         CombatResult combatResult = currentPlayer.combat(currentMonster);
+        
         dealer.giveMonsterBack(currentMonster);
+        
+        if (combatResult == CombatResult.LOSEANDCONVERT) {
+            Cultist cultist = CardDealer.getInstance().nextCultist();
+            CultistPlayer cultistPlayer = new CultistPlayer(currentPlayer, cultist);
+            
+            // Reemplazar antiguo jugador por el nuevo sectario
+            players.set(players.indexOf(currentPlayer), cultistPlayer);
+            
+            for (Player p : players) {
+                if (p.enemy == currentPlayer)
+                    p.enemy = cultistPlayer;
+            }
+            currentPlayer = cultistPlayer;
+        }
         
         return combatResult;
     }
