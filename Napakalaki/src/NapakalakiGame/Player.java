@@ -272,7 +272,7 @@ public class Player {
         this.enemy = enemy;
     }
     
-    private Treasure giveMeATreasure() {
+    protected Treasure giveMeATreasure() {
         return hiddenTreasures.remove(new Random().nextInt(hiddenTreasures.size()));
     }
 
@@ -280,7 +280,7 @@ public class Player {
         return canISteal;
     }
     
-    private boolean canYouGiveMeATreasure() {
+    protected boolean canYouGiveMeATreasure() {
         return !hiddenTreasures.isEmpty();
     }
     

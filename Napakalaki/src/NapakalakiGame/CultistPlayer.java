@@ -4,7 +4,6 @@
 
 package NapakalakiGame;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -43,11 +42,13 @@ public class CultistPlayer extends Player {
         return super.toString() + "\nCarta de sectario:\n" + myCultistCard.toString();
     }
     
-    private boolean canYouGiveMeATreasure() {
+    @Override
+    protected boolean canYouGiveMeATreasure() {
         return !getVisibleTreasures().isEmpty();
     }
     
-    private Treasure giveMeATreasure() {
+    @Override
+    protected Treasure giveMeATreasure() {
         return getVisibleTreasures().remove(new Random().nextInt(getVisibleTreasures().size()));
     }
     

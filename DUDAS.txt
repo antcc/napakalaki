@@ -7,5 +7,5 @@ pero a fin de cuentas nunca va a haber más de 3 jugadores, ¿no?)
 
 - Player::Player(Player p) --> ¿simplemente copiar campos? ¿Copia defensiva?
 
-- Técnicamente, redefinir un método privado no es redefinir? (@Override)
+- CultistPlayer::canYouGiveMeATreasure(), CultistPlayer::giveMeATreasure() son protected? No pueden ser privados, porque entonces no estaría "redefiniendo" nada (En Java no se pueden redefinir métodos privados). ESTO CONTRADICE DIAGRAMA DE CLASES.
 
