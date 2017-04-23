@@ -1,0 +1,11 @@
+- CardDealer::nextCultist() --> Se devuelve un cultist sin más? (Se pierde del mazo,
+pero a fin de cuentas nunca va a haber más de 3 jugadores, ¿no?)
+
+- CardDealer::initMonsterCardDeck() --> En uno de los monstruos sectarios, su mal rollo dice "pierdes tus manos ocultas". ¿Array con 4 BOTHHANDS y 4 ONEHAND?
+
+- ¿Es necesario añadir un consultor protected de Player::enemy? ¿O ponemos enemy como protected tal y como dice el nuevo diagrama de clases?
+
+- Player::Player(Player p) --> ¿simplemente copiar campos? ¿Copia defensiva?
+
+- Técnicamente, redefinir un método privado no es redefinir? (@Override)
+

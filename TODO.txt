@@ -1,3 +1,5 @@
 - Revisar lógica del método canMakeTreasureVisible de Player (simplificarlo?).
-- Revisar lógica método adjustToFitTreasureLists de BadConsequence.
-- Probar métodos P3.
+
+* Jugar varias partidas para ver que todo funciona bien.
+
+
