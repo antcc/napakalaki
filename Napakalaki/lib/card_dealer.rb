@@ -273,6 +273,7 @@ module NapakalakiGame
     end
 
     def nextCultist
+      @unusedCultists.pop
     end
     
     # introducir un tesoro en el mazo de tesoros usados
