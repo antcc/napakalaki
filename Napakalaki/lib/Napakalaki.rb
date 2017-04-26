@@ -66,8 +66,15 @@ module NapakalakiGame
       if combatResult == CombatResult::LOSEANDCONVERT
         c = @dealer.nextCultist
         p = CultistPlayer.new(@currentPlayer, c)
-        @currentPlayer = p
         @players.at(@players.index(@currentPlayer)) = p
+
+        @players.each do |player|
+          if player.getEnemy == @currentPlayer
+            player.enemy = p
+          end
+        end
+        
+        @currentPlayer = p
       end
       
       @dealer.giveMonsterBack(@currentMonster)

@@ -30,6 +30,8 @@ module NapakalakiGame
       @dead = true  # cuando el jugador se crea, está muerto
     end
 
+    private
+
     def copy_const(p)
       @name = p.name
       @level = p.level
@@ -40,6 +42,8 @@ module NapakalakiGame
       @enemy = p.enemy
       @dead = p.dead
     end
+
+    public
 
     def getVisibleTreasures
       @visibleTreasures
@@ -65,8 +69,9 @@ module NapakalakiGame
       @dead = false
     end
     
-    # Es protected para poder hacer @enemy.getCombatLevel en el método combat
-    protected
+    # Es public para poder hacer @enemy.getCombatLevel en el método combat y
+    # poder acceder desde la clase Napakalaki en el método developCombat
+    public 
 
     def getEnemy
       @enemy
