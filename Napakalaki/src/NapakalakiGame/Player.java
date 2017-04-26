@@ -5,8 +5,6 @@
 package NapakalakiGame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -110,14 +108,9 @@ public class Player {
     }
     
     private boolean canMakeTreasureVisible(Treasure t) {
-        TreasureKind type = t.getType();
         boolean canMakeVisible;
-        int count = 0;
-        
-        for (Treasure vt : visibleTreasures) {
-            if (type == vt.getType())
-                count++;
-        }
+        TreasureKind type = t.getType();
+        int count = howManyVisibleTreasures(type);
         
         
         if (type == TreasureKind.ONEHAND) {
@@ -303,12 +296,12 @@ public class Player {
     
     @Override
     public String toString() {
-        String text = name + " (nivel: " + Integer.toString(level)
-               + ", nivel de combate: " + Integer.toString(getCombatLevel()) + ")"
+        String text = name + " (nivel " + Integer.toString(level)
+               + ", nivel de combate " + Integer.toString(getCombatLevel()) + ")"
                + "\n - Muerto: " + dead + "\n - Puede robar: " + canISteal 
                + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente:\n";
 
-        if (pendingBadConsequence != null)
+        if (pendingBadConsequence != null && !pendingBadConsequence.isEmpty())
             text += pendingBadConsequence.toString();
         
         //text += "\n - Hidden treasures: " + Arrays.toString(hiddenTreasures.toArray());

@@ -38,11 +38,6 @@ public class CultistPlayer extends Player {
     }
     
     @Override
-    public String toString() {
-        return super.toString() + "\nCarta de sectario:\n" + myCultistCard.toString();
-    }
-    
-    @Override
     protected boolean canYouGiveMeATreasure() {
         return !getVisibleTreasures().isEmpty();
     }
@@ -55,4 +50,10 @@ public class CultistPlayer extends Player {
     public static int getTotalCultistPlayers() {
         return totalCultistPlayers;
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + "\n - Carta de sectario: " + myCultistCard.toString();
+    }
+    
 }

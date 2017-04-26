@@ -5,7 +5,14 @@ pero a fin de cuentas nunca va a haber más de 3 jugadores, ¿no?)
 
 - ¿Es necesario añadir un consultor protected de Player::enemy? ¿O ponemos enemy como protected tal y como dice el nuevo diagrama de clases?
 
-- Player::Player(Player p) --> ¿simplemente copiar campos? ¿Copia defensiva?
+- Player::Player(Player p) --> ¿simplemente copiar campos?
 
 - CultistPlayer::canYouGiveMeATreasure(), CultistPlayer::giveMeATreasure() son protected? No pueden ser privados, porque entonces no estaría "redefiniendo" nada (En Java no se pueden redefinir métodos privados). ESTO CONTRADICE DIAGRAMA DE CLASES.
 
+- Cuando hay un mal rollo con solo niveles, se queda pendiente cuando no puedes cumplirlo. ¿Hay que arreglarlo, o basta con no mostrarlo?
+
+- Hacer clone() en algunos objetos mutables (copias defensivas). Ej: BadConsequence::adjustToFitTreasureLists().
+
+- Qué ocurre con el objeto Player::currentPlayer cuando se sustituye por un sectario? Recolector de basura?
+
+*** currentPlayer = game.getCurrentPlayer() en GameTester, por qué?

@@ -27,6 +27,7 @@ public class CardDealer {
         usedMonsters = new ArrayList();
         unusedTreasures = new ArrayList();
         usedTreasures = new ArrayList();
+        unusedCultists = new ArrayList();
     }
     
     private void initTreasureCardDeck() {
@@ -208,8 +209,7 @@ public class CardDealer {
         unusedCultists.add(new Cultist("Sectario", 1));
         unusedCultists.add(new Cultist("Sectario", 2));
         unusedCultists.add(new Cultist("Sectario", 1));
-        unusedCultists.add(new Cultist("Sectario", 1));
-        
+        unusedCultists.add(new Cultist("Sectario", 1));  
     }
     
     private void shuffleTreasures() {

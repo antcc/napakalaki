@@ -53,9 +53,9 @@ public class Monster {
     
     @Override
     public String toString() {
-        return "Name: " + name + "\nLevel: " + Integer.toString(combatLevel) +
+        return "Nombre: " + name + "\nNivel: " + Integer.toString(combatLevel) +
                "\nCambio de nivel frente a sectarios: " + levelChangeAgainstCultistPlayer +
-               "\nPrize:\n" + prize.toString() + "\nBad consequence:\n" +
+               "\nBuen rollo:\n" + prize.toString() + "\nMal rollo:\n" +
                badConsequence.toString();
     }
     

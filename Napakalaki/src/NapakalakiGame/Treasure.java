@@ -33,8 +33,8 @@ public class Treasure {
     
     @Override
     public String toString() {
-        return "Name: " + name + "\nBonus: " + Integer.toString(bonus) 
-               + "\nType: " + type;
+        return "Nombre: " + name + "\nBonus: " + Integer.toString(bonus) +
+               "\nTipo: " + type;
     }
     
 }

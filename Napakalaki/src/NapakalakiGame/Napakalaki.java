@@ -65,6 +65,7 @@ public class Napakalaki {
         }
         
         currentPlayer = players.get(nextP);
+        
         return currentPlayer;
     }
     
