@@ -305,7 +305,7 @@ public class Player {
                + "\n - Muerto: " + dead + "\n - Puede robar: " + canISteal 
                + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente: ";
 
-        if (pendingBadConsequence != null)
+        if (pendingBadConsequence != null /*&& !pendingBadConsequence.isEmpty()*/)
             text += "\n" + pendingBadConsequence.toString();
         else
             text += "NO";

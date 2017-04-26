@@ -93,7 +93,7 @@ public class Napakalaki {
         dealer.giveMonsterBack(currentMonster);
         
         if (combatResult == CombatResult.LOSEANDCONVERT) {
-            Cultist cultist = CardDealer.getInstance().nextCultist();
+            Cultist cultist = dealer.nextCultist();
             CultistPlayer cultistPlayer = new CultistPlayer(currentPlayer, cultist);
             
             // Reemplazar antiguo jugador por el nuevo sectario

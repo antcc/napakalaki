@@ -3,3 +3,5 @@
 	--> Quitar los niveles en adjustToFit? (Poner a 0). Los niveles se quitan automáticamente, por lo que al pasar la primera vez por esta función ya se pueden quitar. PROBLEMA: No verías los niveles que has perdido, a no ser que muestres el monstruio.
 
 	--> Otra opción es poner los niveles a 0 al pasar de turno.
+
+(LO MÁS FÁCIL ES COMPROBAR QUE NO ESTÉ VACÍO EL PENDINGBADCONSEQUENCE EN EL TOSTRING, PERO ME DIJO EL PROFESOR QUE NO).
