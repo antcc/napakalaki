@@ -16,7 +16,7 @@ public class Player {
     private int level;
     private boolean dead;
     private boolean canISteal;
-    protected Player enemy;
+    private Player enemy;
     private BadConsequence pendingBadConsequence;
     private ArrayList<Treasure> visibleTreasures;
     private ArrayList<Treasure> hiddenTreasures;
@@ -154,6 +154,10 @@ public class Player {
     public boolean isDead() {
         return dead;
     }
+    
+    protected Player getEnemy() {
+        return enemy;
+    }
 
     public ArrayList<Treasure> getHiddenTreasures() {
         return hiddenTreasures;
@@ -243,7 +247,7 @@ public class Player {
         }       
     }
     
-    public int getLevels() {
+    public int getLevel() {
         return level;
     }
     
@@ -299,10 +303,12 @@ public class Player {
         String text = name + " (nivel " + Integer.toString(level)
                + ", nivel de combate " + Integer.toString(getCombatLevel()) + ")"
                + "\n - Muerto: " + dead + "\n - Puede robar: " + canISteal 
-               + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente:\n";
+               + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente: ";
 
-        if (pendingBadConsequence != null && !pendingBadConsequence.isEmpty())
-            text += pendingBadConsequence.toString();
+        if (pendingBadConsequence != null)
+            text += "\n" + pendingBadConsequence.toString();
+        else
+            text += "NO";
         
         //text += "\n - Hidden treasures: " + Arrays.toString(hiddenTreasures.toArray());
         //text += "\n - Visible treasures: " + Arrays.toString(visibleTreasures.toArray());

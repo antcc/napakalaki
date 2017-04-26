@@ -1,18 +1,5 @@
-- CardDealer::nextCultist() --> Se devuelve un cultist sin más? (Se pierde del mazo,
-pero a fin de cuentas nunca va a haber más de 3 jugadores, ¿no?)
+- Al pasar de turno, hacer que pendingBadConsequence sea empty, es decir, poner los niveles a 0. Mostrar pendingBadConsequence en el toString si no es nulo ni está vacío. De esta forma, durante tu turno se ve si te vas descartando cosas, incluso aunque se quede vacío. De lo contrario, en el turno siguiente, antes de conocer al monstruo, se verá el mal rollo anterior, que ya fue cumplido, pues has pasado de turno.
 
-- CardDealer::initMonsterCardDeck() --> En uno de los monstruos sectarios, su mal rollo dice "pierdes tus manos ocultas". ¿Array con 4 BOTHHANDS y 4 ONEHAND?
+	--> Quitar los niveles en adjustToFit? (Poner a 0). Los niveles se quitan automáticamente, por lo que al pasar la primera vez por esta función ya se pueden quitar. PROBLEMA: No verías los niveles que has perdido, a no ser que muestres el monstruio.
 
-- ¿Es necesario añadir un consultor protected de Player::enemy? ¿O ponemos enemy como protected tal y como dice el nuevo diagrama de clases?
-
-- Player::Player(Player p) --> ¿simplemente copiar campos?
-
-- CultistPlayer::canYouGiveMeATreasure(), CultistPlayer::giveMeATreasure() son protected? No pueden ser privados, porque entonces no estaría "redefiniendo" nada (En Java no se pueden redefinir métodos privados). ESTO CONTRADICE DIAGRAMA DE CLASES.
-
-- Cuando hay un mal rollo con solo niveles, se queda pendiente cuando no puedes cumplirlo. ¿Hay que arreglarlo, o basta con no mostrarlo?
-
-- Hacer clone() en algunos objetos mutables (copias defensivas). Ej: BadConsequence::adjustToFitTreasureLists().
-
-- Qué ocurre con el objeto Player::currentPlayer cuando se sustituye por un sectario? Recolector de basura?
-
-*** currentPlayer = game.getCurrentPlayer() en GameTester, por qué?
+	--> Otra opción es poner los niveles a 0 al pasar de turno.

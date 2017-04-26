@@ -1,4 +1,4 @@
-- Arreglar BadConsequence::adjustToFitTreasureLists() --> si tú tienes 1 bothhands y el mal rollo son 4 bothhands, se queda en 4 bothhands, por ejemplo.
+- P4S2
 
 * Jugar varias partidas para ver que todo funciona bien.
 

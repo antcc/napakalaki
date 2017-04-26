@@ -203,10 +203,6 @@ public class PruebaNapakalaki {
         printMonsters(badConsequenceLosesTreasureKind(TreasureKind.ONEHAND));
         System.out.println("--- Monstruos cuyo mal rollo te hace perder tesoros de calzado ---\n");
         printMonsters(badConsequenceLosesTreasureKind(TreasureKind.SHOE));
-        
-        Player antcc = new Player("antcc");
-        System.out.println(antcc);
- 
     }
    
 }

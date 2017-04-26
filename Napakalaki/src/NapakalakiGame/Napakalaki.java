@@ -100,8 +100,8 @@ public class Napakalaki {
             players.set(players.indexOf(currentPlayer), cultistPlayer);
             
             for (Player p : players) {
-                if (p.enemy == currentPlayer)
-                    p.enemy = cultistPlayer;
+                if (p.getEnemy() == currentPlayer)
+                    p.setEnemy(cultistPlayer);
             }
             currentPlayer = cultistPlayer;
         }
