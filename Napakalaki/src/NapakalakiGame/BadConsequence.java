@@ -6,6 +6,7 @@ package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Representa el mal rollo de un monstruo.
@@ -104,10 +105,7 @@ public class BadConsequence {
         
         // Mal rollo de tesoros específicos
         if (nVisibleTreasures == 0 && nHiddenTreasures == 0) {
-            bd = new BadConsequence(text, levels,
-                       (ArrayList<TreasureKind>) specificVisibleTreasures.clone(),
-                       (ArrayList<TreasureKind>) specificHiddenTreasures.clone());
-            
+
             // Nuevos arrays con los tipos de tesoros
             ArrayList<TreasureKind> newVisibleType = new ArrayList();
             ArrayList<TreasureKind> newHiddenType = new ArrayList();
@@ -120,9 +118,21 @@ public class BadConsequence {
                 newHiddenType.add(t.getType());
             }
             
-            // Intersección (mantiene duplicados)
-            bd.specificVisibleTreasures.retainAll(newVisibleType);
-            bd.specificHiddenTreasures.retainAll(newHiddenType);
+            // Nuevos arrays con la intersección (con duplicados)
+            ArrayList<TreasureKind> newVisible = new ArrayList();
+            ArrayList<TreasureKind> newHidden = new ArrayList();
+            
+            for (TreasureKind tKind : TreasureKind.values()) {
+                int min_visible = Math.min(Collections.frequency(specificVisibleTreasures, tKind),
+                                           Collections.frequency(newVisibleType, tKind));
+                int min_hidden = Math.min(Collections.frequency(specificHiddenTreasures, tKind),
+                                           Collections.frequency(newHiddenType, tKind));
+                
+                newVisible.addAll(Collections.nCopies(min_visible, tKind));
+                newHidden.addAll(Collections.nCopies(min_hidden, tKind));
+            }
+            
+            bd = new BadConsequence(text, levels, newVisible, newHidden);
         }
         
         // Mal rollo de teosoros genéricos
