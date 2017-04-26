@@ -75,7 +75,7 @@ module NapakalakiGame
     end
 
     # constructor para tesoros específicos
-    def self.newLevelSpecificTreasures(t,l,v,h)
+    def self.newLevelSpecificTreasures(t, l, v, h)
       new(t, l, nil, nil, v, h, false)
     end
 
@@ -84,7 +84,7 @@ module NapakalakiGame
       new(t, Player.getMaxLevel, @@MAXTREASURES, @@MAXTREASURES, nil, nil, true);
     end
 
-    def adjustToFitTreasureLists(v,h)
+    def adjustToFitTreasureLists(v, h)
       if @nVisibleTreasures.nil? and @nHiddenTreasures.nil?
 
         # El array que nos pasan es de tesoros pero lo necesitamos de TIPOS de tesoros
@@ -95,7 +95,7 @@ module NapakalakiGame
         
         newSpecificVisibleTreasures = @specificVisibleTreasures & vTypes
         if @specificVisibleTreasures.count(TreasureKind::ONEHAND) == 2 and \
-          vTypes.count(TreasureKind::ONEHAND) == 2
+           vTypes.count(TreasureKind::ONEHAND) >= 2
           newSpecificVisibleTreasures << TreasureKind::ONEHAND
         end
 
@@ -125,12 +125,12 @@ module NapakalakiGame
                               end
       text << "\nNiveles perdidos: #{@levels}"
       text << "\nTesoros visibles perdidos: " << if @nVisibleTreasures == @@MAXTREASURES
-                                                   "Todos los tesoros"
+                                                   "TODOS LOS TESOROS"
                                                  else
                                                    "#{@nVisibleTreasures}"
                                                  end
       text << "\nTesoros ocultos perdidos: " << if @nHiddenTreasures == @@MAXTREASURES
-                                                  "Todos los tesoros"
+                                                  "TODOS LOS TESOROS"
                                                 else
                                                   "#{@nHiddenTreasures}"
                                                 end

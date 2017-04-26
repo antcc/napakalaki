@@ -2,49 +2,52 @@
 
 require_relative 'player'
 
-class CultistPlayer < Player
-
-  @@totalCultistPlayers = 0
+module NapakalakiGame
   
-  def initialize(p, c)
-    super(p.name)
+  class CultistPlayer < Player
+    @@totalCultistPlayers = 0
 
-    copy_const(p)
+    def initialize(p, c)
+      copy_const(p)
+      @myCultistCard = c
+      
+      @@totalCultistPlayers += 1
+    end
 
-    @@totalCultistPlayers += 1
-    @myCultistCard = c
-  end
+    protected
 
-  protected
+    # El nivel de combate de los jugadores sectarios se obtiene con la fórmula siguiente
+    def getCombatLevel
+      (1.7 * super + @myCultistCard.getGainedLevels * @@totalCultistPlayers).to_i
+    end
 
-  # El nivel de combate de los jugadores sectarios se obtiene con la fórmula siguiente
-  def getCombatLevel
-    (@combatLevel + 0.7*@combatLevel + myCultistCard.getGainedLevels*@@totalCultistPlayers).to_i
-  end
+    # Algunos monstruos cambian el nivel de combate contra sectarios
+    def getOponentLevel(m)
+      m.getCombatLevelAgainstCultistPlayer
+    end
 
-  # Algunos monstruos cambian el nivel de combate contra sectarios
-  def getOponentLevel(m)
-    m.getCombatLevelAgainstCultistPlayer
-  end
+    def shouldConvert
+      false
+    end
 
-  def shouldConvert
-    false
-  end
+    def giveMeATreasure
+      @visibleTreasures.delete_at(rand(@visibleTreasures.length))
+    end
 
-  private
+    def canYouGiveMeATreasure
+      not @visibleTreasures.empty?
+    end
 
-  def giveMeATreasure
-    @visibleTreasures.delete_at(rand(@hiddenTreasures.length))
-  end
+    public
 
-  def canYouGiveMeATreasure
-    not @visibleTreasures.empty?
-  end
+    def self.getTotalCultistPlayers
+      @@totalCultistPlayers
+    end
+    
+    def to_s
+      super + "\n - Carta de sectario: " + @myCultistCard.to_s
+    end
 
-  public
-
-  def getTotalCultistPlayers
-    @@totalCultistPlayers
-  end
+  end # CultistPlayer
   
-end
+end # NapakalakiGame

@@ -3,6 +3,7 @@
 require_relative 'combat_result'
 require_relative 'card_dealer'
 require_relative 'player'
+require_relative 'cultist_player'
 require 'singleton'
 
 module NapakalakiGame
@@ -51,10 +52,11 @@ module NapakalakiGame
 
     def setEnemies
       @players.each do |p|
+        playerIndex = @players.index(p)
         begin
-          enemy = rand(@players.length) 
-        end while @players[enemy] == p
-        p.enemy = @players[enemy]
+          enemyIndex = rand(@players.length) 
+        end while enemyIndex == playerIndex
+        p.enemy = @players[enemyIndex]
       end
     end
 
@@ -65,20 +67,23 @@ module NapakalakiGame
 
       if combatResult == CombatResult::LOSEANDCONVERT
         c = @dealer.nextCultist
-        p = CultistPlayer.new(@currentPlayer, c)
-        @players.at(@players.index(@currentPlayer)) = p
+        cultistPlayer = CultistPlayer.new(@currentPlayer, c)
+        
+        # Reemplazar antiguo jugador por sectario
+        @players[@players.index(@currentPlayer)] = cultistPlayer
 
-        @players.each do |player|
-          if player.getEnemy == @currentPlayer
-            player.enemy = p
+        @players.each do |p|
+          if p.getEnemy == @currentPlayer
+            p.enemy = cultistPlayer
           end
         end
         
-        @currentPlayer = p
+        @currentPlayer = cultistPlayer
       end
       
       @dealer.giveMonsterBack(@currentMonster)
-      return combatResult
+      
+      combatResult
     end
 
     # @pre: treasures no vacío

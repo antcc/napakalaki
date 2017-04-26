@@ -8,18 +8,23 @@ module NapakalakiGame
     attr_reader :combatLevel      # nivel del monstruo
     attr_reader :badConsequence   # mal rollo
 
-    def initialize(n, l, b, p)
+    def initialize(n, l, b, p, lC)
       @name = n
       @combatLevel = l
       @badConsequence = b
       @prize = p
-      @levelChangeAgainstCultistPlayer = 0
+      @levelChangeAgainstCultistPlayer = lC
+    end
+    
+    def self.newMonster(n, l, b, p)
+      new(n, l, b, p, 0)
     end
 
-    def newMonsterCultist(n, l, b, p, lc)
-      new(n, l, b, p)
-      @levelChangeAgainstCultistPlayer = lc
+    def self.newMonsterCultist(n, l, b, p, lC)
+      new(n, l, b, p, lC)
     end
+    
+    private_class_method :new
     
     def getName
       @name
@@ -37,10 +42,6 @@ module NapakalakiGame
       @badConsequence
     end
 
-    def getPrize
-      @prize
-    end
-
     # devuelve los niveles ganados del buen rollo
     def getLevelsGained
       @prize.levels
@@ -52,8 +53,9 @@ module NapakalakiGame
     end
 
     def to_s
-      "Nombre: #{@name} \nNivel: #{@combatLevel} \n" + \
-      "Mal rollo:\n" + @badConsequence.to_s + "\nRecompensa:\n" + @prize.to_s
+      "Nombre: #{@name} \nNivel: #{@combatLevel} \n" + 
+      "Cambio de nivel frente a sectarios: #{@levelChangeAgainstCultistPlayer}" +
+      "\nMal rollo:\n" + @badConsequence.to_s + "\nRecompensa:\n" + @prize.to_s
     end
 
   end # Monster

@@ -1,14 +1,21 @@
 # encoding: utf-8
 
-class Cultist
-
-  def initialize(n, l)
-    @name = n
-    @gainedLevels = l # Niveles adicionales que obtiene el jugador
-  end
-
-  def getGainedLevels
-    @gainedLevels
-  end
+module NapakalakiGame
   
-end
+  class Cultist
+    def initialize(name, gainedLevels)
+      @name = name
+      @gainedLevels = gainedLevels # Niveles adicionales que obtiene el jugador
+    end
+
+    def getGainedLevels
+      @gainedLevels
+    end
+    
+    def to_s
+      @name + ", niveles ganados: #{@gainedLevels}"
+    end
+
+  end # Cultist
+
+end # NapakalakiGame

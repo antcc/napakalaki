@@ -16,8 +16,14 @@ module NapakalakiGame
     attr_reader :canISteal                # representa si ha robado a su archienemigo
     attr_writer :pendingBadConsequence    # mal rollo pendiente de aplicar
     attr_writer :enemy                    # jugador archienemigo asignado
-
+    
     @@MAXLEVEL = 10                       # máximo nivel que puede alcanzar un jugador
+    
+    # Para poder implementar el constructor de copia
+    protected 
+    attr_reader :pendingBadConsequence
+    
+    public
 
     def initialize(name)
       @name = name
@@ -39,8 +45,8 @@ module NapakalakiGame
       @visibleTreasures = p.visibleTreasures
       @canISteal = p.canISteal
       @pendingBadConsequence = p.pendingBadConsequence
-      @enemy = p.enemy
-      @dead = p.dead
+      @enemy = p.getEnemy
+      @dead = p.isDead
     end
 
     public
@@ -69,13 +75,14 @@ module NapakalakiGame
       @dead = false
     end
     
-    # Es public para poder hacer @enemy.getCombatLevel en el método combat y
-    # poder acceder desde la clase Napakalaki en el método developCombat
+    # Es public para poder acceder desde la clase Napakalaki en el método developCombat
     public 
 
     def getEnemy
       @enemy
     end
+    
+    protected
     
     # obtener nivel de combate
     def getCombatLevel
@@ -85,16 +92,11 @@ module NapakalakiGame
     end
 
     def getOponentLevel(m)
-      getCombatLevel(m)
+      m.getCombatLevel
     end
 
     def shouldConvert
-      dice = Dice.instance
-      if dice.nextNumber == 6
-        true
-      else
-        false
-      end
+      Dice.instance.nextNumber == 6
     end
     
     private
@@ -169,7 +171,7 @@ module NapakalakiGame
     # combate contra el enemigo m
     def combat(m)
       myLevel = getCombatLevel
-      monsterLevel = getOponentLevel
+      monsterLevel = getOponentLevel(m)
       
       if !@canISteal
         dice = Dice.instance
@@ -185,15 +187,15 @@ module NapakalakiGame
         if @level >= @@MAXLEVEL
           combatResult = CombatResult::WINGAME
         else
-          if shouldConvert
-            combatResult = CombatResult::LOSEANDCONVERT
-          else
-            combatResult = CombatResult::WIN
-          end
+          combatResult = CombatResult::WIN
         end
       else
         applyBadConsequence(m)
-        combatResult = CombatResult::LOSE
+        if shouldConvert
+          combatResult = CombatResult::LOSEANDCONVERT
+        else
+          combatResult = CombatResult::LOSE
+        end
       end
     end
 
@@ -303,9 +305,15 @@ module NapakalakiGame
         "\n - Muerto: " + (@dead ? "Sí" : "No") +
         "\n - Puede robar: " + (@canISteal ? "Sí" : "No") +
         "\n - Enemigo: #{@enemy.name}" +
-        "\n - Mal rollo pendiente:" + (@pendingBadConsequence.nil? ? "" : "\n#{@pendingBadConsequence}")
+        "\n - Mal rollo pendiente: "
     
-      #"Teosoros visibles: " + @visibleTreasures.map(&:name).join(", ") +
+      if @pendingBadConsequence != nil and !@pendingBadConsequence.isEmpty
+        text += "\n#{@pendingBadConsequence}" 
+      else
+        text += "NO"
+      end
+
+      #text += "\nTeosoros visibles: " + @visibleTreasures.map(&:name).join(", ") +
       #"\nTesoros ocultos: " + @hiddenTreasures.map(&:name).join(", ") 
     end
 

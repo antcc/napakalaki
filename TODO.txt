@@ -1,1 +1,7 @@
-- Quitar los attr_reader de los atributos a los que hemos puesto getAtributo manualmente. Revisar que no haya fallos en el código (ej: que se llamase a estos atributos por su nombre, como si tuviesen attr_reader).
+- Quitar los attr_reader/writer de los atributos a los que hemos puesto getAtributo manualmente. Revisar que no haya fallos en el código (ej: que se llamase a estos atributos por su nombre, como si tuviesen attr_reader). COMPROBAR QUÉ GETTERS SON ESTRICTAMENTE NECESARIOS.
+
+- Asegurarse de que funciona el adjustToFit.
+
+* Jugar varias partidas para comprobar que todo va bien.
+
+
