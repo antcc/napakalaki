@@ -23,7 +23,7 @@ public class Cultist {
     
     @Override
     public String toString() {
-        return name + ", niveles ganados: " + Integer.toString(gainedLevels);
+        return name + ", +" + Integer.toString(gainedLevels) + " niveles ganados";
     }
     
 }

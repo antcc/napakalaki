@@ -55,7 +55,7 @@ public class Monster {
     public String toString() {
         return "Nombre: " + name + "\nNivel: " + Integer.toString(combatLevel) +
                "\nCambio de nivel frente a sectarios: " + levelChangeAgainstCultistPlayer +
-               "\nBuen rollo:\n" + prize.toString() + "\nMal rollo:\n" +
+               "\nBuen rollo: " + prize.toString() + "\nMal rollo:\n" +
                badConsequence.toString();
     }
     
