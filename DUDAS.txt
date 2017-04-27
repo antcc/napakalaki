@@ -1,7 +1,0 @@
-- Al pasar de turno, hacer que pendingBadConsequence sea empty, es decir, poner los niveles a 0. Mostrar pendingBadConsequence en el toString si no es nulo ni está vacío. De esta forma, durante tu turno se ve si te vas descartando cosas, incluso aunque se quede vacío. De lo contrario, en el turno siguiente, antes de conocer al monstruo, se verá el mal rollo anterior, que ya fue cumplido, pues has pasado de turno.
-
-	--> Quitar los niveles en adjustToFit? (Poner a 0). Los niveles se quitan automáticamente, por lo que al pasar la primera vez por esta función ya se pueden quitar. PROBLEMA: No verías los niveles que has perdido, a no ser que muestres el monstruio.
-
-	--> Otra opción es poner los niveles a 0 al pasar de turno.
-
-(LO MÁS FÁCIL ES COMPROBAR QUE NO ESTÉ VACÍO EL PENDINGBADCONSEQUENCE EN EL TOSTRING, PERO ME DIJO EL PROFESOR QUE NO).
