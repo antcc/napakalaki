@@ -1,5 +1,3 @@
-- P4S2
-
 * Jugar varias partidas para ver que todo funciona bien.
 
 

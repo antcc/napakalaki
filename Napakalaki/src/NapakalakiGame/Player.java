@@ -302,13 +302,14 @@ public class Player {
     public String toString() {
         String text = name + " (nivel " + Integer.toString(level)
                + ", nivel de combate " + Integer.toString(getCombatLevel()) + ")"
-               + "\n - Muerto: " + dead + "\n - Puede robar: " + canISteal 
-               + "\n - Enemigo: " + enemy.getName() + "\n - Mal rollo pendiente: ";
+               + "\n - Muerto: " + (dead ? "Sí" : "No") + "\n - Puede robar: " +
+               (canISteal ? "Sí" : "No") + "\n - Enemigo: " + enemy.getName() + 
+               "\n - Mal rollo pendiente: ";
 
         if (pendingBadConsequence != null && !pendingBadConsequence.isEmpty())
             text += "\n" + pendingBadConsequence.toString();
         else
-            text += "NO";
+            text += "No";
         
         //text += "\n - Hidden treasures: " + Arrays.toString(hiddenTreasures.toArray());
         //text += "\n - Visible treasures: " + Arrays.toString(visibleTreasures.toArray());
