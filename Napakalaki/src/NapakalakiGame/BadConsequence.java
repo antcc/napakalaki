@@ -5,168 +5,42 @@
 package NapakalakiGame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
- * Representa el mal rollo de un monstruo.
+ * Representa un mal rollo genérico de un monstruo.
  */
-public class BadConsequence {
+public abstract class BadConsequence {
 
     private String text;
     private int levels;
-    private int nVisibleTreasures;
-    private int nHiddenTreasures;
-    private boolean death;
-    private ArrayList<TreasureKind> specificHiddenTreasures;
-    private ArrayList<TreasureKind> specificVisibleTreasures;
     
     final static int MAXTREASURES = 10;
     
-    public boolean isEmpty() {
-        return nVisibleTreasures == 0 && nHiddenTreasures == 0 &&
-               specificHiddenTreasures.isEmpty() && specificVisibleTreasures.isEmpty();
-    }
-    
-    public int getLevels() {
-        return this.levels;
-    }
-    
-    public int getNVisibleTreasures() {
-        return this.nVisibleTreasures;
-    }
-    
-    public int getNHiddenTreasures() {
-        return this.nHiddenTreasures;
-    }
-    
-    public ArrayList<TreasureKind> getSpecificHiddenTreasures() {
-        return this.specificHiddenTreasures;
-    }
-    
-    public ArrayList<TreasureKind> getSpecificVisibleTreasures() {
-        return this.specificVisibleTreasures;
-    }
-    
-    public void substractVisibleTreasure(Treasure t) {
-        if (!specificVisibleTreasures.isEmpty()) {
-            specificVisibleTreasures.remove(t.getType());
-        }
-        
-        else if (nVisibleTreasures > 0) {
-            nVisibleTreasures--;
-        }
-    }
-    
-    public void substractHiddenTreasure(Treasure t) {
-        if (!specificHiddenTreasures.isEmpty()) {
-            specificHiddenTreasures.remove(t.getType());
-        }
-        
-        else if (nHiddenTreasures > 0) {
-            nHiddenTreasures--;
-        }
-    }
-    
-    public BadConsequence(String t, int l, int nVisible, int nHidden) {
+    public BadConsequence(String t, int l) {
         text = t;
         levels = l;
-        nVisibleTreasures = nVisible;
-        nHiddenTreasures = nHidden;
-        death = false;
-        specificHiddenTreasures = new ArrayList();
-        specificVisibleTreasures = new ArrayList();
     }
-    
-    public BadConsequence(String t, boolean death) {
-        text = t;
-        levels = Player.MAXLEVEL;
-        this.death = death;
-        nVisibleTreasures = MAXTREASURES;
-        nHiddenTreasures = MAXTREASURES;
-        specificHiddenTreasures = new ArrayList();
-        specificVisibleTreasures = new ArrayList();
-    }
-    
-    public BadConsequence(String t, int l, ArrayList<TreasureKind> v, 
-                          ArrayList<TreasureKind> h) {
-        text = t;
-        levels = l;
-        death = false;
-        nVisibleTreasures = 0;
-        nHiddenTreasures = 0;
-        specificVisibleTreasures = v;
-        specificHiddenTreasures = h;
-    }
-    
-    public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
-                                                   ArrayList<Treasure> h) {
-        BadConsequence bd;
-        
-        // Mal rollo de tesoros específicos
-        if (nVisibleTreasures == 0 && nHiddenTreasures == 0) {
 
-            // Nuevos arrays con los tipos de tesoros
-            ArrayList<TreasureKind> newVisibleType = new ArrayList();
-            ArrayList<TreasureKind> newHiddenType = new ArrayList();
-            
-            for (Treasure t : v) {
-                newVisibleType.add(t.getType());
-            }
-            
-            for (Treasure t : h) {
-                newHiddenType.add(t.getType());
-            }
-            
-            // Nuevos arrays con la intersección (con duplicados)
-            ArrayList<TreasureKind> newVisible = new ArrayList();
-            ArrayList<TreasureKind> newHidden = new ArrayList();
-            
-            for (TreasureKind tKind : TreasureKind.values()) {
-                int min_visible = Math.min(Collections.frequency(specificVisibleTreasures, tKind),
-                                           Collections.frequency(newVisibleType, tKind));
-                int min_hidden = Math.min(Collections.frequency(specificHiddenTreasures, tKind),
-                                           Collections.frequency(newHiddenType, tKind));
-                
-                newVisible.addAll(Collections.nCopies(min_visible, tKind));
-                newHidden.addAll(Collections.nCopies(min_hidden, tKind));
-            }
-            
-            bd = new BadConsequence(text, levels, newVisible, newHidden);
-        }
-        
-        // Mal rollo de teosoros genéricos
-        else {
-            int maxVisible = Math.min(v.size(), nVisibleTreasures);
-            int maxHidden = Math.min(h.size(), nHiddenTreasures);
-            
-            bd = new BadConsequence(text, levels, maxVisible, maxHidden);
-        }
-        
-        return bd;
+    protected int getLevels() {
+        return levels;
     }
+    
+    protected String getText() {
+        return text;
+    }
+    
+    protected abstract boolean isEmpty();
+    
+    protected abstract void substractVisibleTreasure(Treasure t);
+    
+    protected abstract void substractHiddenTreasure(Treasure t);
+    
+    protected abstract BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
+                                                            ArrayList<Treasure> h);
     
     @Override
     public String toString() {
-        String text = "Texto: " + this.text;
-        
-        if (this.death) {
-            
-            text = text + "\nMuerte: " + (death ? "SI" : "NO");
-            
-        } else {
-        
-            text = text + "\nNiveles: " + Integer.toString(levels) +
-                "\nTesoros visibles perdidos: " + (nVisibleTreasures == MAXTREASURES ?
-                "TODOS LOS TESOROS" : Integer.toString(nVisibleTreasures)) +
-                "\nTesoros ocultos perdidos: " + (nHiddenTreasures == MAXTREASURES ?
-                "TODOS LOS TESOROS" : Integer.toString(nHiddenTreasures));
-        }
-        
-        text = text + "\nTesoros visibles específicos perdidos: " + Arrays.toString(specificVisibleTreasures.toArray());
-        text = text + "\nTesoros ocultos específicos perdidos: " + Arrays.toString(specificHiddenTreasures.toArray());
-        
-        return text;
+        return "    * Texto: " + text + "\n    * Niveles perdidos: " + Integer.toString(levels);
     }
     
 }
