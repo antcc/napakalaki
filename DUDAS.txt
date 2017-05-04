@@ -1,5 +1,3 @@
-- Mostrar pendingBadConsequence si está vacía? (en Player::to_s)
-
 ------ SESIÓN 2 ----------
 
 En BadConsequence, dejamos los métodos vacíos? Ej:
