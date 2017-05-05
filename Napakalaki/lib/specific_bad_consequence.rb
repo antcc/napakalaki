@@ -5,7 +5,7 @@ require_relative 'bad_consequence'
 
 module NapakalakiGame
 
-  # class BadConsequence: representa el mal rollo de un monstruo
+  # class SpecificBadConsequence: representa un mal rollo de tesoros específicos
   class SpecificBadConsequence < BadConsequence
     def initialize(t, l, v, h)
       super(t, l)
@@ -26,6 +26,7 @@ module NapakalakiGame
     end
 
     def substractVisibleTreasure(t)
+      type = t.type
       if (not @specificVisibleTreasures.empty?) \
             and @specificVisibleTreasures.include?(type)
         @specificVisibleTreasures.delete_at(@specificVisibleTreasures.index(type))
@@ -33,6 +34,7 @@ module NapakalakiGame
     end
     
     def substractHiddenTreasure(t)
+      type = t.type
       if (not @specificHiddenTreasures.empty?) \
             and @specificHiddenTreasures.include?(type)
         @specificHiddenTreasures.delete_at(@specificHiddenTreasures.index(type))
@@ -66,11 +68,12 @@ module NapakalakiGame
 
     def to_s
       text = super
-      text << "\nTesoros específicos visibles perdidos: \
+      text << "\n    * Tesoros específicos visibles perdidos: \
               #{@specificVisibleTreasures}"
-      text << "\nTesoros específicos ocultos perdidos: \
+      text << "\n    * Tesoros específicos ocultos perdidos: \
               #{@specificHiddenTreasures}"
     end
 
   end
+  
 end

@@ -5,7 +5,7 @@ require_relative 'bad_consequence'
 
 module NapakalakiGame
 
-  # class BadConsequence: representa el mal rollo de un monstruo
+  # class NumericBadConsequence: representa un mal rollo de número de tesoros
   class NumericBadConsequence < BadConsequence
     def initialize(t, l, v, h)
       super(t, l)
@@ -45,12 +45,12 @@ module NapakalakiGame
 
     def to_s
       text = super
-      text << "\nTesoros visibles perdidos: " << if @nVisibleTreasures == @@MAXTREASURES
+      text << "\n    * Tesoros visibles perdidos: " << if @nVisibleTreasures == @@MAXTREASURES
                                                    "TODOS LOS TESOROS"
                                                  else
                                                    "#{@nVisibleTreasures}"
                                                  end
-      text << "\nTesoros ocultos perdidos: " << if @nHiddenTreasures == @@MAXTREASURES
+      text << "\n    * Tesoros ocultos perdidos: " << if @nHiddenTreasures == @@MAXTREASURES
                                                   "TODOS LOS TESOROS"
                                                 else
                                                   "#{@nHiddenTreasures}"
@@ -58,4 +58,5 @@ module NapakalakiGame
     end
 
   end
+  
 end

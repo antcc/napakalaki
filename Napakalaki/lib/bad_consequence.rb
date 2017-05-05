@@ -7,7 +7,7 @@ module NapakalakiGame
   # class BadConsequence: representa el mal rollo de un monstruo
   class BadConsequence
 
-    @@MAXTREASURES = 10                    # simboliza todos los tesoros
+    @@MAXTREASURES = 10    # simboliza todos los tesoros
 
     def initialize(t, l)
       @text = t
@@ -18,14 +18,14 @@ module NapakalakiGame
     def self.getMaxTreasures
       @@MAXTREASURES
     end
-
+    
     def getLevels
       @levels
     end
-
+    
     def to_s
-      text = "Texto: #{@text}"
-      text << "\nNiveles perdidos: #{@levels}"
+      text = "    * Texto: #{@text}"
+      text << "\n    * Niveles perdidos: #{@levels}"
     end
 
   end # BadConsequence

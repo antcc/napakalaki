@@ -5,10 +5,12 @@ require_relative 'numeric_bad_consequence'
 
 module NapakalakiGame
 
-  # class BadConsequence: representa el mal rollo de un monstruo
+  # class DeathBadConsequence: representa un mal rollo de muerte
   class DeathBadConsequence < NumericBadConsequence
     def initialize(t)
       super(t, Player.getMaxLevel, @@MAXTREASURES, @@MAXTREASURES)
     end
+    
   end
+  
 end

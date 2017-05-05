@@ -310,7 +310,7 @@ module NapakalakiGame
       if @pendingBadConsequence != nil and !@pendingBadConsequence.isEmpty
         text += "\n#{@pendingBadConsequence}" 
       else
-        text += "NO"
+        text += "No"
       end
 
       #text += "\nTeosoros visibles: " + @visibleTreasures.map(&:name).join(", ") +
