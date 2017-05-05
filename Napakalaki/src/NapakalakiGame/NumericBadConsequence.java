@@ -51,10 +51,10 @@ public class NumericBadConsequence extends BadConsequence {
     public BadConsequence adjustToFitTreasureLists(ArrayList<Treasure> v, 
                                                    ArrayList<Treasure> h) {
         // Nos quedamos con el mínimo
-        int maxVisible = Math.min(v.size(), nVisibleTreasures);
-        int maxHidden = Math.min(h.size(), nHiddenTreasures);
+        int minVisible = Math.min(v.size(), nVisibleTreasures);
+        int minHidden = Math.min(h.size(), nHiddenTreasures);
             
-        return new NumericBadConsequence(getText(), getLevels(), maxVisible, maxHidden);
+        return new NumericBadConsequence(getText(), getLevels(), minVisible, minHidden);
     }
     
     @Override
