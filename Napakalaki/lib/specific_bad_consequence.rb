@@ -22,7 +22,7 @@ module NapakalakiGame
     end
 
     def isEmpty
-      specificVisibleTreasures == [] and specificHiddenTreasures == []
+      @specificVisibleTreasures == [] and @specificHiddenTreasures == []
     end
 
     def substractVisibleTreasure(t)
@@ -61,7 +61,7 @@ module NapakalakiGame
       # Intersección, manteniendo duplicados (flat_map concatena)
       newSpecificHiddenTreasures = (@specificHiddenTreasures & hTypes).flat_map { |n| [n]*[@specificHiddenTreasures.count(n), hTypes.count(n)].min }
 
-      BadConsequence::newLevelSpecificTreasures(@text, @levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
+      SpecificBadConsequence.new(@text, @levels, newSpecificVisibleTreasures, newSpecificHiddenTreasures)
     end
 
     def to_s

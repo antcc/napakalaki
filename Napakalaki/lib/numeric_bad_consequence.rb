@@ -22,7 +22,7 @@ module NapakalakiGame
     end
 
     def isEmpty
-      nVisibleTreasures == 0 and nHiddenTreasures == 0
+      @nVisibleTreasures == 0 and @nHiddenTreasures == 0
     end
 
     def substractVisibleTreasure(t)
@@ -40,7 +40,7 @@ module NapakalakiGame
     def adjustToFitTreasureLists(v,h)
       newNVisibleTreasures = [@nVisibleTreasures, v.count].min
       newNHiddenTreasures = [@nHiddenTreasures, h.count].min
-      BadConsequence::newLevelNumberOfTreasures(@text, @levels, newNVisibleTreasures, newNHiddenTreasures)
+      NumericBadConsequence.new(@text, @levels, newNVisibleTreasures, newNHiddenTreasures)
     end
 
     def to_s
