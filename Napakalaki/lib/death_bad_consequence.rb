@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require_relative 'player'
+require_relative 'numeric_bad_consequence'
 
 module NapakalakiGame
 
