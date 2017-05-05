@@ -1,3 +1,9 @@
+- Permitir pulsar ENTER en los menús.
+- Cambiar icon y título de la aplicación principal.
+- Cambiar aspecto del dado (?)
+- Decidir un idioma para la interfaz gráfica: inglés o español.
+
+
 * Jugar varias partidas para ver que todo funciona bien.
 
 

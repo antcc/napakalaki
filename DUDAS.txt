@@ -1,2 +1,1 @@
-Añadir consultor BadConsequence::getText() --> protected ?
 PruebaNapakalaki::badConsequenceLosesTreasureKind --> arreglar ?

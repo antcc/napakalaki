@@ -45,6 +45,7 @@ public class Napakalaki {
     /**
      * Inicializa los jugadores.
      * @param names Lista de nombres
+     * @pre 2 <= names.size() <= 3
      */
     private void initPlayers(ArrayList<String> names) {
         for (String n : names)

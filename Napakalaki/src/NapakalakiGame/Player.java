@@ -6,6 +6,7 @@ package NapakalakiGame;
 
 import java.util.ArrayList;
 import java.util.Random;
+import GUI.Dice;
 
 /**
  * Representa un jugador.
@@ -100,7 +101,8 @@ public class Player {
     }
     
     protected boolean shouldConvert() {
-        return Dice.getInstance().nextNumber() == 6;
+        return Dice.getInstance().nextNumber("Tira el dado para saber si te conviertes en sectario",
+                                             "Te convertirás si sacas un 6") == 6;
     }
     
     protected int getOponentLevel(Monster m) {
@@ -174,7 +176,8 @@ public class Player {
         
         if (!canISteal) {
             Dice dice = Dice.getInstance();
-            int number = dice.nextNumber();
+            int number = dice.nextNumber("Tira el dado porque ya has robado", 
+                "Si sacas menos de un 3, el nivel del monstruo se incrementará");
             
             if (number < 3) {
                 monsterLevel += enemy.getCombatLevel();
@@ -236,7 +239,8 @@ public class Player {
         bringToLife();
         hiddenTreasures.add(dealer.nextTreasure());
         
-        int number = dice.nextNumber();
+        int number = dice.nextNumber("Tira el dado para ver con cuántos tesoros comienzas",
+                                     "1 -> 1 tesoro; 2-5 -> 2 tesoros, 6 -> 3 tesoros");
         
         if (number > 1) {
             hiddenTreasures.add(dealer.nextTreasure());

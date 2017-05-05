@@ -1,0 +1,7 @@
+Se han añadido las siguientes funcionalidades:
+
+- Se puede parar el dado pulsando la tecla ENTER o la tecla SPACE.
+- Se puede pulsar ENTER para avanzar en todos los menús.
+- Se deben introducir, al menos, dos nombres de jugadores no vacíos y diferentes.  
+  En otro caso, se muestra un mensaje de error, y no se permite avanzar.
+- Se puede salir del programa en cualquier momento con la tecla ESC.
