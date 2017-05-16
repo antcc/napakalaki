@@ -204,7 +204,7 @@ module NapakalakiGame
                                                    prize, -2)
 
       prize = Prize.new(1, 1)
-      badConsequence = SpecificBadConsequence.new('Pierdes tu casco y tu armadura' \
+      badConsequence = SpecificBadConsequence.new('Pierdes tu casco y tu armadura ' \
                             'visible. Pierdes tus manos ocultas', 0, \
                             [TreasureKind::HELMET, TreasureKind::ARMOR], \
                             [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::ONEHAND, \
