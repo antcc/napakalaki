@@ -303,9 +303,13 @@ module NapakalakiGame
     def to_s
       text = "#{@name} (nivel #{@level}, nivel de combate #{getCombatLevel})" +
         "\n - Muerto: " + (@dead ? "Sí" : "No") +
-        "\n - Puede robar: " + (@canISteal ? "Sí" : "No") +
-        "\n - Enemigo: #{@enemy.name}" +
-        "\n - Mal rollo pendiente: "
+        "\n - Puede robar: " + (@canISteal ? "Sí" : "No")
+    
+        if @enemy != nil
+          text << "\n - Enemigo: #{@enemy.name}"
+        end
+        
+        text << "\n - Mal rollo pendiente: "
     
       if @pendingBadConsequence != nil and !@pendingBadConsequence.isEmpty
         text += "\n#{@pendingBadConsequence}" 
