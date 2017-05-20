@@ -14,6 +14,8 @@ public class NumericBadConsequence extends BadConsequence {
     private int nVisibleTreasures;
     private int nHiddenTreasures;
     
+    final static int MAXTREASURES = 10;
+    
     public NumericBadConsequence(String t, int l, int nVisible, int nHidden) {
         super(t, l);
         nVisibleTreasures = nVisible;

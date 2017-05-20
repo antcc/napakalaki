@@ -1,7 +1,7 @@
 - Permitir pulsar ENTER en los menús.
-- Cambiar icon y título de la aplicación principal.
-- Cambiar aspecto del dado (?)
 - Decidir un idioma para la interfaz gráfica: inglés o español.
+- instanceof/getclass para la vista de Player/CultistPlayer (dos vistas, herencia?)
+- Set layout default para JPanel, repaint()/revalidate(). Revalidate es cuando se añaden elementos nuevos.BUSCAR
 
 
 * Jugar varias partidas para ver que todo funciona bien.

@@ -14,8 +14,6 @@ public abstract class BadConsequence {
     private String text;
     private int levels;
     
-    final static int MAXTREASURES = 10;
-    
     public BadConsequence(String t, int l) {
         text = t;
         levels = l;

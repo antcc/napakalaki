@@ -71,9 +71,9 @@ public class NapakalakiView extends JFrame {
         return kEventDispatcher;
     }
     
-    // TODO: Si no sirve en un futuro, quitar
+    // custom
     private boolean dispatchKeyEventHandler(KeyEvent e) {
-        
+        // Salir si se pulsa ESC en cualquier momento
         if (e.getID() == KeyEvent.KEY_PRESSED) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 System.exit(0);
