@@ -6,10 +6,18 @@ module NapakalakiGame
 
   # class NumericBadConsequence: representa un mal rollo de número de tesoros
   class NumericBadConsequence < BadConsequence
+    
+    @@MAXTREASURES = 10    # simboliza todos los tesoros
+    
     def initialize(t, l, v, h)
       super(t, l)
       @nVisibleTreasures = v
       @nHiddenTreasures = h
+    end
+    
+    # devuelve la constante que simboliza todos los tesoros
+    def self.getMaxTreasures
+      @@MAXTREASURES
     end
 
     def getNVisibleTreasures

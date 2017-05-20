@@ -91,7 +91,7 @@ module NapakalakiGame
       # El gorrón en el umbral
       prize = Prize.new(3,1)
       badConsequence = NumericBadConsequence.new('Pierdes todos tus tesoros visibles.',
-          0, BadConsequence.getMaxTreasures, 0)
+          0, NumericBadConsequence.getMaxTreasures, 0)
       @unusedMonsters << Monster.newMonster('El gorrón en el umbral', 13, badConsequence, prize)
 
       # H.P Munchcraft
@@ -188,7 +188,7 @@ module NapakalakiGame
 
       prize = Prize.new(2, 1)
       badConsequence = NumericBadConsequence.new('Pierdes todos tus tesoros visibles. Jajaja', \
-                                                              0, BadConsequence.getMaxTreasures, 0)
+                                                              0, NumericBadConsequence.getMaxTreasures, 0)
       @unusedMonsters << Monster.newMonsterCultist('Testigos oculares', 6, badConsequence, \
                                                    prize, 2)
 
