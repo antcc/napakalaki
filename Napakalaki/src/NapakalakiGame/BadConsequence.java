@@ -19,11 +19,11 @@ public abstract class BadConsequence {
         levels = l;
     }
 
-    protected int getLevels() {
+    public int getLevels() {
         return levels;
     }
     
-    protected String getText() {
+    public String getText() {
         return text;
     }
     

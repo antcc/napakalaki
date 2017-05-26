@@ -41,6 +41,7 @@ public class NapakalakiView extends JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
