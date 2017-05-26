@@ -46,6 +46,7 @@ public class NapakalakiView extends JFrame {
         jB_meetMonster = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
 
         jB_combat.setText("Combatir");
