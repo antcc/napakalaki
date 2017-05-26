@@ -21,9 +21,6 @@ public class Game {
         PlayerNamesCapture namesCapture = new PlayerNamesCapture(napakalakiView, true);
         Dice.createInstance(napakalakiView);
         
-        // Opciones para la ventana
-        napakalakiView.setNapakalaki(game);
-        
         // Inicializar juego
         names = namesCapture.getNames();
         game.initGame(names);
@@ -36,6 +33,7 @@ public class Game {
         
         
         // Mostrar ventana
+        napakalakiView.setNapakalaki(game);
         napakalakiView.pack();
         napakalakiView.showView();
     }

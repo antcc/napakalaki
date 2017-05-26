@@ -54,7 +54,11 @@ public class Player {
         dead = false;
     }
     
-    protected int getCombatLevel() {
+    public BadConsequence getPendingBadConsequence() {
+        return pendingBadConsequence;
+    }
+    
+    public int getCombatLevel() {
         int combatLevel = level;
         for (Treasure vt : visibleTreasures)
             combatLevel += vt.getBonus();
@@ -157,7 +161,7 @@ public class Player {
         return dead;
     }
     
-    protected Player getEnemy() {
+    public Player getEnemy() {
         return enemy;
     }
 

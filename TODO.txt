@@ -1,8 +1,5 @@
 - Permitir pulsar ENTER en los menús.
-- Decidir un idioma para la interfaz gráfica: inglés o español.
-- instanceof/getclass para la vista de Player/CultistPlayer (dos vistas, herencia?)
-- Set layout default para JPanel, repaint()/revalidate(). Revalidate es cuando se añaden elementos nuevos.BUSCAR
-
+- TotalCultistPlayers en Napakalaki.
 
 * Jugar varias partidas para ver que todo funciona bien.
 
