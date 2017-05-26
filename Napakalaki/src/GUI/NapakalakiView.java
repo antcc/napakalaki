@@ -40,6 +40,8 @@ public class NapakalakiView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        currentPlayer = new GUI.PlayerView();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
@@ -48,11 +50,17 @@ public class NapakalakiView extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Napakalaki");
@@ -62,6 +70,10 @@ public class NapakalakiView extends JFrame {
 
     public void setNapakalaki(Napakalaki n) {
         napakalakiModel = n;
+        this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
+        
+        revalidate();
+        repaint();
     }
         
     public void showView() {
@@ -80,10 +92,10 @@ public class NapakalakiView extends JFrame {
                 System.exit(0);
             }
         }
-        
         return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private GUI.PlayerView currentPlayer;
     // End of variables declaration//GEN-END:variables
 }
