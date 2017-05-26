@@ -40,10 +40,14 @@ public class NapakalakiView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        currentPlayer = new GUI.PlayerView();
         jB_combat = new javax.swing.JButton();
         jB_nextTurn = new javax.swing.JButton();
         jB_meetMonster = new javax.swing.JButton();
+        playerView1 = new GUI.PlayerView();
+        monsterView1 = new GUI.MonsterView();
+        messagesTitleLabel = new javax.swing.JLabel();
+        monsterTitleLabel = new javax.swing.JLabel();
+        messageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -70,34 +74,56 @@ public class NapakalakiView extends JFrame {
             }
         });
 
+        messagesTitleLabel.setFont(messagesTitleLabel.getFont().deriveFont(messagesTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, messagesTitleLabel.getFont().getSize()+2));
+        messagesTitleLabel.setText("Mensajes");
+
+        monsterTitleLabel.setFont(monsterTitleLabel.getFont().deriveFont(monsterTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, monsterTitleLabel.getFont().getSize()+2));
+        monsterTitleLabel.setText("Monstruo actual");
+
+        messageLabel.setText("Mensaje");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(131, 131, 131)
                 .addComponent(jB_meetMonster)
                 .addGap(18, 18, 18)
                 .addComponent(jB_combat)
                 .addGap(18, 18, 18)
                 .addComponent(jB_nextTurn)
-                .addGap(111, 111, 111))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messagesTitleLabel)
+                    .addComponent(monsterTitleLabel)
+                    .addComponent(messageLabel))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(monsterTitleLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(messagesTitleLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(messageLabel)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jB_meetMonster)
                     .addComponent(jB_combat)
-                    .addComponent(jB_nextTurn)
-                    .addComponent(jB_meetMonster))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(jB_nextTurn))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Napakalaki");
@@ -119,8 +145,8 @@ public class NapakalakiView extends JFrame {
 
     public void setNapakalaki(Napakalaki n) {
         napakalakiModel = n;
-        this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
-        this.currentPlayer.setNapakalaki(napakalakiModel);
+        //this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
+        //this.currentPlayer.setNapakalaki(napakalakiModel);
         
         revalidate();
         repaint();
@@ -146,9 +172,13 @@ public class NapakalakiView extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.PlayerView currentPlayer;
     private javax.swing.JButton jB_combat;
     private javax.swing.JButton jB_meetMonster;
     private javax.swing.JButton jB_nextTurn;
+    private javax.swing.JLabel messageLabel;
+    private javax.swing.JLabel messagesTitleLabel;
+    private javax.swing.JLabel monsterTitleLabel;
+    private GUI.MonsterView monsterView1;
+    private GUI.PlayerView playerView1;
     // End of variables declaration//GEN-END:variables
 }
