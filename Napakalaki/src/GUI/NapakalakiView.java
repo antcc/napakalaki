@@ -52,6 +52,8 @@ public class NapakalakiView extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(1500, 1500));
+        getContentPane().setLayout(null);
 
         jB_combat.setText("Combatir");
         jB_combat.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +61,8 @@ public class NapakalakiView extends JFrame {
                 jB_combatActionPerformed(evt);
             }
         });
+        getContentPane().add(jB_combat);
+        jB_combat.setBounds(308, 669, 88, 38);
 
         jB_nextTurn.setText("Siguiente turno");
         jB_nextTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +70,8 @@ public class NapakalakiView extends JFrame {
                 jB_nextTurnActionPerformed(evt);
             }
         });
+        getContentPane().add(jB_nextTurn);
+        jB_nextTurn.setBounds(414, 669, 137, 38);
 
         jB_meetMonster.setText("Mostrar monstruo");
         jB_meetMonster.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +79,12 @@ public class NapakalakiView extends JFrame {
                 jB_meetMonsterActionPerformed(evt);
             }
         });
+        getContentPane().add(jB_meetMonster);
+        jB_meetMonster.setBounds(131, 669, 159, 38);
 
         currentPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Jugador actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
+        getContentPane().add(currentPlayer);
+        currentPlayer.setBounds(12, 12, 714, 657);
 
         messagesContainer.setBorder(null);
 
@@ -85,44 +95,12 @@ public class NapakalakiView extends JFrame {
         messageText.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mensajes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
         messagesContainer.setViewportView(messageText);
 
-        currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
+        getContentPane().add(messagesContainer);
+        messagesContainer.setBounds(732, 502, 312, 167);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jB_meetMonster)
-                .addGap(18, 18, 18)
-                .addComponent(jB_combat)
-                .addGap(18, 18, 18)
-                .addComponent(jB_nextTurn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(messagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(currentMonster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 18, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(currentMonster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(messagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jB_meetMonster)
-                    .addComponent(jB_combat)
-                    .addComponent(jB_nextTurn))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
+        getContentPane().add(currentMonster);
+        currentMonster.setBounds(732, 12, 312, 416);
 
         getAccessibleContext().setAccessibleName("Napakalaki");
 
@@ -130,9 +108,7 @@ public class NapakalakiView extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_meetMonsterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_meetMonsterActionPerformed
-        // TODO add your handling code here:
-        
-        this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
+        this.currentMonster.setVisible(true);
         
     }//GEN-LAST:event_jB_meetMonsterActionPerformed
 
@@ -157,15 +133,17 @@ public class NapakalakiView extends JFrame {
     }//GEN-LAST:event_jB_combatActionPerformed
 
     private void jB_nextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_nextTurnActionPerformed
-        // TODO add your handling code here:
         napakalakiModel.nextTurn();
-        this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
+        this.setNapakalaki(napakalakiModel);
+        this.messageText.setText("");
     }//GEN-LAST:event_jB_nextTurnActionPerformed
 
     public void setNapakalaki(Napakalaki n) {
         napakalakiModel = n;
         this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
         this.currentPlayer.setNapakalaki(napakalakiModel);
+        this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
+        this.currentMonster.setVisible(false);
         
         revalidate();
         repaint();
@@ -173,10 +151,6 @@ public class NapakalakiView extends JFrame {
         
     public void showView() {
         this.setVisible(true);
-    }
-    
-    public KeyEventDispatcher getKeyEventDispatcher() {
-        return kEventDispatcher;
     }
     
     // custom

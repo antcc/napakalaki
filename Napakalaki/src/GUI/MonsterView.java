@@ -1,31 +1,32 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MonsterView.java
  */
+
 package GUI;
 
-/**
- *
- * @author jmml
- */
-public class MonsterView extends javax.swing.JPanel {
-    
-    private NapakalakiGame.Monster monsterModel;
+import NapakalakiGame.Monster;
+import javax.swing.JPanel;
 
-    /**
-     * Creates new form MonsterView
-     */
+/**
+ * Representa la vista de un monstruo.
+ */
+public class MonsterView extends JPanel {
+    
+    private Monster monsterModel;
+
     public MonsterView() {
         initComponents();
     }
     
-    public void setMonster(NapakalakiGame.Monster monster) {
+    public void setMonster(Monster monster) {
         monsterModel = monster; 
+        
         this.name.setText(monster.getName());
         this.level.setText(Integer.toString(monster.getCombatLevel()));
         this.prizeView.setPrize(monster.getPrize());
         this.badConsequenceView.setBadConsequence(monster.getBadConsequence());
+        
+        revalidate();
         repaint();
     }
 
@@ -101,8 +102,7 @@ public class MonsterView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(badConsequenceLabel)
                 .addGap(4, 4, 4)
-                .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

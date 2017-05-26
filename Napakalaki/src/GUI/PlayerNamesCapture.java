@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 
 /**
- *
- * @author antcc
+ * Representa el diálogo para introducir los nombres de los jugadores.
  */
 public class PlayerNamesCapture extends JDialog {
     
