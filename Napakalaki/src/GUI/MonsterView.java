@@ -20,12 +20,13 @@ public class MonsterView extends javax.swing.JPanel {
         initComponents();
     }
     
-    private void setMonster(NapakalakiGame.Monster monster) {
+    public void setMonster(NapakalakiGame.Monster monster) {
         monsterModel = monster; 
         this.name.setText(monster.getName());
         this.level.setText(Integer.toString(monster.getCombatLevel()));
         this.prizeView.setPrize(monster.getPrize());
         this.badConsequenceView.setBadConsequence(monster.getBadConsequence());
+        repaint();
     }
 
     /**
@@ -43,8 +44,8 @@ public class MonsterView extends javax.swing.JPanel {
         level = new javax.swing.JLabel();
         prizeLabel = new javax.swing.JLabel();
         badConsequenceLabel = new javax.swing.JLabel();
-        badConsequenceView = new GUI.BadConsequenceView();
         prizeView = new GUI.PrizeView();
+        badConsequenceView = new GUI.BadConsequenceView();
 
         nameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         nameLabel.setText("Nombre:");
@@ -67,9 +68,7 @@ public class MonsterView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(badConsequenceLabel)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,13 +79,14 @@ public class MonsterView extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(level)
-                            .addComponent(name))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                            .addComponent(name)))
+                    .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(name))
@@ -98,11 +98,11 @@ public class MonsterView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(prizeLabel)
                     .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(badConsequenceLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addComponent(badConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 

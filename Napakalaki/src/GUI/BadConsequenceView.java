@@ -37,30 +37,34 @@ public class BadConsequenceView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        text = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        text = new javax.swing.JTextArea();
 
+        jScrollPane1.setBorder(null);
+
+        text.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
+        text.setColumns(20);
+        text.setLineWrap(true);
+        text.setRows(5);
         text.setText("Texto del mal rollo.");
+        text.setBorder(null);
+        jScrollPane1.setViewportView(text);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(text)
-                .addContainerGap(177, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(text)
-                .addContainerGap(74, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel text;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea text;
     // End of variables declaration//GEN-END:variables
 }

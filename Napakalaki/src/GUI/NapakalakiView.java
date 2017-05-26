@@ -6,6 +6,7 @@ package GUI;
 
 import javax.swing.JFrame;
 import NapakalakiGame.Napakalaki;
+import NapakalakiGame.CombatResult;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
@@ -43,11 +44,10 @@ public class NapakalakiView extends JFrame {
         jB_combat = new javax.swing.JButton();
         jB_nextTurn = new javax.swing.JButton();
         jB_meetMonster = new javax.swing.JButton();
-        playerView1 = new GUI.PlayerView();
-        monsterView1 = new GUI.MonsterView();
-        messagesTitleLabel = new javax.swing.JLabel();
-        monsterTitleLabel = new javax.swing.JLabel();
-        messageLabel = new javax.swing.JLabel();
+        currentPlayer = new GUI.PlayerView();
+        messagesContainer = new javax.swing.JScrollPane();
+        messageText = new javax.swing.JTextArea();
+        currentMonster = new GUI.MonsterView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,19 +74,24 @@ public class NapakalakiView extends JFrame {
             }
         });
 
-        messagesTitleLabel.setFont(messagesTitleLabel.getFont().deriveFont(messagesTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, messagesTitleLabel.getFont().getSize()+2));
-        messagesTitleLabel.setText("Mensajes");
+        currentPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Jugador actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
 
-        monsterTitleLabel.setFont(monsterTitleLabel.getFont().deriveFont(monsterTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, monsterTitleLabel.getFont().getSize()+2));
-        monsterTitleLabel.setText("Monstruo actual");
+        messagesContainer.setBorder(null);
 
-        messageLabel.setText("Mensaje");
+        messageText.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
+        messageText.setColumns(20);
+        messageText.setLineWrap(true);
+        messageText.setRows(5);
+        messageText.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mensajes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
+        messagesContainer.setViewportView(messageText);
+
+        currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jB_meetMonster)
                 .addGap(18, 18, 18)
@@ -95,35 +100,28 @@ public class NapakalakiView extends JFrame {
                 .addComponent(jB_nextTurn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(messagesTitleLabel)
-                    .addComponent(monsterTitleLabel)
-                    .addComponent(messageLabel))
-                .addGap(0, 20, Short.MAX_VALUE))
+                    .addComponent(messagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(currentMonster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(playerView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(monsterTitleLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(monsterView1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(messagesTitleLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(messageLabel)))
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(currentPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(currentMonster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(messagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_meetMonster)
                     .addComponent(jB_combat)
                     .addComponent(jB_nextTurn))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Napakalaki");
@@ -133,20 +131,41 @@ public class NapakalakiView extends JFrame {
 
     private void jB_meetMonsterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_meetMonsterActionPerformed
         // TODO add your handling code here:
+        
+        this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
+        
     }//GEN-LAST:event_jB_meetMonsterActionPerformed
 
     private void jB_combatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_combatActionPerformed
-        // TODO add your handling code here:
+
+        CombatResult combatResult = napakalakiModel.developCombat();
+          switch (combatResult) {
+            case WINGAME : 
+              this.messageText.setText(napakalakiModel.getCurrentPlayer().getName() + ", ¡has ganado la partida!");
+              break;
+            case WIN :
+              this.messageText.setText("¡Has ganado el combate!");
+              break;
+            case LOSE :
+              this.messageText.setText("Has perdido el combate. Te toca cumplir el mal rollo.");
+              break;
+            case LOSEANDCONVERT :
+              this.messageText.setText("Has perdido el combate y te has convertido en sectario. Aún así, te toca cumplir el mal rollo.");
+              this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
+              break;
+          }
     }//GEN-LAST:event_jB_combatActionPerformed
 
     private void jB_nextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_nextTurnActionPerformed
         // TODO add your handling code here:
+        napakalakiModel.nextTurn();
+        this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
     }//GEN-LAST:event_jB_nextTurnActionPerformed
 
     public void setNapakalaki(Napakalaki n) {
         napakalakiModel = n;
-        //this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
-        //this.currentPlayer.setNapakalaki(napakalakiModel);
+        this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
+        this.currentPlayer.setNapakalaki(napakalakiModel);
         
         revalidate();
         repaint();
@@ -172,13 +191,12 @@ public class NapakalakiView extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private GUI.MonsterView currentMonster;
+    private GUI.PlayerView currentPlayer;
     private javax.swing.JButton jB_combat;
     private javax.swing.JButton jB_meetMonster;
     private javax.swing.JButton jB_nextTurn;
-    private javax.swing.JLabel messageLabel;
-    private javax.swing.JLabel messagesTitleLabel;
-    private javax.swing.JLabel monsterTitleLabel;
-    private GUI.MonsterView monsterView1;
-    private GUI.PlayerView playerView1;
+    private javax.swing.JTextArea messageText;
+    private javax.swing.JScrollPane messagesContainer;
     // End of variables declaration//GEN-END:variables
 }

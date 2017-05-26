@@ -30,7 +30,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
               <Component id="jB_meetMonster" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -40,41 +40,34 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="playerView1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="currentPlayer" min="-2" pref="714" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="monsterView1" min="-2" max="-2" attributes="0"/>
-                  <Component id="messagesTitleLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="monsterTitleLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="messagesContainer" min="-2" max="-2" attributes="0"/>
+                  <Component id="currentMonster" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="playerView1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="monsterTitleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="monsterView1" min="-2" pref="359" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="messagesTitleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="currentPlayer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="currentMonster" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="messagesContainer" min="-2" pref="167" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jB_meetMonster" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jB_combat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jB_nextTurn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,33 +97,57 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_meetMonsterActionPerformed"/>
       </Events>
     </Component>
-    <Component class="GUI.PlayerView" name="playerView1">
-    </Component>
-    <Component class="GUI.MonsterView" name="monsterView1">
-    </Component>
-    <Component class="javax.swing.JLabel" name="messagesTitleLabel">
+    <Component class="GUI.PlayerView" name="currentPlayer">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="messagesTitleLabel" property="font" relativeSize="true" size="2"/>
-          </FontInfo>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Jugador actual">
+              <Font PropertyName="font" name="Lucida Grande" size="14" style="1"/>
+            </TitledBorder>
+          </Border>
         </Property>
-        <Property name="text" type="java.lang.String" value="Mensajes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="monsterTitleLabel">
+    <Container class="javax.swing.JScrollPane" name="messagesContainer">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="monsterTitleLabel" property="font" relativeSize="true" size="2"/>
-          </FontInfo>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Monstruo actual"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="messageLabel">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="messageText">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ee" green="ee" id="Panel.background" palette="3" red="ee" type="palette"/>
+            </Property>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Mensajes">
+                  <Font PropertyName="font" name="Lucida Grande" size="14" style="1"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="GUI.MonsterView" name="currentMonster">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mensaje"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Monstruo actual">
+              <Font PropertyName="font" name="Lucida Grande" size="14" style="1"/>
+            </TitledBorder>
+          </Border>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
