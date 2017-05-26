@@ -4,8 +4,10 @@
 
 package GUI;
 
+import NapakalakiGame.Napakalaki;
 import NapakalakiGame.Player;
 import NapakalakiGame.Treasure;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 public class PlayerView extends JPanel {
     
     private Player playerModel;
+    private Napakalaki napakalakiModel;
 
     public PlayerView() {
         initComponents();
@@ -47,6 +50,10 @@ public class PlayerView extends JPanel {
         repaint();
     }
     
+    public void setNapakalaki(Napakalaki n) {
+        napakalakiModel = n;
+    }
+    
     private void fillTreasurePanel(JPanel aPanel, ArrayList<Treasure> aList) {
         // Se elimina la información antigua
         aPanel.removeAll();
@@ -63,6 +70,17 @@ public class PlayerView extends JPanel {
         aPanel.revalidate();
         aPanel.repaint();
     }
+    
+    private ArrayList<Treasure> getSelectedTreasures(JPanel aPanel) {
+        TreasureView tv;
+        ArrayList<Treasure> output = new ArrayList();
+        for (Component c : aPanel.getComponents()) {
+            tv = (TreasureView) c;
+            if ( tv.isSelected() )
+                output.add ( tv.getTreasure() );
+        }
+        return output;
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,12 +156,32 @@ public class PlayerView extends JPanel {
         );
 
         jB_Steal.setText("Robar tesoro");
+        jB_Steal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_StealActionPerformed(evt);
+            }
+        });
 
         jB_Discard.setText("Descartar tesoros");
+        jB_Discard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_DiscardActionPerformed(evt);
+            }
+        });
 
         jB_Visible.setText("Hacer tesoro visible");
+        jB_Visible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_VisibleActionPerformed(evt);
+            }
+        });
 
         jB_DiscardAll.setText("Descartar todo");
+        jB_DiscardAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_DiscardAllActionPerformed(evt);
+            }
+        });
 
         pendingBadConsequenceView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -262,6 +300,30 @@ public class PlayerView extends JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jB_VisibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_VisibleActionPerformed
+        ArrayList<Treasure> hiddenTreasuresSelected = getSelectedTreasures(hiddenTreasures);
+        napakalakiModel.makeTreasuresVisible(hiddenTreasuresSelected);
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_jB_VisibleActionPerformed
+
+    private void jB_StealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_StealActionPerformed
+        playerModel.stealTreasure();
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_jB_StealActionPerformed
+
+    private void jB_DiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_DiscardActionPerformed
+        ArrayList<Treasure> hiddenTreasuresSelected = getSelectedTreasures(hiddenTreasures);
+        ArrayList<Treasure> visibleTreasuresSelected = getSelectedTreasures(visibleTreasures);
+        napakalakiModel.discardHiddenTreasures(hiddenTreasuresSelected);
+        napakalakiModel.discardVisibleTreasures(visibleTreasuresSelected);
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_jB_DiscardActionPerformed
+
+    private void jB_DiscardAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_DiscardAllActionPerformed
+        playerModel.discardAllTreasures();
+        setPlayer(napakalakiModel.getCurrentPlayer());
+    }//GEN-LAST:event_jB_DiscardAllActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

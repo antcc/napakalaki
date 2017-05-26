@@ -268,21 +268,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Robar tesoro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_StealActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jB_Discard">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descartar tesoros"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_DiscardActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jB_Visible">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hacer tesoro visible"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_VisibleActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jB_DiscardAll">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descartar todo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_DiscardAllActionPerformed"/>
+      </Events>
     </Component>
     <Component class="GUI.PendingBadConsequenceView" name="pendingBadConsequenceView">
       <Properties>

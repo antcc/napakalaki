@@ -32,6 +32,15 @@
               <Component id="currentPlayer" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="164" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jB_meetMonster" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jB_combat" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jB_nextTurn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -39,13 +48,43 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="currentPlayer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jB_combat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jB_nextTurn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jB_meetMonster" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="GUI.PlayerView" name="currentPlayer">
+    </Component>
+    <Component class="javax.swing.JButton" name="jB_combat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Combatir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_combatActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jB_nextTurn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Siguiente turno"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_nextTurnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jB_meetMonster">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar monstruo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_meetMonsterActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

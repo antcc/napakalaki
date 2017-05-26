@@ -5,6 +5,7 @@
 package GUI;
 
 import NapakalakiGame.Treasure;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -13,8 +14,10 @@ import javax.swing.JPanel;
 public class TreasureView extends JPanel {
     
     private Treasure treasureModel;
+    private boolean selected;
 
     public TreasureView() {
+        selected = false;
         initComponents();
     }
     
@@ -25,7 +28,17 @@ public class TreasureView extends JPanel {
         this.bonusContent.setText(Integer.toString(t.getBonus()));
         this.typeContent.setText(t.getType().toString());
         
+        this.setBackground(Color.yellow);
+        this.setOpaque(false);
         repaint();
+    }
+    
+    public boolean isSelected() {
+        return selected;
+    }
+    
+    public Treasure getTreasure() {
+        return treasureModel;
     }
 
     /**
@@ -41,6 +54,12 @@ public class TreasureView extends JPanel {
         bonusContent = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
         typeContent = new javax.swing.JLabel();
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         name.setText("Nombre:");
 
@@ -93,6 +112,14 @@ public class TreasureView extends JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        selected = !selected;
+        if (selected) {
+            this.setOpaque(true);
+        }
+        repaint();
+    }//GEN-LAST:event_formMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
