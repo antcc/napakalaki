@@ -50,9 +50,9 @@ public class NapakalakiView extends JFrame {
         currentMonster = new GUI.MonsterView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(4, 0, 800, 800));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(1500, 1500));
+        setMinimumSize(new java.awt.Dimension(1100, 750));
         getContentPane().setLayout(null);
 
         jB_combat.setText("Combatir");
@@ -62,7 +62,7 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_combat);
-        jB_combat.setBounds(308, 669, 88, 38);
+        jB_combat.setBounds(308, 669, 102, 29);
 
         jB_nextTurn.setText("Siguiente turno");
         jB_nextTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +71,7 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_nextTurn);
-        jB_nextTurn.setBounds(414, 669, 137, 38);
+        jB_nextTurn.setBounds(414, 669, 140, 29);
 
         jB_meetMonster.setText("Mostrar monstruo");
         jB_meetMonster.addActionListener(new java.awt.event.ActionListener() {
@@ -80,11 +80,11 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_meetMonster);
-        jB_meetMonster.setBounds(131, 669, 159, 38);
+        jB_meetMonster.setBounds(131, 669, 157, 29);
 
         currentPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Jugador actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
         getContentPane().add(currentPlayer);
-        currentPlayer.setBounds(12, 12, 714, 657);
+        currentPlayer.setBounds(12, 12, 714, 616);
 
         messagesContainer.setBorder(null);
 
@@ -96,11 +96,11 @@ public class NapakalakiView extends JFrame {
         messagesContainer.setViewportView(messageText);
 
         getContentPane().add(messagesContainer);
-        messagesContainer.setBounds(732, 502, 312, 167);
+        messagesContainer.setBounds(732, 502, 310, 167);
 
         currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
         getContentPane().add(currentMonster);
-        currentMonster.setBounds(732, 12, 312, 416);
+        currentMonster.setBounds(732, 12, 314, 371);
 
         getAccessibleContext().setAccessibleName("Napakalaki");
 

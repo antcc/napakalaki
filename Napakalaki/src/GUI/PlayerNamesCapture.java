@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JDialog;
 
 /**
@@ -173,6 +174,8 @@ public class PlayerNamesCapture extends JDialog {
         else {
             this.dispose();
         }
+        
+        names.removeAll(Arrays.asList("", null));
     }//GEN-LAST:event_buttonPlayActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
