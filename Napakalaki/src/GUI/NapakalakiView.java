@@ -44,10 +44,10 @@ public class NapakalakiView extends JFrame {
         jB_combat = new javax.swing.JButton();
         jB_nextTurn = new javax.swing.JButton();
         jB_meetMonster = new javax.swing.JButton();
-        currentPlayer = new GUI.PlayerView();
         messagesContainer = new javax.swing.JScrollPane();
         messageText = new javax.swing.JTextArea();
         currentMonster = new GUI.MonsterView();
+        currentPlayer = new GUI.PlayerView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(4, 0, 800, 800));
@@ -82,10 +82,6 @@ public class NapakalakiView extends JFrame {
         getContentPane().add(jB_meetMonster);
         jB_meetMonster.setBounds(131, 669, 157, 29);
 
-        currentPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Jugador actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
-        getContentPane().add(currentPlayer);
-        currentPlayer.setBounds(12, 12, 714, 616);
-
         messagesContainer.setBorder(null);
 
         messageText.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
@@ -101,6 +97,8 @@ public class NapakalakiView extends JFrame {
         currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
         getContentPane().add(currentMonster);
         currentMonster.setBounds(732, 12, 314, 371);
+        getContentPane().add(currentPlayer);
+        currentPlayer.setBounds(10, 20, 706, 601);
 
         getAccessibleContext().setAccessibleName("Napakalaki");
 
