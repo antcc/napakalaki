@@ -80,7 +80,16 @@ public class PlayerView extends JPanel {
                 output.add ( tv.getTreasure() );
         }
         return output;
-        }
+    }
+    
+    public void changeButtonsState(Boolean state) {
+        
+        this.jB_Discard.setEnabled(state);
+        this.jB_DiscardAll.setEnabled(state);
+        this.jB_Steal.setEnabled(state);
+        this.jB_Visible.setEnabled(state);
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

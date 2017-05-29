@@ -107,7 +107,10 @@ public class NapakalakiView extends JFrame {
 
     private void jB_meetMonsterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_meetMonsterActionPerformed
         this.currentMonster.setVisible(true);
+        this.jB_combat.setEnabled(true);
+        this.jB_meetMonster.setEnabled(false);
         
+        this.currentPlayer.changeButtonsState(false);
     }//GEN-LAST:event_jB_meetMonsterActionPerformed
 
     private void jB_combatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_combatActionPerformed
@@ -128,12 +131,20 @@ public class NapakalakiView extends JFrame {
               this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
               break;
           }
+          this.jB_nextTurn.setEnabled(true);
+          this.jB_combat.setEnabled(false);
+          this.jB_meetMonster.setEnabled(false);
     }//GEN-LAST:event_jB_combatActionPerformed
 
     private void jB_nextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_nextTurnActionPerformed
         napakalakiModel.nextTurn();
         this.setNapakalaki(napakalakiModel);
         this.messageText.setText("");
+        this.jB_combat.setEnabled(false);
+        this.jB_nextTurn.setEnabled(false);
+        this.jB_meetMonster.setEnabled(true);
+        
+        this.currentPlayer.changeButtonsState(true);
     }//GEN-LAST:event_jB_nextTurnActionPerformed
 
     public void setNapakalaki(Napakalaki n) {
@@ -142,6 +153,9 @@ public class NapakalakiView extends JFrame {
         this.currentPlayer.setNapakalaki(napakalakiModel);
         this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
         this.currentMonster.setVisible(false);
+        
+        this.jB_combat.setEnabled(false);
+        this.jB_nextTurn.setEnabled(false);
         
         revalidate();
         repaint();
