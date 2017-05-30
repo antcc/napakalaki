@@ -21,12 +21,12 @@ public class MonsterView extends JPanel {
     public void setMonster(Monster monster) {
         monsterModel = monster; 
         
-        this.name.setText(monster.getName());
-        this.level.setText(Integer.toString(monster.getCombatLevel()));
+        this.name.setText(monsterModel.getName());
+        this.level.setText(Integer.toString(monsterModel.getCombatLevel()));
         this.cultistLevel.setText(Integer.toString( 
                 monsterModel.getCombatLevelAgainstCultistPlayer()));
-        this.prizeView.setPrize(monster.getPrize());
-        this.badConsequenceView.setBadConsequence(monster.getBadConsequence());
+        this.prizeView.setPrize(monsterModel.getPrize());
+        this.badConsequenceView.setBadConsequence(monsterModel.getBadConsequence());
         
         revalidate();
         repaint();

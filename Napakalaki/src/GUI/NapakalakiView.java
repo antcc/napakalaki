@@ -7,7 +7,6 @@ package GUI;
 import javax.swing.JFrame;
 import NapakalakiGame.Napakalaki;
 import NapakalakiGame.CombatResult;
-import NapakalakiGame.CultistPlayer;
 import java.awt.Color;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
@@ -20,6 +19,7 @@ import java.awt.event.KeyEvent;
 public class NapakalakiView extends JFrame {
     
     private Napakalaki napakalakiModel;
+    
     private KeyEventDispatcher kEventDispatcher = new KeyEventDispatcher() {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
@@ -127,7 +127,6 @@ public class NapakalakiView extends JFrame {
     }//GEN-LAST:event_jB_meetMonsterActionPerformed
 
     private void jB_combatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_combatActionPerformed
-
         CombatResult combatResult = napakalakiModel.developCombat();
         this.jB_nextTurn.setEnabled(true);
         this.jB_combat.setEnabled(false);
@@ -149,7 +148,7 @@ public class NapakalakiView extends JFrame {
                 break;
             case LOSEANDCONVERT :
                 this.messageText.setText("Has perdido el combate y te has convertido en sectario. Aún así, te toca cumplir el mal rollo.");
-                this.jL_numberCultist.setText(Integer.toString(CultistPlayer.getTotalCultistPlayers()));
+                this.jL_numberCultist.setText(Integer.toString(NapakalakiGame.CultistPlayer.getTotalCultistPlayers()));
                 break;
         }
         
@@ -178,9 +177,9 @@ public class NapakalakiView extends JFrame {
         this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
         this.currentPlayer.setNapakalaki(napakalakiModel);
         this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
-        this.currentMonster.setVisible(false);
-        this.jL_numberCultist.setText(Integer.toString(CultistPlayer.getTotalCultistPlayers()));
+        this.jL_numberCultist.setText(Integer.toString(NapakalakiGame.CultistPlayer.getTotalCultistPlayers()));
         
+        this.currentMonster.setVisible(false);
         this.jB_combat.setEnabled(false);
         this.jB_nextTurn.setEnabled(false);
         

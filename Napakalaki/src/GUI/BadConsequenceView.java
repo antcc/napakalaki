@@ -12,15 +12,15 @@ import javax.swing.JPanel;
 public class BadConsequenceView extends JPanel {
     
     private BadConsequence badConsequenceModel;
-    
-    public void setBadConsequence(BadConsequence badConsequence) {
-        badConsequenceModel = badConsequence; 
-        this.text.setText(badConsequence.getText());
-        repaint();
-    }
 
     public BadConsequenceView() {
         initComponents();
+    }
+    
+    public void setBadConsequence(BadConsequence badConsequence) {
+        badConsequenceModel = badConsequence; 
+        this.text.setText(badConsequenceModel.getText());
+        repaint();
     }
 
     /**

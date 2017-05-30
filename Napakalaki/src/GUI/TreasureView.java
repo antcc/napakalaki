@@ -18,6 +18,8 @@ public class TreasureView extends JPanel {
 
     public TreasureView() {
         selected = false;
+        this.setBackground(Color.yellow);
+        this.setOpaque(false);
         initComponents();
     }
     
@@ -28,8 +30,6 @@ public class TreasureView extends JPanel {
         this.bonusContent.setText("+" + Integer.toString(t.getBonus()));
         this.typeContent.setText(t.getType().toString());
         
-        this.setBackground(Color.yellow);
-        this.setOpaque(false);
         repaint();
     }
     
