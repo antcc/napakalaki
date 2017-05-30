@@ -25,13 +25,6 @@ public class Game {
         names = namesCapture.getNames();
         game.initGame(names);
 
-        
-        
-        
-        
-        
-        
-        
         // Mostrar ventana
         napakalakiView.setNapakalaki(game);
         napakalakiView.pack();

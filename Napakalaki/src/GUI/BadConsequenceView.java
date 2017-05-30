@@ -33,6 +33,9 @@ public class BadConsequenceView extends JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextPane();
 
+        text.setEditable(false);
+        text.setFont(new java.awt.Font("Cantarell", 0, 19)); // NOI18N
+        text.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         jScrollPane2.setViewportView(text);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

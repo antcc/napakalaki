@@ -84,9 +84,9 @@ public class SpecificBadConsequence extends BadConsequence {
     
     @Override
     public String toString() {
-        return super.toString() + "\n    * Tesoros visibles específicos perdidos: " + 
+        return super.toString() + "\nTesoros visibles específicos perdidos: " + 
                Arrays.toString(specificVisibleTreasures.toArray()) +
-               "\n    * Tesoros ocultos específicos perdidos: " + 
+               "\nTesoros ocultos específicos perdidos: " + 
                Arrays.toString(specificHiddenTreasures.toArray());
     }
     

@@ -12,6 +12,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import javax.swing.JDialog;
 
 /**
@@ -68,6 +69,7 @@ public class PlayerNamesCapture extends JDialog {
         labelError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
 
         labelP1.setText("Player 1");
 
@@ -173,9 +175,10 @@ public class PlayerNamesCapture extends JDialog {
         
         else {
             this.dispose();
+            // Elimina repetidos y vacíos
+            names.removeAll(Arrays.asList("", null));
+            names = (ArrayList<String>) names.stream().distinct().collect(Collectors.toList());
         }
-        
-        names.removeAll(Arrays.asList("", null));
     }//GEN-LAST:event_buttonPlayActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed

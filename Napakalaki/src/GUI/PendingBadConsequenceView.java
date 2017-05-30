@@ -20,7 +20,7 @@ public class PendingBadConsequenceView extends JPanel {
     
     public void setPendingBadConsequence(BadConsequence bc) {
         pendingBCModel = bc;
-        if (bc != null) {
+        if (bc != null && !bc.isEmpty()) {
             this.textArea.setText(bc.toString());
         }
         else {
@@ -41,9 +41,11 @@ public class PendingBadConsequenceView extends JPanel {
 
         textArea.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         textArea.setColumns(20);
+        textArea.setFont(new java.awt.Font("Cantarell", 0, 19)); // NOI18N
         textArea.setRows(5);
         textArea.setWrapStyleWord(true);
         textArea.setBorder(null);
+        textArea.setEditable(false);
         jScrollPane1.setViewportView(textArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

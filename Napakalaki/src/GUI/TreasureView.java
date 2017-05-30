@@ -25,7 +25,7 @@ public class TreasureView extends JPanel {
         treasureModel = t;
         
         this.nameContent.setText(t.getName());
-        this.bonusContent.setText(Integer.toString(t.getBonus()));
+        this.bonusContent.setText("+" + Integer.toString(t.getBonus()));
         this.typeContent.setText(t.getType().toString());
         
         this.setBackground(Color.yellow);
@@ -48,28 +48,20 @@ public class TreasureView extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        name = new javax.swing.JLabel();
         nameContent = new javax.swing.JLabel();
-        bonus = new javax.swing.JLabel();
         bonusContent = new javax.swing.JLabel();
-        type = new javax.swing.JLabel();
         typeContent = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        name.setText("Nombre:");
-
         nameContent.setText("jLabel1");
 
-        bonus.setText("Bonus:");
-
         bonusContent.setText("jLabel1");
-
-        type.setText("Tipo:");
 
         typeContent.setText("jLabel1");
 
@@ -80,32 +72,23 @@ public class TreasureView extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name)
-                    .addComponent(bonus)
-                    .addComponent(type))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(typeContent, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bonusContent, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(nameContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nameContent, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(typeContent, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                            .addComponent(bonusContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name)
-                    .addComponent(nameContent))
+                .addComponent(nameContent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bonusContent)
-                    .addComponent(bonus))
+                .addComponent(bonusContent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(typeContent)
-                    .addComponent(type))
+                .addComponent(typeContent)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -115,16 +98,16 @@ public class TreasureView extends JPanel {
         if (selected) {
             this.setOpaque(true);
         }
+        else {
+            this.setOpaque(false);
+        }
         repaint();
     }//GEN-LAST:event_formMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bonus;
     private javax.swing.JLabel bonusContent;
-    private javax.swing.JLabel name;
     private javax.swing.JLabel nameContent;
-    private javax.swing.JLabel type;
     private javax.swing.JLabel typeContent;
     // End of variables declaration//GEN-END:variables
 }

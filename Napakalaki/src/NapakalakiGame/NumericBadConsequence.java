@@ -61,10 +61,10 @@ public class NumericBadConsequence extends BadConsequence {
     
     @Override
     public String toString() {
-        return super.toString() + "\n    * Tesoros visibles perdidos: " + 
+        return super.toString() + "\nTesoros visibles perdidos: " + 
                (nVisibleTreasures == MAXTREASURES ?
                "TODOS LOS TESOROS" : Integer.toString(nVisibleTreasures)) +
-               "\n    * Tesoros ocultos perdidos: " + (nHiddenTreasures == MAXTREASURES ?
+               "\nTesoros ocultos perdidos: " + (nHiddenTreasures == MAXTREASURES ?
                "TODOS LOS TESOROS" : Integer.toString(nHiddenTreasures));
     }
     

@@ -40,8 +40,8 @@ public class PlayerView extends JPanel {
         
         // Cultist players
         if (playerModel instanceof NapakalakiGame.CultistPlayer) {
-            this.cultistCard.setText(Integer.toString(((NapakalakiGame.CultistPlayer) playerModel)
-                                                             .getCultistCard().getGainedLevels()));
+            this.cultistCard.setText("+" + Integer.toString(((NapakalakiGame.CultistPlayer) playerModel)
+                                                              .getCultistCard().getGainedLevels()));
             this.cultistCard.setVisible(true);
             this.cultistCardLabel.setVisible(true);
         }
@@ -76,19 +76,17 @@ public class PlayerView extends JPanel {
         ArrayList<Treasure> output = new ArrayList();
         for (Component c : aPanel.getComponents()) {
             tv = (TreasureView) c;
-            if ( tv.isSelected() )
-                output.add ( tv.getTreasure() );
+            if (tv.isSelected())
+                output.add(tv.getTreasure());
         }
         return output;
     }
     
     public void changeButtonsState(Boolean state) {
-        
         this.jB_Discard.setEnabled(state);
         this.jB_DiscardAll.setEnabled(state);
-        this.jB_Steal.setEnabled(state);
+        this.jB_Steal.setEnabled(state && playerModel.canISteal());
         this.jB_Visible.setEnabled(state);
-    
     }
 
     /**
@@ -117,8 +115,8 @@ public class PlayerView extends JPanel {
         jB_Discard = new javax.swing.JButton();
         jB_Visible = new javax.swing.JButton();
         jB_DiscardAll = new javax.swing.JButton();
-        pendingBadLabel = new javax.swing.JLabel();
         pendingBadConsequenceView = new GUI.PendingBadConsequenceView();
+        jLabel1 = new javax.swing.JLabel();
 
         playerNameContent.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         playerNameContent.setText("jLabel2");
@@ -143,11 +141,9 @@ public class PlayerView extends JPanel {
 
         playerCombatLevelContent.setText("jLabel2");
 
-        cultistCardLabel.setText("Carta cultista:");
-        cultistCardLabel.setEnabled(false);
+        cultistCardLabel.setText("Carta sectario:");
 
         cultistCard.setText("jLabel2");
-        cultistCard.setEnabled(false);
 
         visibleTreasures.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tesoros visibles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 13))); // NOI18N
         visibleTreasures.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -182,7 +178,9 @@ public class PlayerView extends JPanel {
             }
         });
 
-        pendingBadLabel.setText("Mal rollo pendiente:");
+        pendingBadConsequenceView.setBorder(null);
+
+        jLabel1.setText("Mal rollo pendiente:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,32 +204,38 @@ public class PlayerView extends JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(playerCombatLevelContent))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(canPlayerSteal)
-                        .addGap(18, 18, 18)
-                        .addComponent(canPlayerStealContent))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(playerEnemy)
                         .addGap(18, 18, 18)
                         .addComponent(playerEnemyContent))
-                    .addComponent(pendingBadLabel)
+                    .addComponent(pendingBadConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cultistCardLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cultistCard))
-                    .addComponent(pendingBadConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jB_Discard, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jB_DiscardAll, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(visibleTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jB_Steal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jB_Visible, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                        .addComponent(canPlayerSteal)
+                        .addGap(18, 18, 18)
+                        .addComponent(canPlayerStealContent))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jB_Discard, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jB_DiscardAll, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jB_Steal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jB_Visible, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(177, 177, 177))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,38 +256,34 @@ public class PlayerView extends JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(isPlayerDeadContent)
                             .addComponent(isPlayerDead))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(playerEnemy)
-                            .addComponent(playerEnemyContent))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(canPlayerSteal)
-                            .addComponent(canPlayerStealContent)))
-                    .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(pendingBadLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playerEnemyContent)
+                            .addComponent(playerEnemy))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(canPlayerStealContent)
+                            .addComponent(canPlayerSteal)))
+                    .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
+                        .addComponent(pendingBadConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cultistCard)
+                    .addComponent(cultistCardLabel)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jB_Steal)
-                            .addComponent(jB_Visible)))
-                    .addComponent(pendingBadConsequenceView, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jB_Visible))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jB_Discard)
-                            .addComponent(jB_DiscardAll))
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cultistCardLabel)
-                            .addComponent(cultistCard))))
+                            .addComponent(jB_DiscardAll))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -325,8 +325,8 @@ public class PlayerView extends JPanel {
     private javax.swing.JButton jB_DiscardAll;
     private javax.swing.JButton jB_Steal;
     private javax.swing.JButton jB_Visible;
+    private javax.swing.JLabel jLabel1;
     private GUI.PendingBadConsequenceView pendingBadConsequenceView;
-    private javax.swing.JLabel pendingBadLabel;
     private javax.swing.JLabel playerCombatLevel;
     private javax.swing.JLabel playerCombatLevelContent;
     private javax.swing.JLabel playerEnemy;

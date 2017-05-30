@@ -27,7 +27,7 @@ public abstract class BadConsequence {
         return text;
     }
     
-    protected abstract boolean isEmpty();
+    public abstract boolean isEmpty();
     
     protected abstract void substractVisibleTreasure(Treasure t);
     
@@ -38,7 +38,7 @@ public abstract class BadConsequence {
     
     @Override
     public String toString() {
-        return "    * Texto: " + text + "\n    * Niveles perdidos: " + Integer.toString(levels);
+        return "Niveles perdidos: " + Integer.toString(levels);
     }
     
 }
