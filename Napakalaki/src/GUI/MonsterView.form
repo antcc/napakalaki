@@ -16,6 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="badConsequenceView" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="badConsequenceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -23,19 +24,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="levelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="prizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cultistLevelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="prizeView" min="-2" max="-2" attributes="0"/>
                           <Component id="level" min="-2" max="-2" attributes="0"/>
                           <Component id="name" min="-2" max="-2" attributes="0"/>
+                          <Component id="cultistLevel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="prizeLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="prizeView" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="44" max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
           </Group>
-          <Component id="badConsequenceView" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -50,6 +56,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="levelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="level" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cultistLevelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cultistLevel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -110,6 +121,19 @@
     <Component class="GUI.PrizeView" name="prizeView">
     </Component>
     <Component class="GUI.BadConsequenceView" name="badConsequenceView">
+    </Component>
+    <Component class="javax.swing.JLabel" name="cultistLevel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nivel contra sectarios"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cultistLevelLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nivel contra sectarios:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

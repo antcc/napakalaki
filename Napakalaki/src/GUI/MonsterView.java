@@ -23,6 +23,8 @@ public class MonsterView extends JPanel {
         
         this.name.setText(monster.getName());
         this.level.setText(Integer.toString(monster.getCombatLevel()));
+        this.cultistLevel.setText(Integer.toString( 
+                monsterModel.getCombatLevelAgainstCultistPlayer()));
         this.prizeView.setPrize(monster.getPrize());
         this.badConsequenceView.setBadConsequence(monster.getBadConsequence());
         
@@ -47,6 +49,8 @@ public class MonsterView extends JPanel {
         badConsequenceLabel = new javax.swing.JLabel();
         prizeView = new GUI.PrizeView();
         badConsequenceView = new GUI.BadConsequenceView();
+        cultistLevel = new javax.swing.JLabel();
+        cultistLevelLabel = new javax.swing.JLabel();
 
         nameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         nameLabel.setText("Nombre:");
@@ -64,10 +68,16 @@ public class MonsterView extends JPanel {
         badConsequenceLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         badConsequenceLabel.setText("Mal rollo:");
 
+        cultistLevel.setText("Nivel contra sectarios");
+
+        cultistLevelLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        cultistLevelLabel.setText("Nivel contra sectarios:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(badConsequenceView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(badConsequenceLabel)
@@ -75,14 +85,18 @@ public class MonsterView extends JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel)
                             .addComponent(levelLabel)
-                            .addComponent(prizeLabel))
+                            .addComponent(cultistLevelLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(level)
-                            .addComponent(name))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(badConsequenceView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(name)
+                            .addComponent(cultistLevel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(prizeLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(prizeView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,6 +109,10 @@ public class MonsterView extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(levelLabel)
                     .addComponent(level))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cultistLevelLabel)
+                    .addComponent(cultistLevel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(prizeLabel)
@@ -110,6 +128,8 @@ public class MonsterView extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel badConsequenceLabel;
     private GUI.BadConsequenceView badConsequenceView;
+    private javax.swing.JLabel cultistLevel;
+    private javax.swing.JLabel cultistLevelLabel;
     private javax.swing.JLabel level;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JLabel name;
