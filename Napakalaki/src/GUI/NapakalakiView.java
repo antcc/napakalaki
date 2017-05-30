@@ -66,7 +66,7 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_combat);
-        jB_combat.setBounds(200, 700, 120, 29);
+        jB_combat.setBounds(200, 700, 120, 38);
 
         jB_nextTurn.setText("Siguiente turno");
         jB_nextTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +75,7 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_nextTurn);
-        jB_nextTurn.setBounds(330, 700, 140, 29);
+        jB_nextTurn.setBounds(330, 700, 170, 38);
 
         jB_meetMonster.setText("Mostrar monstruo");
         jB_meetMonster.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class NapakalakiView extends JFrame {
             }
         });
         getContentPane().add(jB_meetMonster);
-        jB_meetMonster.setBounds(30, 700, 160, 29);
+        jB_meetMonster.setBounds(30, 700, 160, 38);
 
         messagesContainer.setBorder(null);
 
@@ -98,21 +98,21 @@ public class NapakalakiView extends JFrame {
         messageText.setEditable(false);
 
         getContentPane().add(messagesContainer);
-        messagesContainer.setBounds(1230, 460, 310, 167);
+        messagesContainer.setBounds(1230, 460, 410, 167);
 
         currentMonster.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monstruo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Literation Mono Powerline", 1, 12))); // NOI18N
         getContentPane().add(currentMonster);
-        currentMonster.setBounds(1230, 20, 368, 410);
+        currentMonster.setBounds(1230, 20, 415, 410);
 
         jLabel1.setText("Número total de sectarios:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1230, 650, 230, 16);
+        jLabel1.setBounds(1230, 650, 230, 24);
 
         jL_numberCultist.setText("jLabel2");
         getContentPane().add(jL_numberCultist);
-        jL_numberCultist.setBounds(1450, 650, 45, 16);
+        jL_numberCultist.setBounds(1450, 650, 57, 24);
         getContentPane().add(currentPlayer);
-        currentPlayer.setBounds(0, 0, 1210, 690);
+        currentPlayer.setBounds(0, 0, 1216, 690);
 
         getAccessibleContext().setAccessibleName("Napakalaki");
 
@@ -161,8 +161,6 @@ public class NapakalakiView extends JFrame {
         if (nextTurnAllowed) {
             this.setNapakalaki(napakalakiModel);
             this.messageText.setText("");
-            this.jB_combat.setEnabled(false);
-            this.jB_nextTurn.setEnabled(false);
             this.jB_meetMonster.setEnabled(true);
             this.currentPlayer.changeButtonsState(true);
         }
