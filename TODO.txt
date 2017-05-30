@@ -1,12 +1,3 @@
-- Permitir pulsar ENTER en los menús.
-- TotalCultistPlayers en Napakalaki.
-- Quitar TextArea de BadConsequence.
-- Arreglar namesCapture
-- No se ven los tesoros
-- Arreglar interfaz
-
-
-
 * Jugar varias partidas para ver que todo funciona bien.
 
 

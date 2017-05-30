@@ -1,2 +1,0 @@
-- ¿Quitar text de BadConsequence.toString()?
-- PendingBadConsequenceView::setPendingBadConsequence ?
