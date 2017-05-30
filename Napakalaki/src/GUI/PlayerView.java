@@ -21,8 +21,6 @@ public class PlayerView extends JPanel {
 
     public PlayerView() {
         initComponents();
-        this.cultistCard.setVisible(false);
-        this.cultistCardLabel.setVisible(false);
     }
     
     public void setPlayer(Player p) {
@@ -44,6 +42,10 @@ public class PlayerView extends JPanel {
                                                               .getCultistCard().getGainedLevels()));
             this.cultistCard.setVisible(true);
             this.cultistCardLabel.setVisible(true);
+        }
+        else {
+            this.cultistCard.setVisible(false);
+            this.cultistCardLabel.setVisible(false);
         }
         
         revalidate();
@@ -82,10 +84,14 @@ public class PlayerView extends JPanel {
         return output;
     }
     
-    public void changeButtonsState(Boolean state) {
+    public void changeButtonsState(boolean state) {
         this.jB_Discard.setEnabled(state);
         this.jB_DiscardAll.setEnabled(state);
         this.jB_Steal.setEnabled(state && playerModel.canISteal());
+        changeButtonMakeVisible(state);
+    }
+    
+    public void changeButtonMakeVisible(boolean state) {
         this.jB_Visible.setEnabled(state);
     }
 

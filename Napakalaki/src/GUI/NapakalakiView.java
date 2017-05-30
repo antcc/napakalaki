@@ -161,8 +161,6 @@ public class NapakalakiView extends JFrame {
         if (nextTurnAllowed) {
             this.setNapakalaki(napakalakiModel);
             this.messageText.setText("");
-            this.jB_meetMonster.setEnabled(true);
-            this.currentPlayer.changeButtonsState(true);
         }
         else {
             this.messageText.setText("ERROR. O bien te queda un mal rollo por cumplir, o"
@@ -172,14 +170,20 @@ public class NapakalakiView extends JFrame {
 
     public void setNapakalaki(Napakalaki n) {
         napakalakiModel = n;
+        
         this.currentPlayer.setPlayer(napakalakiModel.getCurrentPlayer());
         this.currentPlayer.setNapakalaki(napakalakiModel);
         this.currentMonster.setMonster(napakalakiModel.getCurrentMonster());
         this.jL_numberCultist.setText(Integer.toString(NapakalakiGame.CultistPlayer.getTotalCultistPlayers()));
-        
         this.currentMonster.setVisible(false);
+        
+        // Buttons logic
+        
         this.jB_combat.setEnabled(false);
         this.jB_nextTurn.setEnabled(false);
+        this.jB_meetMonster.setEnabled(true);
+        this.currentPlayer.changeButtonsState(false);
+        this.currentPlayer.changeButtonMakeVisible(true);
         
         revalidate();
         repaint();
