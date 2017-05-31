@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 public class BadConsequenceView extends JPanel {
     
-    private BadConsequence badConsequenceModel;
+    private BadConsequence badConsequenceModel = null;
 
     public BadConsequenceView() {
         initComponents();

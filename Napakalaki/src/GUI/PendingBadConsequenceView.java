@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class PendingBadConsequenceView extends JPanel {
 
-    private BadConsequence pendingBCModel;
+    private BadConsequence pendingBCModel = null;
     
     public PendingBadConsequenceView() {
         initComponents();

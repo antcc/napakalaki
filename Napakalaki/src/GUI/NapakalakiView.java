@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
  */
 public class NapakalakiView extends JFrame {
     
-    private Napakalaki napakalakiModel;
+    private Napakalaki napakalakiModel = null;
     
     private KeyEventDispatcher kEventDispatcher = new KeyEventDispatcher() {
         @Override
@@ -130,7 +130,6 @@ public class NapakalakiView extends JFrame {
         CombatResult combatResult = napakalakiModel.developCombat();
         this.jB_nextTurn.setEnabled(true);
         this.jB_combat.setEnabled(false);
-        this.jB_meetMonster.setEnabled(false);
         this.currentPlayer.changeButtonsState(true);
           
         switch (combatResult) {

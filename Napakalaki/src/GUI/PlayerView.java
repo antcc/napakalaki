@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public class PlayerView extends JPanel {
     
-    private Player playerModel;
-    private Napakalaki napakalakiModel;
+    private Player playerModel = null;
+    private Napakalaki napakalakiModel = null;
 
     public PlayerView() {
         initComponents();

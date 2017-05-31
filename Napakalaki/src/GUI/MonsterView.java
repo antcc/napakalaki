@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class MonsterView extends JPanel {
     
-    private Monster monsterModel;
+    private Monster monsterModel = null;
 
     public MonsterView() {
         initComponents();

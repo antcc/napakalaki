@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class PrizeView extends JPanel {
     
-    private Prize prizeModel;
+    private Prize prizeModel = null;
 
     public PrizeView() {
         initComponents();

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  */
 public class TreasureView extends JPanel {
     
-    private Treasure treasureModel;
+    private Treasure treasureModel = null;
     private boolean selected;
 
     public TreasureView() {
